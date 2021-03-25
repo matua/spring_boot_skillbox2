@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head xmlns="" th:fragment="headFragment">
-    <title>Тут название страницы написать</title>
+<head xmlns="" th:fragment="headFragment(title)">
+    <title th:text="${title}">Тут название страницы написать</title>
     <meta name="description" content="Описание страницы">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
