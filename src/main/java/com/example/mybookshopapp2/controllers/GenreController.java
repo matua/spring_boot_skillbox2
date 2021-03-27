@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class AuthorController {
+public class GenreController {
 
     private final AuthorService authorService;
 
     @Autowired
-    public AuthorController(AuthorService authorService) {
+    public GenreController(AuthorService authorService) {
         this.authorService = authorService;
     }
 
@@ -26,9 +26,9 @@ public class AuthorController {
         return authorService.getAuthorsMap();
     }
 
-    @GetMapping("/author")
-    public String authorPage() {
-        return "/authors/slug";
+    @GetMapping("/genre")
+    public String genresPage() {
+        return "/genres/slug";
     }
 
 }

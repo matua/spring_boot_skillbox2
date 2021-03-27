@@ -8,9 +8,8 @@
 <!--[if IE 9]>
 <html class="ie9" lang="ru">
 <![endif]-->
-<!--[if gt IE 9]><!-->
 <html lang="ru" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
-<head th:readonly="~{fragments/head_fragment::headFragment(#{common.author})}"></head>
+<head th:replace="~{fragments/head_fragment::headFragment('Автор')}"></head>
 <body class="Site">
 <!--if lt IE 8
 p.error-browser
@@ -300,6 +299,6 @@ p.error-browser
     </div>
 </div>
 <footer th:replace="~{fragments/footer_fragment::footFragment}"></footer>
-<script src="/assets/plg/jQuery/jquery-3.5.1.min.js"></script>
+<!--<script src="/assets/plg/jQuery/jquery-3.5.1.min.js"></script>-->
 </body>
 </html>
