@@ -8,8 +8,9 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Transient
-    private String author;
+    @ManyToOne
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    private Author author;
     private String title;
     private String priceOld;
     private String price;
@@ -23,11 +24,11 @@ public class Book {
         return this;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public Book setAuthor(String author) {
+    public Book setAuthor(Author author) {
         this.author = author;
         return this;
     }
@@ -57,5 +58,16 @@ public class Book {
     public Book setPrice(String price) {
         this.price = price;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", author=" + author +
+                ", title='" + title + '\'' +
+                ", priceOld='" + priceOld + '\'' +
+                ", price='" + price + '\'' +
+                '}';
     }
 }

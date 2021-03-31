@@ -13,8 +13,8 @@ public class Author {
     private String firstName;
     private String lastName;
 
-    @OneToMany
-    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    @OneToMany(mappedBy = "author")
+//    @JoinColumn(name = "author_id", referencedColumnName = "id")
     private List<Book> bookList = new ArrayList<>();
 
     public List<Book> getBookList() {
@@ -57,4 +57,6 @@ public class Author {
     public String toString() {
         return firstName + ' '+ lastName;
     }
+
+
 }
