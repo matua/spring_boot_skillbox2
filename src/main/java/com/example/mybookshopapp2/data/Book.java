@@ -1,19 +1,39 @@
 package com.example.mybookshopapp2.data;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "books")
+@Table
 public class Book {
+//    @ManyToMany(cascade = {
+//            CascadeType.PERSIST,
+//            CascadeType.MERGE
+//    })
+//    @JoinTable(
+//            name = "book2user",
+//            joinColumns = {@JoinColumn(name = "book_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "user_id")}
+//    )
+//    Set<User> users = new HashSet<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
-    @JoinColumn(name = "author_id", referencedColumnName = "id")
+//    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    @JoinTable(name = "book2author",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Author author;
     private String title;
     private String priceOld;
     private String price;
+    @ManyToOne
+    @JoinTable(name = "book2genre",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    private Genre genre;
 
     public Integer getId() {
         return id;
@@ -60,14 +80,34 @@ public class Book {
         return this;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", author=" + author +
-                ", title='" + title + '\'' +
-                ", priceOld='" + priceOld + '\'' +
-                ", price='" + price + '\'' +
-                '}';
+    public Genre getGenre() {
+        return genre;
     }
+
+    public Book setGenre(Genre genre) {
+        this.genre = genre;
+        return this;
+    }
+
+//    public Set<User> getUsers() {
+//        return users;
+//    }
+//
+//    public Book setUsers(Set<User> users) {
+//        this.users = users;
+//        return this;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "Book{" +
+//                "id=" + id +
+//                ", author=" + author +
+//                ", title='" + title + '\'' +
+//                ", priceOld='" + priceOld + '\'' +
+//                ", price='" + price + '\'' +
+//                ", genre=" + genre +
+//                ", users=" + users +
+//                '}';
+//    }
 }

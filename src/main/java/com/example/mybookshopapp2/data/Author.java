@@ -1,11 +1,11 @@
 package com.example.mybookshopapp2.data;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "authors")
+@Table
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,18 +13,12 @@ public class Author {
     private String firstName;
     private String lastName;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "book2author",
+            joinColumns = @JoinColumn(name = "author_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
+    private Set<Book> books = new HashSet<>();
 //    @JoinColumn(name = "author_id", referencedColumnName = "id")
-    private List<Book> bookList = new ArrayList<>();
-
-    public List<Book> getBookList() {
-        return bookList;
-    }
-
-    public Author setBookList(List<Book> bookList) {
-        this.bookList = bookList;
-        return this;
-    }
 
     public Integer getId() {
         return id;
@@ -53,10 +47,12 @@ public class Author {
         return this;
     }
 
-    @Override
-    public String toString() {
-        return firstName + ' '+ lastName;
+    public Set<Book> getBooks() {
+        return books;
     }
 
-
+    public Author setBooks(Set<Book> books) {
+        this.books = books;
+        return this;
+    }
 }
