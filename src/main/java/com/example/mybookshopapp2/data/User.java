@@ -17,6 +17,13 @@ public class User {
     private BigDecimal balance;
     private String name;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "book2user",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    private Set<Book> books = new HashSet<>();
+
     public Integer getId() {
         return id;
     }
@@ -62,16 +69,12 @@ public class User {
         return this;
     }
 
-    //    @ManyToMany(mappedBy = "users")
-//    private Set<Book> books = new HashSet<>();
+    public Set<Book> getBooks() {
+        return books;
+    }
 
-
-//    public Set<Book> getBooks() {
-//        return books;
-//    }
-//
-//    public User setBooks(Set<Book> books) {
-//        this.books = books;
-//        return this;
-//    }
+    public User setBooks(Set<Book> books) {
+        this.books = books;
+        return this;
+    }
 }

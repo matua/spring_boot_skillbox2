@@ -1,25 +1,27 @@
 package com.example.mybookshopapp2.data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table
+@Table(name = "books")
 public class Book {
-//    @ManyToMany(cascade = {
-//            CascadeType.PERSIST,
-//            CascadeType.MERGE
-//    })
-//    @JoinTable(
-//            name = "book2user",
-//            joinColumns = {@JoinColumn(name = "book_id")},
-//            inverseJoinColumns = {@JoinColumn(name = "user_id")}
-//    )
-//    Set<User> users = new HashSet<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "book2user",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    Set<User> users = new HashSet<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private LocalDateTime pubDate;
+    private Byte isBestseller;
+    private String slug;
+    private String image;
+    private String description;
     @ManyToOne
 //    @JoinColumn(name = "author_id", referencedColumnName = "id")
     @JoinTable(name = "book2author",
@@ -29,6 +31,7 @@ public class Book {
     private String title;
     private String priceOld;
     private String price;
+    private Byte discount;
     @ManyToOne
     @JoinTable(name = "book2genre",
             joinColumns = @JoinColumn(name = "book_id"),
