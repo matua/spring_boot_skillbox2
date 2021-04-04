@@ -14,6 +14,17 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     Set<User> users = new HashSet<>();
+    //    @ManyToOne
+////    @JoinColumn(name = "author_id", referencedColumnName = "id")
+//    @JoinTable(name = "book2author",
+//            joinColumns = @JoinColumn(name = "book_id"),
+//            inverseJoinColumns = @JoinColumn(name = "author_id"))
+    @ManyToMany(cascade = CascadeType.ALL/*, fetch = FetchType.EAGER*/)
+    @JoinTable(name = "book2author",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    Set<Author> authors = new HashSet<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,12 +33,7 @@ public class Book {
     private String slug;
     private String image;
     private String description;
-    @ManyToOne
-//    @JoinColumn(name = "author_id", referencedColumnName = "id")
-    @JoinTable(name = "book2author",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id"))
-    private Author author;
+    //    private Author author;
     private String title;
     private String priceOld;
     private String price;
@@ -38,6 +44,24 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private Genre genre;
 
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public Book setUsers(Set<User> users) {
+        this.users = users;
+        return this;
+    }
+
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
+    public Book setAuthors(Set<Author> authors) {
+        this.authors = authors;
+        return this;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -47,12 +71,48 @@ public class Book {
         return this;
     }
 
-    public Author getAuthor() {
-        return author;
+    public LocalDateTime getPubDate() {
+        return pubDate;
     }
 
-    public Book setAuthor(Author author) {
-        this.author = author;
+    public Book setPubDate(LocalDateTime pubDate) {
+        this.pubDate = pubDate;
+        return this;
+    }
+
+    public Byte getIsBestseller() {
+        return isBestseller;
+    }
+
+    public Book setIsBestseller(Byte isBestseller) {
+        this.isBestseller = isBestseller;
+        return this;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public Book setSlug(String slug) {
+        this.slug = slug;
+        return this;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public Book setImage(String image) {
+        this.image = image;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Book setDescription(String description) {
+        this.description = description;
         return this;
     }
 
@@ -80,6 +140,15 @@ public class Book {
 
     public Book setPrice(String price) {
         this.price = price;
+        return this;
+    }
+
+    public Byte getDiscount() {
+        return discount;
+    }
+
+    public Book setDiscount(Byte discount) {
+        this.discount = discount;
         return this;
     }
 

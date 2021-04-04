@@ -1,5 +1,6 @@
 package com.example.mybookshopapp2.config;
 
+import com.example.mybookshopapp2.data.Author;
 import com.example.mybookshopapp2.data.BookRepository;
 import com.example.mybookshopapp2.data.TestEntity;
 import com.example.mybookshopapp2.data.TestEntityCrudRepository;
@@ -53,7 +54,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
         deleteTestEntity(4L);
 
-        Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info(bookRepository.findBooksByAuthor_FirstName("Jonathan").toString());
+        Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info(bookRepository.findBookByAuthorsLastName("Jonathan").toString());
         Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info(bookRepository.customFindAllBooks().toString());
     }
 

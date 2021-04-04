@@ -13,10 +13,15 @@ public class Author {
     private String firstName;
     private String lastName;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    //    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "book2author",
+//            joinColumns = @JoinColumn(name = "author_id"),
+//            inverseJoinColumns = @JoinColumn(name = "book_id"))
+    @ManyToMany(cascade = CascadeType.ALL/*, fetch = FetchType.EAGER*/)
     @JoinTable(name = "book2author",
             joinColumns = @JoinColumn(name = "author_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id"))
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
     private Set<Book> books = new HashSet<>();
 //    @JoinColumn(name = "author_id", referencedColumnName = "id")
 
@@ -54,5 +59,10 @@ public class Author {
     public Author setBooks(Set<Book> books) {
         this.books = books;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
     }
 }

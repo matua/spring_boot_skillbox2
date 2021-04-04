@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 public class BookService {
@@ -15,6 +16,7 @@ public class BookService {
     }
 
     public List<Book> getBooksData() {
+//        Logger.getLogger(BookService.class.getSimpleName()).info(bookRepository.findAll().toString());
         return bookRepository.findAll();
     }
 

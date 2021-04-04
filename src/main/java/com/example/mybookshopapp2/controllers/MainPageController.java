@@ -21,6 +21,9 @@ public class MainPageController {
 
     @ModelAttribute("recommendedBooks")
     public List<Book> recommendedBooks() {
+        bookService.getBooksData().forEach(book -> {
+            System.out.println(book.getAuthors());
+        });
         return bookService.getBooksData();
     }
 

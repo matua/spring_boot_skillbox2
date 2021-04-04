@@ -1,14 +1,25 @@
-insert into authors (id, first_name, last_name) values (1, 'Marmaduke', 'Gallety');
-insert into authors (id, first_name, last_name) values (2, 'Janelle', 'Whitfield');
-insert into authors (id, first_name, last_name) values (3, 'Remington', 'Tupper');
-insert into authors (id, first_name, last_name) values (4, 'Claiborn', 'Seaward');
-insert into authors (id, first_name, last_name) values (5, 'Ingram', 'Henaughan');
-insert into authors (id, first_name, last_name) values (6, 'Kerry', 'Stileman');
-insert into authors (id, first_name, last_name) values (7, 'Sasha', 'Berardt');
-insert into authors (id, first_name, last_name) values (8, 'Oralia', 'Schapiro');
-insert into authors (id, first_name, last_name) values (9, 'Delmore', 'Evemy');
-insert into authors (id, first_name, last_name) values (10, 'Whitby', 'Scarisbrick');
-insert into authors (id, first_name, last_name) values (11, 'Virginia', 'Daile');
+insert into authors (id, first_name, last_name)
+values (1, 'Jonathan', 'Matua');
+insert into authors (id, first_name, last_name)
+values (2, 'Janelle', 'Whitfield');
+insert into authors (id, first_name, last_name)
+values (3, 'Remington', 'Tupper');
+insert into authors (id, first_name, last_name)
+values (4, 'Claiborn', 'Seaward');
+insert into authors (id, first_name, last_name)
+values (5, 'Ingram', 'Henaughan');
+insert into authors (id, first_name, last_name)
+values (6, 'Kerry', 'Stileman');
+insert into authors (id, first_name, last_name)
+values (7, 'Sasha', 'Berardt');
+insert into authors (id, first_name, last_name)
+values (8, 'Oralia', 'Schapiro');
+insert into authors (id, first_name, last_name)
+values (9, 'Delmore', 'Evemy');
+insert into authors (id, first_name, last_name)
+values (10, 'Whitby', 'Scarisbrick');
+insert into authors (id, first_name, last_name)
+values (11, 'Virginia', 'Daile');
 insert into authors (id, first_name, last_name) values (12, 'Leonora', 'Dagless');
 insert into authors (id, first_name, last_name) values (13, 'Celisse', 'Ronnay');
 insert into authors (id, first_name, last_name) values (14, 'Erie', 'Biever');
