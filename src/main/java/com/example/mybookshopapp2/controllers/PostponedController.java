@@ -20,12 +20,6 @@ public class PostponedController {
         this.authorService = authorService;
     }
 
-    @ModelAttribute("authorsMap")
-    public Map<String, List<Author>> authorsMap() {
-        Map<String, List<Author>> authorsMap = authorService.getAuthorsMap();
-        return authorService.getAuthorsMap();
-    }
-
     @GetMapping("/postponed")
     public String postponedPage() {
         return "/postponed";

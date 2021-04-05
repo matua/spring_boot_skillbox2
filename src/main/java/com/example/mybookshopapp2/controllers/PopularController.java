@@ -20,12 +20,6 @@ public class PopularController {
         this.authorService = authorService;
     }
 
-    @ModelAttribute("authorsMap")
-    public Map<String, List<Author>> authorsMap() {
-        Map<String, List<Author>> authorsMap = authorService.getAuthorsMap();
-        return authorService.getAuthorsMap();
-    }
-
     @GetMapping("/popular")
     public String popularPage() {
         return "/books/popular";

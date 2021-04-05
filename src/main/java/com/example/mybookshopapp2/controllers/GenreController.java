@@ -20,12 +20,6 @@ public class GenreController {
         this.authorService = authorService;
     }
 
-    @ModelAttribute("authorsMap")
-    public Map<String, List<Author>> authorsMap() {
-        Map<String, List<Author>> authorsMap = authorService.getAuthorsMap();
-        return authorService.getAuthorsMap();
-    }
-
     @GetMapping("/genre")
     public String genresPage() {
         return "/genres/slug";

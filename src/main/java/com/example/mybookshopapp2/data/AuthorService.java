@@ -26,4 +26,8 @@ public class AuthorService {
     public Map<String, List<Author>> getAuthorsMap() {
         return authorRepository.findAll().stream().collect(Collectors.groupingBy((Author a) -> a.getLastName().substring(0, 1)));
     }
+
+    public Author getAuthorByName(String name) {
+        return authorRepository.getAuthorByFirstNameOrLastName();
+    }
 }
