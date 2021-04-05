@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="matua (generated)" id="1617633363886-1">
+        <createSequence sequenceName="authors_id_seq"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-2">
+        <createSequence sequenceName="balance_transaction_id_seq"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-3">
+        <createSequence sequenceName="book_file_id_seq"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-4">
+        <createSequence sequenceName="book_file_type_id_seq"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-5">
+        <createSequence sequenceName="book_review_id_seq"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-6">
+        <createSequence sequenceName="book_review_like_id_seq"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-7">
+        <createSequence sequenceName="books_id_seq"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-8">
+        <createSequence sequenceName="books_id_seq1"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-9">
+        <createSequence sequenceName="document_id_seq"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-10">
+        <createSequence sequenceName="faq_id_seq"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-11">
+        <createSequence sequenceName="file_download_id_seq"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-12">
+        <createSequence sequenceName="genre_id_seq"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-13">
+        <createSequence sequenceName="message_id_seq"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-14">
+        <createSequence sequenceName="test_entities_id_seq"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-15">
+        <createSequence sequenceName="user_contact_user_id_seq"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-16">
+        <createSequence sequenceName="users_id_seq"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-17">
+        <createTable tableName="authors">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="authors_pkey"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-18">
+        <createTable tableName="balance_transaction">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="balance_transaction_pkey"/>
+            </column>
+            <column name="book_id" type="INT"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="time" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+            <column name="user_id" type="INT"/>
+            <column name="value" type="numeric(19, 2)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-19">
+        <createTable tableName="book2author">
+            <column name="book_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-20">
+        <createTable tableName="book2genre">
+            <column name="genre_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-21">
+        <createTable tableName="book2user">
+            <column name="user_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-22">
+        <createTable tableName="book_file">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="book_file_pkey"/>
+            </column>
+            <column name="hash" type="VARCHAR(255)"/>
+            <column name="path" type="VARCHAR(255)"/>
+            <column name="type_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-23">
+        <createTable tableName="book_file_type">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="book_file_type_pkey"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="name" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-24">
+        <createTable tableName="book_review">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="book_review_pkey"/>
+            </column>
+            <column name="book_id" type="INT"/>
+            <column name="text" type="VARCHAR(255)"/>
+            <column name="time" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+            <column name="user_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-25">
+        <createTable tableName="book_review_like">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="book_review_like_pkey"/>
+            </column>
+            <column name="date_time" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+            <column name="review_id" type="INT"/>
+            <column name="user_id" type="INT"/>
+            <column name="value" type="SMALLINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-26">
+        <createTable tableName="books">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="books_pkey"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="discount" type="SMALLINT"/>
+            <column name="image" type="VARCHAR(255)"/>
+            <column name="is_bestseller" type="SMALLINT"/>
+            <column name="price" type="VARCHAR(255)"/>
+            <column name="price_old" type="VARCHAR(255)"/>
+            <column name="pub_date" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+            <column name="slug" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-27">
+        <createTable tableName="document">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="document_pkey"/>
+            </column>
+            <column name="slug" type="VARCHAR(255)"/>
+            <column name="sort_index" type="INT"/>
+            <column name="text" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-28">
+        <createTable tableName="faq">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="faq_pkey"/>
+            </column>
+            <column name="answer" type="VARCHAR(255)"/>
+            <column name="question" type="VARCHAR(255)"/>
+            <column name="sort_index" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-29">
+        <createTable tableName="file_download">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="file_download_pkey"/>
+            </column>
+            <column name="book_id" type="INT"/>
+            <column name="count" type="INT"/>
+            <column name="user_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-30">
+        <createTable tableName="genre">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="genre_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="parent_id" type="INT"/>
+            <column name="slug" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-31">
+        <createTable tableName="message">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="message_pkey"/>
+            </column>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="subject" type="VARCHAR(255)"/>
+            <column name="text" type="VARCHAR(255)"/>
+            <column name="time" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+            <column name="user_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-32">
+        <createTable tableName="test_entities">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="test_entities_pkey"/>
+            </column>
+            <column name="data" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-33">
+        <createTable tableName="user_contact">
+            <column autoIncrement="true" name="user_id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="user_contact_pkey"/>
+            </column>
+            <column name="approved" type="SMALLINT"/>
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="code_time" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+            <column name="code_trials" type="INT"/>
+            <column name="contact" type="VARCHAR(255)"/>
+            <column name="type" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-34">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="users_pkey"/>
+            </column>
+            <column name="balance" type="numeric(19, 2)"/>
+            <column name="hash" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="reg_time" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-35">
+        <addPrimaryKey columnNames="author_id, book_id" constraintName="book2author_pkey" tableName="book2author"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-36">
+        <addPrimaryKey columnNames="genre_id, book_id" constraintName="book2genre_pkey" tableName="book2genre"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-37">
+        <addPrimaryKey columnNames="book_id, user_id" constraintName="book2user_pkey" tableName="book2user"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-38">
+        <addUniqueConstraint columnNames="book_id" constraintName="uk_ew706thlca5n1w283gy5qxn7j"
+                             tableName="book2genre"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-39">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="book2user"
+                                 constraintName="fk1i8i82uo8kbv1wepiujenmj7x" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-40">
+        <addForeignKeyConstraint baseColumnNames="author_id" baseTableName="book2author"
+                                 constraintName="fk3hyom3yo5q6nfo9ytqofqil37" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="authors"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-41">
+        <addForeignKeyConstraint baseColumnNames="book_id" baseTableName="book2author"
+                                 constraintName="fk8joa8tens71ol1st4fd9hssph" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="books"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-42">
+        <addForeignKeyConstraint baseColumnNames="book_id" baseTableName="book2genre"
+                                 constraintName="fkceqa97sssb6d5xg7n8jtt5gqb" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="books"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-43">
+        <addForeignKeyConstraint baseColumnNames="book_id" baseTableName="book2user"
+                                 constraintName="fkd80i5quc7o0xb1d1k8ppqmtsu" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="books"/>
+    </changeSet>
+    <changeSet author="matua (generated)" id="1617633363886-44">
+        <addForeignKeyConstraint baseColumnNames="genre_id" baseTableName="book2genre"
+                                 constraintName="fkkdc8kcprnkl4ygg2f0v9588wi" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="genre"/>
+    </changeSet>
+</databaseChangeLog>
