@@ -27,7 +27,7 @@ public class AuthorService {
         return authorRepository.findAll().stream().collect(Collectors.groupingBy((Author a) -> a.getLastName().substring(0, 1)));
     }
 
-    public Author getAuthorByName(String name) {
-        return authorRepository.getAuthorByFirstNameOrLastName();
+    public Author getAuthorByName(String firstName, String lastName) {
+        return authorRepository.getAuthorByFirstNameOrLastName(firstName, lastName);
     }
 }

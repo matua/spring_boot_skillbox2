@@ -18,7 +18,7 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public List<Book> getBooksByTag(String Tag) {
-        return bookRepository.getBooksByGenre();
+    public List<Book> getBooksByTag(Genre tag) {
+        return bookRepository.getBooksByGenre(tag);
     }
 }
