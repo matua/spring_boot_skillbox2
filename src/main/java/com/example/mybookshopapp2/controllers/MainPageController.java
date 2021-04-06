@@ -1,7 +1,7 @@
 package com.example.mybookshopapp2.controllers;
 
-import com.example.mybookshopapp2.data.Book;
-import com.example.mybookshopapp2.data.BookService;
+import com.example.mybookshopapp2.model.Book;
+import com.example.mybookshopapp2.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +21,7 @@ public class MainPageController {
 
     @ModelAttribute("recommendedBooks")
     public List<Book> recommendedBooks() {
-        bookService.getBooksData().forEach(book -> {
-            System.out.println(book.getAuthors());
-        });
+        bookService.getBooksData().forEach(book -> System.out.println(book.getAuthors()));
         return bookService.getBooksData();
     }
 

@@ -1,9 +1,8 @@
 package com.example.mybookshopapp2.config;
 
-import com.example.mybookshopapp2.data.Author;
-import com.example.mybookshopapp2.data.BookRepository;
-import com.example.mybookshopapp2.data.TestEntity;
-import com.example.mybookshopapp2.data.TestEntityCrudRepository;
+import com.example.mybookshopapp2.model.TestEntity;
+import com.example.mybookshopapp2.respository.BookRepository;
+import com.example.mybookshopapp2.respository.TestEntityCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +30,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 //    }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         for (int i = 0; i < 5; i++) {
             createTestEntity(new TestEntity());
         }
@@ -39,18 +38,10 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         TestEntity readTestEntity = readTestEntityById(3L);
 //        TestEntity readTestEntity = testEntityDao.findOne(3L);
 
-        if (readTestEntity != null) {
-            Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info("read " + readTestEntity.toString());
-        } else {
-            throw new NullPointerException();
-        }
+        Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info("read " + readTestEntity.toString());
 
         TestEntity updatedTestEntity = updateTestEntityById(5L);
-        if (updatedTestEntity != null) {
-            Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info("update " + updatedTestEntity.toString());
-        } else {
-            throw new NullPointerException();
-        }
+        Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info("update " + updatedTestEntity.toString());
 
         deleteTestEntity(4L);
 
