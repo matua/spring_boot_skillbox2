@@ -2,7 +2,6 @@ package com.example.mybookshopapp2.controllers;
 
 import com.example.mybookshopapp2.model.Author;
 import com.example.mybookshopapp2.service.AuthorService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@Api(description = "authors data")
+//@Api(description = "authors data")
 public class AuthorController {
 
     private final AuthorService authorService;

@@ -21,7 +21,7 @@ public class SpringfoxConfig {
                 .select()
 //                .apis(RequestHandlerSelectors.basePackage("com.example.mybooksshopapp2.controllers"))
                 .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
-                .paths(PathSelectors.ant("/api/*"))
+                .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
     }

@@ -6,6 +6,7 @@ import com.example.mybookshopapp2.respository.TestEntityCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 
+import java.util.Objects;
 import java.util.logging.Logger;
 
 //@Configuration
@@ -37,14 +38,14 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         TestEntity readTestEntity = readTestEntityById(3L);
 //        TestEntity readTestEntity = testEntityDao.findOne(3L);
 
-        Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info("read " + readTestEntity.toString());
+        Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info("read " + readTestEntity);
 
         TestEntity updatedTestEntity = updateTestEntityById(5L);
-        Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info("update " + updatedTestEntity.toString());
+        Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info("update " + updatedTestEntity);
 
         deleteTestEntity(4L);
 
-        Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info(bookRepository.findBookByAuthorsLastName("Jonathan").toString());
+        Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info(bookRepository.findBookByAuthorsFirstNameContaining("Jonathan").toString());
         Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info(bookRepository.customFindAllBooks().toString());
     }
 
@@ -70,7 +71,8 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 //    }
 
     private void deleteTestEntity(Long id) {
-        TestEntity testEntity = testEntityCrudRepository.findById(id).get();
+        TestEntity testEntity = testEntityCrudRepository.findById(id).orElse(null);
+        assert testEntity != null;
         testEntityCrudRepository.delete(testEntity);
     }
 
@@ -98,8 +100,8 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 //    }
 
     private TestEntity updateTestEntityById(Long id) {
-        TestEntity testEntity = testEntityCrudRepository.findById(id).get();
-        testEntity.setData("NEW DATA");
+        TestEntity testEntity = testEntityCrudRepository.findById(id).orElse(null);
+        Objects.requireNonNull(testEntity).setData("NEW DATA");
         testEntityCrudRepository.save(testEntity);
         return testEntity;
     }
@@ -126,7 +128,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 //    }
 
     private TestEntity readTestEntityById(Long id) {
-        return testEntityCrudRepository.findById(id).get();
+        return testEntityCrudRepository.findById(id).orElse(null);
     }
 
 
