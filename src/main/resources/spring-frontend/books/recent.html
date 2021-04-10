@@ -10,7 +10,7 @@
 <![endif]-->
 <!--[if gt IE 9]><!-->
 <html lang="ru" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
-<head th:replace="fragments/head_fragment::headFragment(#{section.new})"></head>
+<head th:replace="fragments/head_fragment::headFragment(#{section.recent})"></head>
 
 <body class="Site">
 <!--if lt IE 8
@@ -36,7 +36,7 @@ p.error-browser
             </ul>
             <div class="Section">
                 <div class="Section-header">
-                    <h1 class="Section-title" th:text="#{section.new}">Новинки
+                    <h1 class="Section-title" th:text="#{section.recent}">Новинки
                     </h1>
                     <form class="form form_inline Section-header-form" action="#" method="post">
                         <div class="form-group">

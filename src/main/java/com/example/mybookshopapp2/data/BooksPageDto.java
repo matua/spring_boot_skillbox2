@@ -4,11 +4,11 @@ import com.example.mybookshopapp2.model.Book;
 
 import java.util.List;
 
-public class RecommendedBooksPageDto {
+public class BooksPageDto {
     private Integer count;
     private List<Book> books;
 
-    public RecommendedBooksPageDto(List<Book> books) {
+    public BooksPageDto(List<Book> books) {
         this.books = books;
         this.count = books.size();
     }
@@ -17,7 +17,7 @@ public class RecommendedBooksPageDto {
         return count;
     }
 
-    public RecommendedBooksPageDto setCount(Integer count) {
+    public BooksPageDto setCount(Integer count) {
         this.count = count;
         return this;
     }
@@ -26,7 +26,7 @@ public class RecommendedBooksPageDto {
         return books;
     }
 
-    public RecommendedBooksPageDto setBooks(List<Book> books) {
+    public BooksPageDto setBooks(List<Book> books) {
         this.books = books;
         return this;
     }
