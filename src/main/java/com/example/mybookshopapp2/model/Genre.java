@@ -14,9 +14,9 @@ public class Genre {
     private String slug;
     private String name;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "book2genre",
-            joinColumns = @JoinColumn(name = "genre_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id"))
+//    @JoinTable(name = "book2genre",
+//            joinColumns = @JoinColumn(name = "genre_id"),
+//            inverseJoinColumns = @JoinColumn(name = "book_id"))
     private Set<Book> books = new HashSet<>();
 
     public Integer getId() {

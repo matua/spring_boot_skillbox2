@@ -58,11 +58,11 @@ public class Book {
     @JsonProperty("discount")
     @ApiModelProperty("discount value for book")
     private Double price;
-    @ManyToOne
-    @JoinTable(name = "book2genre",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "genre_id"))
-    private Genre genre;
+//    @ManyToOne
+//    @JoinTable(name = "book2genre",
+//            joinColumns = @JoinColumn(name = "book_id"),
+//            inverseJoinColumns = @JoinColumn(name = "genre_id"))
+//    private Genre genre;
 
     public Set<User> getUsers() {
         return users;
@@ -160,15 +160,6 @@ public class Book {
 
     public Book setPrice(Double price) {
         this.price = price;
-        return this;
-    }
-
-    public Genre getGenre() {
-        return genre;
-    }
-
-    public Book setGenre(Genre genre) {
-        this.genre = genre;
         return this;
     }
 
