@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +22,10 @@ public class RecentController {
         this.bookService = bookService;
     }
 
+
     @ModelAttribute("recentBooks")
     public List<Book> recentBooks() {
-        return bookService.getPageOfBooksFilteredByDate(0, 6, null, null).getContent();
+        return bookService.getPageOfBooksFilteredByDate(0, 6, Date.valueOf("0000-01-01"), Date.valueOf("0000-01-01")).getContent();
     }
 
 
