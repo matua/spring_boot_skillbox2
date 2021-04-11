@@ -32,13 +32,13 @@ public class MainPageController {
     @ModelAttribute("recentBooks")
     public List<Book> recentBooks() {
         bookService.getBooksData().forEach(book -> System.out.println(book.getAuthors()));
-        return bookService.getPageOfRecommendedBooks(6, 6).getContent();
+        return bookService.getPageOfRecentBooks(0, 6).getContent();
     }
 
     @ModelAttribute("popularBooks")
     public List<Book> popularBooks() {
         bookService.getBooksData().forEach(book -> System.out.println(book.getAuthors()));
-        return bookService.getPageOfRecommendedBooks(18, 6).getContent();
+        return bookService.getPageOfPopularBooks(0, 6).getContent();
     }
 
     @ModelAttribute("searchResults")
@@ -56,7 +56,7 @@ public class MainPageController {
         return "index";
     }
 
-    @GetMapping("/books/recommended")
+    @GetMapping(value = {"/books/recommended", "/books/recent", "/books/popular"})
     @ResponseBody
     public BooksPageDto getBooksPage(@RequestParam("offset") Integer offset,
                                      @RequestParam("limit") Integer limit, HttpServletRequest request) {
