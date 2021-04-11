@@ -262,4 +262,9 @@ insert into books (id, pub_date, is_bestseller, slug, title, image, description,
 values (30, '2012/02/15', 0, 'book-kcd-545', 'Blackout', 'http://dummyimage.com/597x565.png/ff4444/ffffff',
         'Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia.',
         364, 0.15);
+insert into books (id, pub_date, is_bestseller, slug, title, image, description, price, discount)
+values (31, '1500/02/15', 0, 'book-kcd-544', 'TOO OLD', 'http://dummyimage.com/59x55.png/ff4444/ffffff',
+        'Am a very old book...',
+        1000000, 0.00);
+
 

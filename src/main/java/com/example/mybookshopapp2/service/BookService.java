@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -62,8 +64,7 @@ public class BookService {
     }
 
     public Page<Book> getPageOfRecentBooks(Integer offset, Integer limit) {
-        /*TODO*/
-        Pageable nextPage = PageRequest.of(offset, limit);
+        Pageable nextPage = PageRequest.of(offset, limit, Sort.by("pubDate").descending());
         return bookRepository.findAll(nextPage);
     }
 
@@ -71,5 +72,13 @@ public class BookService {
         /*TODO*/
         Pageable nextPage = PageRequest.of(offset, limit);
         return bookRepository.findAll(nextPage);
+    }
+
+    public Page<Book> getPageOfBooksFilteredByDate(Integer offset, Integer limit, Date from, Date to) {
+        Pageable nextPage = PageRequest.of(offset, limit);
+        if (from == null && to == null) {
+            return bookRepository.findAll(nextPage);
+        }
+        return bookRepository.findByPubDateBetween(from, to, nextPage);
     }
 }
