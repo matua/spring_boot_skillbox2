@@ -1,5 +1,7 @@
 package com.example.mybookshopapp2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,10 +15,12 @@ public class Genre {
     private Integer parentId;
     private String slug;
     private String name;
-    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "book2genre",
-//            joinColumns = @JoinColumn(name = "genre_id"),
-//            inverseJoinColumns = @JoinColumn(name = "book_id"))
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "book2genre",
+            joinColumns = @JoinColumn(name = "genre_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    @JsonIgnore
     private Set<Book> books = new HashSet<>();
 
     public Integer getId() {

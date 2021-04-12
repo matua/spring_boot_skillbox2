@@ -59,12 +59,14 @@ public class Book {
     @ApiModelProperty("discount value for book")
     private Double price;
     private Byte rating;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "book2genre",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    @JsonIgnore
+    Set<Author> genres = new HashSet<>();
 
-    //    @ManyToOne
-//    @JoinTable(name = "book2genre",
-//            joinColumns = @JoinColumn(name = "book_id"),
-//            inverseJoinColumns = @JoinColumn(name = "genre_id"))
-//    private Genre genre;
     public Book() {
         this.rating = 0;
     }
