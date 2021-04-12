@@ -8,9 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.mybookshopapp2.utils.TodayOneMonthAgoInDataSql.getDates;
 
 @Controller
 public class RecentController {
@@ -25,9 +26,10 @@ public class RecentController {
 
     @ModelAttribute("recentBooks")
     public List<Book> recentBooks() {
-        return bookService.getPageOfBooksFilteredByDate(0, 6, Date.valueOf("0000-01-01"), Date.valueOf("3000-01-01")).getContent();
+        System.out.println("TODAY: " + getDates()[0]);
+        System.out.println("ONE MONTH AGO: " + getDates()[1]);
+        return bookService.getPageOfBooksFilteredByDate(0, 20, getDates()[0], getDates()[1]).getContent();
     }
-
 
     @ModelAttribute("searchResults")
     public List<Book> searchResults() {

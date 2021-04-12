@@ -76,9 +76,9 @@ public class BookService {
 
     public Page<Book> getPageOfBooksFilteredByDate(Integer offset, Integer limit, Date from, Date to) {
         Pageable nextPage = PageRequest.of(offset, limit);
-        if (from == null && to == null) {
-            return bookRepository.findAll(nextPage);
-        }
+//        if (from == null && to == null) {
+//            return bookRepository.findAll(nextPage);
+//        }
         return bookRepository.findByPubDateBetween(from, to, nextPage);
     }
 }
