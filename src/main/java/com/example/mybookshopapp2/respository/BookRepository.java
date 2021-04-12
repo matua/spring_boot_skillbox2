@@ -37,6 +37,10 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     Page<Book> findByPubDateBetween(Date from, Date to, Pageable pageable);
 
+    Page<Book> findByPubDateAfter(Date from, Pageable pageable);
+
+    Page<Book> findByPubDateBefore(Date to, Pageable pageable);
+
 //    @Query(value = "SELECT * FROM books WHERE pub_date >= :from AND pub_date <  :to", nativeQuery = true)
 //    Page<Book> findByPubDateBetween(@Param("from") Date from, @Param("to") Date to, Pageable pageable);
 

@@ -67,11 +67,7 @@ public class MainPageController {
         if (path.endsWith("recommended")) {
             return new BooksPageDto(bookService.getPageOfRecommendedBooks(offset, limit).getContent());
         } else if ((path.endsWith("recent"))) {
-            if (from == null) {
-                return new BooksPageDto(bookService.getPageOfRecentBooks(offset, limit).getContent());
-            } else {
-                return new BooksPageDto(bookService.getPageOfBooksFilteredByDate(offset, limit, convert(from), convert(to)).getContent());
-            }
+            return new BooksPageDto(bookService.getPageOfBooksFilteredByDate(offset, limit, convert(from), convert(to)).getContent());
         } else {
             return new BooksPageDto(bookService.getPageOfPopularBooks(offset, limit).getContent());
         }
