@@ -25,7 +25,7 @@ public class RecentController {
 
     @ModelAttribute("recentBooks")
     public List<Book> recentBooks() {
-        return bookService.getPageOfBooksFilteredByDate(0, 6, Date.valueOf("0000-01-01"), Date.valueOf("0000-01-01")).getContent();
+        return bookService.getPageOfBooksFilteredByDate(0, 6, Date.valueOf("0000-01-01"), Date.valueOf("3000-01-01")).getContent();
     }
 
 
