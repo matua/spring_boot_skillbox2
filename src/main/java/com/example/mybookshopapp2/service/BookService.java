@@ -69,8 +69,7 @@ public class BookService {
     }
 
     public Page<Book> getPageOfPopularBooks(Integer offset, Integer limit) {
-        /*TODO*/
-        Pageable nextPage = PageRequest.of(offset, limit);
+        Pageable nextPage = PageRequest.of(offset, limit, Sort.by("rating").descending());
         return bookRepository.findAll(nextPage);
     }
 

@@ -58,11 +58,16 @@ public class Book {
     @JsonProperty("discount")
     @ApiModelProperty("discount value for book")
     private Double price;
-//    @ManyToOne
+    private Byte rating;
+
+    //    @ManyToOne
 //    @JoinTable(name = "book2genre",
 //            joinColumns = @JoinColumn(name = "book_id"),
 //            inverseJoinColumns = @JoinColumn(name = "genre_id"))
 //    private Genre genre;
+    public Book() {
+        this.rating = 0;
+    }
 
     public Set<User> getUsers() {
         return users;
@@ -163,25 +168,12 @@ public class Book {
         return this;
     }
 
-//    public Set<User> getUsers() {
-//        return users;
-//    }
-//
-//    public Book setUsers(Set<User> users) {
-//        this.users = users;
-//        return this;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "Book{" +
-//                "id=" + id +
-//                ", author=" + author +
-//                ", title='" + title + '\'' +
-//                ", priceOld='" + priceOld + '\'' +
-//                ", price='" + price + '\'' +
-//                ", genre=" + genre +
-//                ", users=" + users +
-//                '}';
-//    }
+    public Byte getRating() {
+        return rating;
+    }
+
+    public Book setRating(Byte rating) {
+        this.rating = rating;
+        return this;
+    }
 }

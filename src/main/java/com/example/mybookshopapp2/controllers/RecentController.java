@@ -26,8 +26,6 @@ public class RecentController {
 
     @ModelAttribute("recentBooks")
     public List<Book> recentBooks() {
-        System.out.println("TODAY: " + getDates()[0]);
-        System.out.println("ONE MONTH AGO: " + getDates()[1]);
         return bookService.getPageOfBooksFilteredByDate(0, 20, getDates()[0], getDates()[1]).getContent();
     }
 
