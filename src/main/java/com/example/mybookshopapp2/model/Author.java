@@ -3,6 +3,7 @@ package com.example.mybookshopapp2.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Entity
 @Table(name = "authors")
 @ApiModel(description = "data model of author entity")
+@Data
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,45 +35,4 @@ public class Author {
     @JsonIgnore
     private Set<Book> books = new HashSet<>();
 //    @JoinColumn(name = "author_id", referencedColumnName = "id")
-
-    public Integer getId() {
-        return id;
-    }
-
-    public Author setId(Integer id) {
-        this.id = id;
-        return this;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public Author setFirstName(String firstName) {
-        this.firstName = firstName;
-        return this;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public Author setLastName(String lastName) {
-        this.lastName = lastName;
-        return this;
-    }
-
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    public Author setBooks(Set<Book> books) {
-        this.books = books;
-        return this;
-    }
-
-    @Override
-    public String toString() {
-        return firstName + " " + lastName;
-    }
 }

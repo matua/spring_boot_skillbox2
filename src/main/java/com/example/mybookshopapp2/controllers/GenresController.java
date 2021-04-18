@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class GenresController {
@@ -32,9 +33,14 @@ public class GenresController {
         return new SearchWordDto();
     }
 
-    @ModelAttribute("genres")
-    public List<Genre> genres() {
-        return genreService.getALlGenres();
+    @ModelAttribute("mainGenres")
+    public List<Genre> mainGenres() {
+        return genreService.getAllMainGenres();
+    }
+
+    @ModelAttribute("genresMap")
+    public Map<Integer, List<Genre>> genres() {
+        return genreService.getGenresMap();
     }
 
     @GetMapping("/genres")

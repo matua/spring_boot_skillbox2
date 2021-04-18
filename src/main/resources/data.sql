@@ -131,25 +131,25 @@ insert into users (id, balance, hash, name, reg_time)
 values (50, 20.08, '43063-059', 'Erskine Hawkridge', '17/06/2019');
 
 insert into genre (id, name, parent_id, slug)
-values (1, 'Drama', null, 'tonkz');
+values (1, 'Drama', 0, 'tonkz');
 insert into genre (id, name, parent_id, slug)
-values (2, 'Comedy', null, 'fuihj');
+values (2, 'Comedy', 0, 'fuihj');
 insert into genre (id, name, parent_id, slug)
-values (3, 'Crime', null, 'llzxg');
+values (3, 'Crime', 0, 'llzxg');
 insert into genre (id, name, parent_id, slug)
-values (4, 'Thriller', null, 'judmp');
+values (4, 'Thriller', 0, 'judmp');
 insert into genre (id, name, parent_id, slug)
 values (5, 'Film-Noir', 4, 'vxqrk');
 insert into genre (id, name, parent_id, slug)
-values (6, 'Fantasy', null, 'xmjdj');
+values (6, 'Fantasy', 0, 'xmjdj');
 insert into genre (id, name, parent_id, slug)
 values (7, 'Mystery', 4, 'paekx');
 insert into genre (id, name, parent_id, slug)
-values (8, 'Documentary', null, 'arblb');
+values (8, 'Documentary', 0, 'arblb');
 insert into genre (id, name, parent_id, slug)
 values (9, 'Western', 1, 'nizdz');
 insert into genre (id, name, parent_id, slug)
-values (10, 'Animation', null, 'onvhb');
+values (10, 'Animation', 0, 'onvhb');
 
 insert into books (id, pub_date, is_bestseller, slug, title, image, description, price, discount, rating)
 values (1, '2016/09/21', 0, 'book-jnn-021', 'Rigoletto', 'http://dummyimage.com/791x263.png/dddddd/000000',

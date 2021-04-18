@@ -1,6 +1,7 @@
 package com.example.mybookshopapp2.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -8,6 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table
+@Data
 public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,49 +24,4 @@ public class Genre {
     )
     @JsonIgnore
     private Set<Book> books = new HashSet<>();
-
-    public Integer getId() {
-        return id;
-    }
-
-    public Genre setId(Integer id) {
-        this.id = id;
-        return this;
-    }
-
-    public Integer getParentId() {
-        return parentId;
-    }
-
-    public Genre setParentId(Integer parentId) {
-        this.parentId = parentId;
-        return this;
-    }
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public Genre setSlug(String slug) {
-        this.slug = slug;
-        return this;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Genre setName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    public Genre setBooks(Set<Book> books) {
-        this.books = books;
-        return this;
-    }
 }

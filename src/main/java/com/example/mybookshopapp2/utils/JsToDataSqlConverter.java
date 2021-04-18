@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class JsToDataSqlConverter {
     public static Date convert(String jsDate) {
-        if (jsDate.isEmpty()) {
+        if (jsDate == null || jsDate.isEmpty()) {
             return null;
         }
         String[] parts = jsDate.split("\\.");
