@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,15 +40,22 @@ public class GenreService {
 //        return collect;
 //    }
 
-    public Map<Integer, List<Genre>> getGenresMap() {
-        Map<Integer, List<Genre>> collect = genreRepository.findAll().stream()
-                .collect(Collectors.groupingBy(Genre::getParentId));
-        collect.forEach((k, listOfGroupedChildren) -> {
-            System.out.println(k + ":");
-            for (Genre genre : listOfGroupedChildren) {
-                System.out.println(genre.getName());
-            }
-        });
-        return collect;
+    //    public Map<Integer, List<Genre>> getGenresMap() {
+//        Map<Integer, List<Genre>> collect = genreRepository.findAll().stream()
+//                .collect(Collectors.groupingBy(Genre::getParentId));
+//        collect.forEach((k, listOfGroupedChildren) -> {
+//            System.out.println(k + ":");
+//            for (Genre genre : listOfGroupedChildren) {
+//                System.out.println(genre.getName());
+//            }
+//        });
+//        return collect;
+//    }
+    public Map<Genre, List<Genre>> getGenresMap() {
+        Map<Integer, Genre> ids = genreRepository.findAll().stream()
+                .collect(Collectors.toMap(Genre::getId, Function.identity()));
+
+        return genreRepository.findAll().stream()
+                .collect(Collectors.groupingBy(genre -> Optional.ofNullable(ids.get(genre.getParentId())).orElse(genre)));
     }
 }

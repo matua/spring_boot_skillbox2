@@ -8,29 +8,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.mybookshopapp2.utils.TodayOneMonthAgoInDataSql.getDates;
-
 @Controller
-public class RecentController {
+public class PopularController {
 
     private final BookService bookService;
 
     @Autowired
-    public RecentController(BookService bookService) {
+    public PopularController(BookService bookService) {
         this.bookService = bookService;
     }
 
 
-    @ModelAttribute("recentBooks")
-    @ResponseBody
-    public List<Book> recentBooks() {
-        return bookService.getPageOfBooksFilteredByDate(0, 20, getDates()[0], getDates()[1]).getContent();
-    }
+//    @ModelAttribute("popularBooks")
+//    @ResponseBody
+//    public List<Book> popularBooks() {
+//        return bookService.getPageOfPopularBooks(0, 20).getContent();
+//    }
 
     @ModelAttribute("searchResults")
     public List<Book> searchResults() {
@@ -42,9 +39,9 @@ public class RecentController {
         return new SearchWordDto();
     }
 
-    @GetMapping("/recent")
-    public String recentPage(Model model) {
-        model.addAttribute("recentBooks", bookService.getPageOfRecentBooks(0, 20).getContent());
-        return "books/recent";
+    @GetMapping("/popular")
+    public String popularPage(Model model) {
+        model.addAttribute("popularBooks", bookService.getPageOfPopularBooks(0, 20).getContent());
+        return "books/popular";
     }
 }

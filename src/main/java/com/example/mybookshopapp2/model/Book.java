@@ -11,10 +11,10 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 @Entity
 @Table(name = "books")
 @ApiModel(description = "entitiy representing a book")
-@Data
 public class Book {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "book2user",
@@ -32,14 +32,13 @@ public class Book {
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id")
     )
-    @JsonIgnore
     Set<Author> authors = new HashSet<>();
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "book2genre",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
-    @JsonIgnore
     Set<Author> genres = new HashSet<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,13 +58,21 @@ public class Book {
     //    private Author author;
     @ApiModelProperty("book title")
     private String title;
-    @Column(name = "price")
     @JsonProperty("price")
+    @Column(name = "price")
     @ApiModelProperty("book price without discount")
     private Integer priceOld;
-    @Column(name = "discount")
     @JsonProperty("discount")
+    @Column(name = "discount")
     @ApiModelProperty("discount value for book")
     private Double price;
     private Byte rating;
+
+    public Book() {
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof Book;
+    }
+
 }

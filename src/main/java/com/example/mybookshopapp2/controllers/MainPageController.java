@@ -25,22 +25,6 @@ public class MainPageController {
         this.bookService = bookService;
     }
 
-    @ModelAttribute("recommendedBooks")
-    public List<Book> recommendedBooks() {
-        bookService.getBooksData().forEach(book -> System.out.println(book.getAuthors()));
-        return bookService.getPageOfRecommendedBooks(0, 6).getContent();
-    }
-
-    @ModelAttribute("recentBooks")
-    public List<Book> recentBooks() {
-        return bookService.getPageOfRecentBooks(0, 6).getContent();
-    }
-
-    @ModelAttribute("popularBooks")
-    public List<Book> popularBooks() {
-        return bookService.getPageOfPopularBooks(0, 6).getContent();
-    }
-
     @ModelAttribute("searchResults")
     public List<Book> searchResults() {
         return new ArrayList<>();
@@ -52,7 +36,10 @@ public class MainPageController {
     }
 
     @GetMapping("/")
-    public String mainPage() {
+    public String mainPage(Model model) {
+        model.addAttribute("recommendedBooks", bookService.getPageOfRecommendedBooks(0, 6).getContent());
+        model.addAttribute("recentBooks", bookService.getPageOfRecentBooks(0, 6).getContent());
+        model.addAttribute("popularBooks", bookService.getPageOfPopularBooks(0, 6).getContent());
         return "index";
     }
 
@@ -64,9 +51,9 @@ public class MainPageController {
                                      @RequestParam(value = "to", required = false) String to,
                                      HttpServletRequest request) {
         String path = request.getServletPath();
-        if (path.endsWith("recommended")) {
+        if (path.contains("recommended")) {
             return new BooksPageDto(bookService.getPageOfRecommendedBooks(offset, limit).getContent());
-        } else if ((path.endsWith("recent"))) {
+        } else if ((path.contains("recent"))) {
             return new BooksPageDto(bookService.getPageOfBooksFilteredByDate(offset, limit, convert(from), convert(to)).getContent());
         } else {
             return new BooksPageDto(bookService.getPageOfPopularBooks(offset, limit).getContent());
@@ -88,10 +75,5 @@ public class MainPageController {
                                           @RequestParam("limit") Integer limit,
                                           @PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto) {
         return new BooksPageDto(bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), offset, limit).getContent());
-    }
-
-    @GetMapping("/popular")
-    public String popularPage() {
-        return "books/popular";
     }
 }

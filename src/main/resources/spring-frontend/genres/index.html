@@ -36,7 +36,7 @@ p.error-browser
                     <div class="Tags Tags_embed">
                         <div class="Tags-title" th:each="genreList : ${genresMap}">
                             <div class="Tag" th:each="genre : ${genreList.value}"><a href="/genres/slug.html"
-                                                                                     th:href="@{/genre}"
+                                                                                     th:href="@{'/genre/'+${genre.getSlug()}+'/'}"
                                                                                      th:text="${genre.name}">Лёгкое
                                 чтение<span
                                         class="undefined-amount">(15638)</span></a>

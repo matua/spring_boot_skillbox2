@@ -39,7 +39,7 @@ public class GenresController {
     }
 
     @ModelAttribute("genresMap")
-    public Map<Integer, List<Genre>> genres() {
+    public Map<Genre, List<Genre>> genres() {
         return genreService.getGenresMap();
     }
 

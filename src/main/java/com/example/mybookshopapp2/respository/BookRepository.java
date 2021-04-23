@@ -33,11 +33,22 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     Page<Book> findBooksByTitleContaining(String bookTitle, Pageable nextPage);
 
-    Page<Book> findByPubDateBetween(Date from, Date to, Pageable pageable);
+    Page<Book> findByPubDateBetween(Date from, Date to, Pageable nextPage);
 
-    Page<Book> findByPubDateAfter(Date from, Pageable pageable);
+    Page<Book> findByPubDateAfter(Date from, Pageable nextPage);
 
-    Page<Book> findByPubDateBefore(Date to, Pageable pageable);
+    Page<Book> findByPubDateBefore(Date to, Pageable nextPage);
+
+//    List<Book> findAllByGenreSlug(String genre);
+
+
+    @Query(value = "select * from books b " +
+            "join book2genre bg " +
+            "   on b.id = bg.book_id " +
+            "join genre g " +
+            "   on g.id = bg.genre_id " +
+            "where g.slug = :slug", nativeQuery = true)
+    List<Book> getAllBooksByGenreSlug(String slug, Pageable nextPage);
 
 //    @Query(value = "SELECT * FROM books WHERE pub_date >= :from AND pub_date <  :to", nativeQuery = true)
 //    Page<Book> findByPubDateBetween(@Param("from") Date from, @Param("to") Date to, Pageable pageable);

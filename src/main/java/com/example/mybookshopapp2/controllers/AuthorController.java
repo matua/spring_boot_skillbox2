@@ -1,6 +1,8 @@
 package com.example.mybookshopapp2.controllers;
 
+import com.example.mybookshopapp2.data.SearchWordDto;
 import com.example.mybookshopapp2.model.Author;
+import com.example.mybookshopapp2.model.Book;
 import com.example.mybookshopapp2.service.AuthorService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +30,16 @@ public class AuthorController {
     public Map<String, List<Author>> authorsMap() {
         Map<String, List<Author>> authorsMap = authorService.getAuthorsMap();
         return authorService.getAuthorsMap();
+    }
+
+    @ModelAttribute("searchResults")
+    public List<Book> searchResults() {
+        return new ArrayList<>();
+    }
+
+    @ModelAttribute("searchWordDto")
+    public SearchWordDto searchWordDto() {
+        return new SearchWordDto();
     }
 
     @GetMapping("/author")

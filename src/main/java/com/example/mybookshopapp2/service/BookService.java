@@ -69,7 +69,7 @@ public class BookService {
     }
 
     public Page<Book> getPageOfPopularBooks(Integer offset, Integer limit) {
-        Pageable nextPage = PageRequest.of(offset, limit, Sort.by("rating").descending());
+            Pageable nextPage = PageRequest.of(offset, limit, Sort.by("rating").descending().and(Sort.by("pubDate")));
         return bookRepository.findAll(nextPage);
     }
 
@@ -83,5 +83,15 @@ public class BookService {
             return bookRepository.findByPubDateAfter(from, nextPage);
         }
         return bookRepository.findByPubDateBetween(from, to, nextPage);
+    }
+
+    public List<Book> getBooksByGenre(String genre, Integer offset, Integer limit) {
+        Pageable nextPage;
+        if (offset == null) {
+            nextPage = PageRequest.of(0, 6);
+        } else {
+            nextPage = PageRequest.of(offset, limit);
+        }
+        return bookRepository.getAllBooksByGenreSlug(genre, nextPage);
     }
 }

@@ -9,10 +9,10 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 @Entity
 @Table(name = "authors")
 @ApiModel(description = "data model of author entity")
-@Data
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +23,7 @@ public class Author {
     @ApiModelProperty(value = "author last name", example = "Matua", position = 3)
     private String lastName;
 
+    @JsonIgnore
     //    @OneToMany(cascade = CascadeType.ALL)
 //    @JoinTable(name = "book2author",
 //            joinColumns = @JoinColumn(name = "author_id"),
@@ -32,7 +33,14 @@ public class Author {
             joinColumns = @JoinColumn(name = "author_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
-    @JsonIgnore
     private Set<Book> books = new HashSet<>();
-//    @JoinColumn(name = "author_id", referencedColumnName = "id")
+
+    public Author() {
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof Author;
+    }
+
+    //    @JoinColumn(name = "author_id", referencedColumnName = "id")
 }
