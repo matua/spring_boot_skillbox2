@@ -878,15 +878,15 @@ values (2, 39);
 insert into book2genre (genre_id, book_id)
 values (2, 40);
 insert into book2genre (genre_id, book_id)
-values (3, 41);
+values (2, 41);
 insert into book2genre (genre_id, book_id)
-values (3, 42);
+values (2, 42);
 insert into book2genre (genre_id, book_id)
-values (3, 43);
+values (2, 43);
 insert into book2genre (genre_id, book_id)
-values (3, 44);
+values (2, 44);
 insert into book2genre (genre_id, book_id)
-values (3, 45);
+values (2, 45);
 insert into book2genre (genre_id, book_id)
 values (3, 46);
 insert into book2genre (genre_id, book_id)
@@ -958,43 +958,43 @@ values (4, 79);
 insert into book2genre (genre_id, book_id)
 values (4, 80);
 insert into book2genre (genre_id, book_id)
-values (5, 81);
+values (4, 81);
 insert into book2genre (genre_id, book_id)
-values (5, 82);
+values (4, 82);
 insert into book2genre (genre_id, book_id)
-values (5, 83);
+values (4, 83);
 insert into book2genre (genre_id, book_id)
-values (5, 84);
+values (4, 84);
 insert into book2genre (genre_id, book_id)
-values (5, 85);
+values (4, 85);
 insert into book2genre (genre_id, book_id)
-values (5, 86);
+values (4, 86);
 insert into book2genre (genre_id, book_id)
-values (5, 87);
+values (4, 87);
 insert into book2genre (genre_id, book_id)
-values (5, 88);
+values (4, 88);
 insert into book2genre (genre_id, book_id)
-values (5, 89);
+values (4, 89);
 insert into book2genre (genre_id, book_id)
-values (5, 90);
+values (4, 90);
 insert into book2genre (genre_id, book_id)
-values (5, 91);
+values (4, 91);
 insert into book2genre (genre_id, book_id)
-values (5, 92);
+values (4, 92);
 insert into book2genre (genre_id, book_id)
-values (5, 93);
+values (4, 93);
 insert into book2genre (genre_id, book_id)
-values (5, 94);
+values (4, 94);
 insert into book2genre (genre_id, book_id)
-values (5, 95);
+values (4, 95);
 insert into book2genre (genre_id, book_id)
-values (5, 96);
+values (4, 96);
 insert into book2genre (genre_id, book_id)
-values (5, 97);
+values (4, 97);
 insert into book2genre (genre_id, book_id)
-values (5, 98);
+values (4, 98);
 insert into book2genre (genre_id, book_id)
-values (5, 99);
+values (4, 99);
 insert into book2genre (genre_id, book_id)
 values (5, 100);
 insert into book2genre (genre_id, book_id)

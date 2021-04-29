@@ -43,9 +43,10 @@ public class MainPageController {
         return "index";
     }
 
-    @GetMapping(value = {"/books/recommended", "/books/recent", "/books/popular"})
+    @GetMapping(value = {"/books/recommended", "/books/recent", "/books/popular", "/books/genre/{genre}"})
     @ResponseBody
-    public BooksPageDto getBooksPage(@RequestParam("offset") Integer offset,
+    public BooksPageDto getBooksPage(@PathVariable(value = "genre", required = false) String genre,
+                                     @RequestParam("offset") Integer offset,
                                      @RequestParam("limit") Integer limit,
                                      @RequestParam(value = "from", required = false) String from,
                                      @RequestParam(value = "to", required = false) String to,
@@ -55,8 +56,10 @@ public class MainPageController {
             return new BooksPageDto(bookService.getPageOfRecommendedBooks(offset, limit).getContent());
         } else if ((path.contains("recent"))) {
             return new BooksPageDto(bookService.getPageOfBooksFilteredByDate(offset, limit, convert(from), convert(to)).getContent());
-        } else {
+        } else if ((path.contains("popular"))) {
             return new BooksPageDto(bookService.getPageOfPopularBooks(offset, limit).getContent());
+        } else {
+            return new BooksPageDto(bookService.getPageOfBooksByGenre(genre, offset, limit).getContent());
         }
     }
 

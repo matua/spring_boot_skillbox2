@@ -24,14 +24,15 @@ p.error-browser
   <div class="wrap">
     <main class="Middle-main">
       <ul class="breadcrumbs">
-        <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}">Главная</a>
+        <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}" th:text="#{section.main}">Главная</a>
         </li>
-        <li class="breadcrumbs-item"><a href="/genres/index.html" th:href="@{/genres}">Жанры</a>
-        </li>
-        <li class="breadcrumbs-item"><a href="/genres/index.html" th:href="@{/genres}">Легкое чтение</a>
-        </li>
-        <li class="breadcrumbs-item breadcrumbs-item_current"><span th:text="${param.genre}">Детективы</span>
-        </li>
+          <li class="breadcrumbs-item"><a href="/genres/index.html" th:href="@{/genres}" th:text="#{section.genres}">Жанры</a>
+          </li>
+          <li class="breadcrumbs-item"><a href="/genres/index.html" th:href="@{/genres}" th:text="${genre}">Легкое
+              чтение</a>
+          </li>
+          <li class="breadcrumbs-item breadcrumbs-item_current"><span th:text="${genre}">Детективы</span>
+          </li>
       </ul>
       <header class="Middle-header">
         <h1 class="Middle-title" th:text="${param.genre}">Детективы
@@ -57,9 +58,9 @@ p.error-browser
             </div>
           </div>
           <div class="Cards-footer Cards-footer_center"><a class="btn btn_primary" href="#"
-                                                           data-refreshid="0" data-refreshlimit="20"
+                                                           data-refreshid="10" data-refreshlimit="20"
                                                            data-refreshoffset="20" data-refreshshow="genre"
-                                                           th:data-genreslug="${param.genre}">Показать еще</a>
+                                                           th:data-genreslug="${genre}">Показать еще</a>
           </div>
         </div>
       </div>

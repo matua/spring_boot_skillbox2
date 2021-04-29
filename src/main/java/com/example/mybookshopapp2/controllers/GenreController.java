@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +35,9 @@ public class GenreController {
 
     @GetMapping(value = {"/genre", "/genre/{genre}"})
     public String getBooksByGenre(@PathVariable(value = "genre") String genre,
-                                  @RequestParam(value = "offset", required = false) Integer offset,
-                                  @RequestParam(value = "limit", required = false) Integer limit,
                                   Model model) {
-        model.addAttribute("booksByGenre", bookService.getBooksByGenre(genre, offset, limit));
+        model.addAttribute("booksByGenre", bookService.getPageOfBooksByGenre(genre, 0, 20));
+        model.addAttribute("genre", genre);
         return "/genres/slug";
     }
 

@@ -48,7 +48,7 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
             "join genre g " +
             "   on g.id = bg.genre_id " +
             "where g.slug = :slug", nativeQuery = true)
-    List<Book> getAllBooksByGenreSlug(String slug, Pageable nextPage);
+    Page<Book> getAllBooksByGenreSlug(String slug, Pageable nextPage);
 
 //    @Query(value = "SELECT * FROM books WHERE pub_date >= :from AND pub_date <  :to", nativeQuery = true)
 //    Page<Book> findByPubDateBetween(@Param("from") Date from, @Param("to") Date to, Pageable pageable);
