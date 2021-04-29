@@ -20,37 +20,10 @@ public class GenreService {
         this.genreRepository = genreRepository;
     }
 
-    public List<Genre> getALlGenres() {
-        return genreRepository.findAll();
-    }
-
     public List<Genre> getAllMainGenres() {
         return genreRepository.findGenresByParentIdEquals(null);
     }
 
-//    public Map<Integer, List<Genre>> getGenresMap() {
-//        Map<Integer, List<Genre>> collect = genreRepository.findAll().stream()
-//                .collect(Collectors.groupingBy(Genre::getParentId));
-//        collect.forEach((k, listOfGroupedChildren) -> {
-//            System.out.println(k + ":");
-//            for(Genre genre : listOfGroupedChildren){
-//                System.out.println(genre.getName());
-//            }
-//        });
-//        return collect;
-//    }
-
-    //    public Map<Integer, List<Genre>> getGenresMap() {
-//        Map<Integer, List<Genre>> collect = genreRepository.findAll().stream()
-//                .collect(Collectors.groupingBy(Genre::getParentId));
-//        collect.forEach((k, listOfGroupedChildren) -> {
-//            System.out.println(k + ":");
-//            for (Genre genre : listOfGroupedChildren) {
-//                System.out.println(genre.getName());
-//            }
-//        });
-//        return collect;
-//    }
     public Map<Genre, List<Genre>> getGenresMap() {
         Map<Integer, Genre> ids = genreRepository.findAll().stream()
                 .collect(Collectors.toMap(Genre::getId, Function.identity()));

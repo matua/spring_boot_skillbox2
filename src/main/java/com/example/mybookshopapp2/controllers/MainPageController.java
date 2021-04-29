@@ -4,6 +4,7 @@ import com.example.mybookshopapp2.data.BooksPageDto;
 import com.example.mybookshopapp2.data.SearchWordDto;
 import com.example.mybookshopapp2.model.Book;
 import com.example.mybookshopapp2.service.BookService;
+import com.example.mybookshopapp2.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +20,12 @@ import static com.example.mybookshopapp2.utils.JsToDataSqlConverter.convert;
 public class MainPageController {
 
     private final BookService bookService;
+    private final TagService tagService;
 
     @Autowired
-    public MainPageController(BookService bookService) {
+    public MainPageController(BookService bookService, TagService tagService) {
         this.bookService = bookService;
+        this.tagService = tagService;
     }
 
     @ModelAttribute("searchResults")
@@ -40,12 +43,20 @@ public class MainPageController {
         model.addAttribute("recommendedBooks", bookService.getPageOfRecommendedBooks(0, 6).getContent());
         model.addAttribute("recentBooks", bookService.getPageOfRecentBooks(0, 6).getContent());
         model.addAttribute("popularBooks", bookService.getPageOfPopularBooks(0, 6).getContent());
+        model.addAttribute("tags", tagService.getAllTags());
         return "index";
     }
 
-    @GetMapping(value = {"/books/recommended", "/books/recent", "/books/popular", "/books/genre/{genre}"})
+    @GetMapping(value = {
+            "/books/recommended",
+            "/books/recent",
+            "/books/popular",
+            "/books/genre/{genre}",
+            "/books/tags/{tag}"
+    })
     @ResponseBody
     public BooksPageDto getBooksPage(@PathVariable(value = "genre", required = false) String genre,
+                                     @PathVariable(value = "tag", required = false) String tag,
                                      @RequestParam("offset") Integer offset,
                                      @RequestParam("limit") Integer limit,
                                      @RequestParam(value = "from", required = false) String from,
@@ -58,8 +69,10 @@ public class MainPageController {
             return new BooksPageDto(bookService.getPageOfBooksFilteredByDate(offset, limit, convert(from), convert(to)).getContent());
         } else if ((path.contains("popular"))) {
             return new BooksPageDto(bookService.getPageOfPopularBooks(offset, limit).getContent());
-        } else {
+        } else if ((path.contains("genre"))) {
             return new BooksPageDto(bookService.getPageOfBooksByGenre(genre, offset, limit).getContent());
+        } else {
+            return new BooksPageDto(bookService.getPageOfBooksByTag(tag, offset, limit).getContent());
         }
     }
 

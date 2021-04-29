@@ -1,0 +1,76 @@
+<!--END-->
+<!--END--><!DOCTYPE html><!--[if IE 7]>
+<html class="ie7" lang="ru">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie8" lang="ru">
+<![endif]-->
+<!--[if IE 9]>
+<html class="ie9" lang="ru">
+<![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="ru"> <!--<![endif]-->
+<head th:replace="~{fragments/head_fragment::headFragment(#{bottom.booksByTags})}">
+    <title>Title slug</title>
+</head>
+<body class="Site">
+<!--if lt IE 8
+p.error-browser
+    | Ваш браузер&nbsp;
+    em устарел!&nbsp;
+    a(href="http://browsehappy.com/") Выберите новую версию
+        +s
+        | браузера здесь&nbsp;
+    | для правильного отображения сайта.
+-->
+<header th:replace="~{fragments/header_fragment::headerFragment}"></header>
+<div class="Middle">
+    <div class="wrap">
+        <main class="Middle-main">
+            <ul class="breadcrumbs">
+                <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}" th:text="#{section.main}">Главная</a>
+                </li>
+                <li class="breadcrumbs-item breadcrumbs-item_current" th:href="@{/}" th:text="${tag}"><span>Психологическая проза</span>
+                </li>
+            </ul>
+            <div class="Section">
+                <div class="Section-header">
+                    <h1 class="Section-title">Психологическая проза
+                    </h1>
+                    <div class="Section-header-links"><a class="Section-header-link" href="/index.html#tags">Все
+                        тэги</a>
+                    </div>
+                </div>
+                <div class="Cards Cards_refresh">
+                    <div class="Card" th:each="book : ${booksByTag}">
+                        <div class="Card-picture"><a href="#"><img alt="card.jpg"
+                                                                   src="/assets/img/content/main/card.jpg"
+                                                                   th:src="${book.image}"/></a>
+                        </div>
+                        <div class="Card-content">
+                            <strong class="Card-title"><a href="#" th:text="${book.title}">Техника</a>
+                            </strong>
+                            <div class="Card-description" th:each="author : ${book.authors}"><span
+                                    th:text="${author}">Кондратенко Валерий
+                                            Петрович</span>
+                            </div>
+                            <div class="Card-cost"><span class="Card-priceOld">₽300.00</span><span class="Card-price">₽190.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Cards-footer Cards-footer_center"><a class="btn btn_primary"
+                                                                     data-refreshid="10" data-refreshlimit="20"
+                                                                     data-refreshoffset="20"
+                                                                     data-refreshshow="tag"
+                                                                     href="#"
+                                                                     th:data-tagslug="${tag}">Показать еще</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+<footer th:replace="~{fragments/footer_fragment::footFragment}"></footer>
+<script src="/assets/plg/jQuery/jquery-3.5.1.min.js"></script>
+</body>
+</html>

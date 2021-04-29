@@ -27,7 +27,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query("from Book where isBestseller=1")
     List<Book> getBestsellers();
 
-    //    @Query(value = "SELECT * FROM books as b JOIN book2genre as g on b.id = g.book_id WHERE discount = (SELECT MAX(discount) FROM books)", nativeQuery = true)
     @Query(value = "SELECT * FROM books WHERE discount = (SELECT MAX(discount) FROM books)", nativeQuery = true)
     List<Book> getBooksWithMaxDiscount();
 
@@ -39,9 +38,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     Page<Book> findByPubDateBefore(Date to, Pageable nextPage);
 
-//    List<Book> findAllByGenreSlug(String genre);
-
-
     @Query(value = "select * from books b " +
             "join book2genre bg " +
             "   on b.id = bg.book_id " +
@@ -50,7 +46,11 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
             "where g.slug = :slug", nativeQuery = true)
     Page<Book> getAllBooksByGenreSlug(String slug, Pageable nextPage);
 
-//    @Query(value = "SELECT * FROM books WHERE pub_date >= :from AND pub_date <  :to", nativeQuery = true)
-//    Page<Book> findByPubDateBetween(@Param("from") Date from, @Param("to") Date to, Pageable pageable);
-
+    @Query(value = "select * from books b " +
+            "join book2tag bt " +
+            "   on b.id = bt.book_id " +
+            "join tag t " +
+            "   on t.id = bt.tag_id " +
+            "where t.slug = :slug", nativeQuery = true)
+    Page<Book> getAllBooksByTagSlug(String slug, Pageable nextPage);
 }
