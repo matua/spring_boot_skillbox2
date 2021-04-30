@@ -22,25 +22,13 @@ public class Author {
     private String firstName;
     @ApiModelProperty(value = "author last name", example = "Matua", position = 3)
     private String lastName;
+    private String slug;
 
     @JsonIgnore
-    //    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "book2author",
-//            joinColumns = @JoinColumn(name = "author_id"),
-//            inverseJoinColumns = @JoinColumn(name = "book_id"))
-    @ManyToMany(cascade = CascadeType.ALL/*, fetch = FetchType.EAGER*/)
+    @ManyToMany
     @JoinTable(name = "book2author",
             joinColumns = @JoinColumn(name = "author_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
     private Set<Book> books = new HashSet<>();
-
-    public Author() {
-    }
-
-    protected boolean canEqual(final Object other) {
-        return other instanceof Author;
-    }
-
-    //    @JoinColumn(name = "author_id", referencedColumnName = "id")
 }

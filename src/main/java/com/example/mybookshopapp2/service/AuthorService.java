@@ -32,4 +32,8 @@ public class AuthorService {
     public Author getAuthorByName(String firstName, String lastName) {
         return authorRepository.getAuthorByFirstNameOrLastName(firstName, lastName);
     }
+
+    public Author getAuthorBySlug(String author) {
+        return authorRepository.findAuthorBySlug(author);
+    }
 }

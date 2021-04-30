@@ -1,33 +1,46 @@
-insert into authors (id, first_name, last_name) values (1, 'Jonathan', 'Matua');
-insert into authors (id, first_name, last_name) values (2, 'Ellsworth', 'Sycamore');
-insert into authors (id, first_name, last_name) values (3, 'Magdalen', 'Sorley');
-insert into authors (id, first_name, last_name) values (4, 'Drusilla', 'Leadstone');
-insert into authors (id, first_name, last_name) values (5, 'Timmy', 'Wallsworth');
-insert into authors (id, first_name, last_name) values (6, 'Linell', 'Lettington');
-insert into authors (id, first_name, last_name) values (7, 'Connie', 'Hamberstone');
-insert into authors (id, first_name, last_name) values (8, 'Ericha', 'Algore');
-insert into authors (id, first_name, last_name) values (9, 'Zack', 'Bartocci');
-insert into authors (id, first_name, last_name) values (10, 'Oralle', 'Mabson');
-insert into authors (id, first_name, last_name) values (11, 'Lionello', 'Kynd');
-insert into authors (id, first_name, last_name) values (12, 'Leonidas', 'Hollows');
-insert into authors (id, first_name, last_name)
-values (13, 'Lewes', 'Kapelhof');
-insert into authors (id, first_name, last_name)
-values (14, 'Tucky', 'Mephan');
-insert into authors (id, first_name, last_name)
-values (15, 'Anatola', 'Blaise');
-insert into authors (id, first_name, last_name)
-values (16, 'Salim', 'Ciric');
-insert into authors (id, first_name, last_name)
-values (17, 'Adelbert', 'Laidel');
-insert into authors (id, first_name, last_name)
-values (18, 'Stephine', 'Toffanini');
-insert into authors (id, first_name, last_name)
-values (19, 'Normy', 'Spatarul');
-insert into authors (id, first_name, last_name)
-values (20, 'Carmelina', 'Vyvyan');
-insert into authors (id, first_name, last_name)
-values (21, 'Baldwin', 'Boxer');
+insert into authors (id, first_name, last_name, slug)
+values (1, 'Jonathan', 'Matua', 'jonathan_matua');
+insert into authors (id, first_name, last_name, slug)
+values (2, 'Charlot', 'Kittiman', 'charlot_kittiman');
+insert into authors (id, first_name, last_name, slug)
+values (3, 'Beale', 'Colton', 'beale_colton');
+insert into authors (id, first_name, last_name, slug)
+values (4, 'Stevena', 'Eayrs', 'stevena_eayrs');
+insert into authors (id, first_name, last_name, slug)
+values (5, 'Ricky', 'Layburn', 'ricky_layburn');
+insert into authors (id, first_name, last_name, slug)
+values (6, 'Hollyanne', 'Fearnside', 'hollyanne_fearnside');
+insert into authors (id, first_name, last_name, slug)
+values (7, 'Robers', 'O'' Connell', 'robers_o_connell');
+insert into authors (id, first_name, last_name, slug)
+values (8, 'Krysta', 'Turnpenny', 'krysta_turnpenny');
+insert into authors (id, first_name, last_name, slug)
+values (9, 'Agata', 'Jurkiewicz', 'agata_jurkiewicz');
+insert into authors (id, first_name, last_name, slug)
+values (10, 'Marcia', 'Cribbott', 'marcia_cribbott');
+insert into authors (id, first_name, last_name, slug)
+values (11, 'Danell', 'MacNaughton', 'danell_macnaughton');
+insert into authors (id, first_name, last_name, slug)
+values (12, 'Whittaker', 'Timlett', 'whitttaker_timlett');
+insert into authors (id, first_name, last_name, slug)
+values (13, 'Corinna', 'Shama', 'corina_shama');
+insert into authors (id, first_name, last_name, slug)
+values (14, 'Arther', 'Toye', 'arther_toye');
+insert into authors (id, first_name, last_name, slug)
+values (15, 'Ad', 'Pabelik', 'ad_pabelik');
+insert into authors (id, first_name, last_name, slug)
+values (16, 'Sukey', 'Gensavage', 'sukey_gensavage');
+insert into authors (id, first_name, last_name, slug)
+values (17, 'Bendick', 'Phillipson', 'bendick_phillipson');
+insert into authors (id, first_name, last_name, slug)
+values (18, 'Tremain', 'Le Breton', 'tremain_le_breton');
+insert into authors (id, first_name, last_name, slug)
+values (19, 'Aridatha', 'Bisacre', 'aridatha_bisacre');
+insert into authors (id, first_name, last_name, slug)
+values (20, 'Kris', 'Maruszewski', 'kris_maruszewski');
+insert into authors (id, first_name, last_name, slug)
+values (21, 'Cathrin', 'Brabant', 'cathrin_brabant');
+
 
 insert into users (id, balance, hash, name, reg_time)
 values (1, 1.01, '43386-530', 'Benedikt Stilgoe', '15/03/2021');
@@ -1559,3 +1572,203 @@ values (5, 149);
 insert into book2tag (tag_id, book_id)
 values (5, 150);
 
+-- insert into book2author (author_id, book_id) values (1, 1);
+-- insert into book2author (author_id, book_id) values (1, 2);
+-- insert into book2author (author_id, book_id) values (1, 3);
+-- insert into book2author (author_id, book_id) values (1, 4);
+-- insert into book2author (author_id, book_id) values (1, 5);
+-- insert into book2author (author_id, book_id) values (1, 6);
+-- insert into book2author (author_id, book_id) values (1, 7);
+-- insert into book2author (author_id, book_id) values (1, 8);
+-- insert into book2author (author_id, book_id) values (1, 9);
+-- insert into book2author (author_id, book_id) values (1, 10);
+-- insert into book2author (author_id, book_id) values (1, 11);
+-- insert into book2author (author_id, book_id) values (1, 12);
+-- insert into book2author (author_id, book_id) values (1, 13);
+-- insert into book2author (author_id, book_id) values (1, 14);
+-- insert into book2author (author_id, book_id) values (1, 15);
+-- insert into book2author (author_id, book_id) values (1, 16);
+-- insert into book2author (author_id, book_id) values (1, 17);
+-- insert into book2author (author_id, book_id) values (1, 18);
+-- insert into book2author (author_id, book_id) values (1, 19);
+-- insert into book2author (author_id, book_id) values (1, 20);
+-- insert into book2author (author_id, book_id) values (2, 21);
+-- insert into book2author (author_id, book_id) values (2, 22);
+-- insert into book2author (author_id, book_id) values (2, 23);
+-- insert into book2author (author_id, book_id) values (2, 24);
+-- insert into book2author (author_id, book_id) values (2, 25);
+-- insert into book2author (author_id, book_id) values (2, 26);
+-- insert into book2author (author_id, book_id) values (2, 27);
+-- insert into book2author (author_id, book_id) values (2, 28);
+-- insert into book2author (author_id, book_id) values (2, 29);
+-- insert into book2author (author_id, book_id) values (2, 30);
+-- insert into book2author (author_id, book_id) values (2, 31);
+-- insert into book2author (author_id, book_id) values (2, 32);
+-- insert into book2author (author_id, book_id) values (2, 33);
+-- insert into book2author (author_id, book_id) values (2, 34);
+-- insert into book2author (author_id, book_id) values (2, 35);
+-- insert into book2author (author_id, book_id) values (2, 36);
+-- insert into book2author (author_id, book_id) values (2, 37);
+-- insert into book2author (author_id, book_id) values (2, 38);
+-- insert into book2author (author_id, book_id) values (2, 39);
+-- insert into book2author (author_id, book_id) values (2, 40);
+-- insert into book2author (author_id, book_id) values (3, 41);
+-- insert into book2author (author_id, book_id) values (3, 42);
+-- insert into book2author (author_id, book_id) values (3, 43);
+-- insert into book2author (author_id, book_id) values (3, 44);
+-- insert into book2author (author_id, book_id) values (3, 45);
+-- insert into book2author (author_id, book_id) values (3, 46);
+-- insert into book2author (author_id, book_id) values (3, 47);
+-- insert into book2author (author_id, book_id) values (3, 48);
+-- insert into book2author (author_id, book_id) values (3, 49);
+-- insert into book2author (author_id, book_id) values (3, 50);
+-- insert into book2author (author_id, book_id) values (3, 51);
+-- insert into book2author (author_id, book_id) values (3, 52);
+-- insert into book2author (author_id, book_id) values (3, 53);
+-- insert into book2author (author_id, book_id) values (3, 54);
+-- insert into book2author (author_id, book_id) values (3, 55);
+-- insert into book2author (author_id, book_id) values (3, 56);
+-- insert into book2author (author_id, book_id) values (3, 57);
+-- insert into book2author (author_id, book_id) values (3, 58);
+-- insert into book2author (author_id, book_id) values (3, 59);
+-- insert into book2author (author_id, book_id) values (3, 60);
+-- insert into book2author (author_id, book_id) values (4, 61);
+-- insert into book2author (author_id, book_id) values (4, 62);
+-- insert into book2author (author_id, book_id) values (4, 63);
+-- insert into book2author (author_id, book_id) values (4, 64);
+-- insert into book2author (author_id, book_id) values (4, 65);
+-- insert into book2author (author_id, book_id) values (4, 66);
+-- insert into book2author (author_id, book_id) values (4, 67);
+-- insert into book2author (author_id, book_id) values (4, 68);
+-- insert into book2author (author_id, book_id) values (4, 69);
+-- insert into book2author (author_id, book_id) values (4, 70);
+-- insert into book2author (author_id, book_id) values (4, 71);
+-- insert into book2author (author_id, book_id) values (4, 72);
+-- insert into book2author (author_id, book_id) values (4, 73);
+-- insert into book2author (author_id, book_id) values (4, 74);
+-- insert into book2author (author_id, book_id) values (4, 75);
+-- insert into book2author (author_id, book_id) values (4, 76);
+-- insert into book2author (author_id, book_id) values (4, 77);
+-- insert into book2author (author_id, book_id) values (4, 78);
+-- insert into book2author (author_id, book_id) values (4, 79);
+-- insert into book2author (author_id, book_id) values (4, 80);
+-- insert into book2author (author_id, book_id) values (5, 81);
+-- insert into book2author (author_id, book_id) values (5, 82);
+-- insert into book2author (author_id, book_id) values (5, 83);
+-- insert into book2author (author_id, book_id) values (5, 84);
+-- insert into book2author (author_id, book_id) values (5, 85);
+-- insert into book2author (author_id, book_id) values (5, 86);
+-- insert into book2author (author_id, book_id) values (5, 87);
+-- insert into book2author (author_id, book_id) values (5, 88);
+-- insert into book2author (author_id, book_id) values (5, 89);
+-- insert into book2author (author_id, book_id) values (5, 90);
+-- insert into book2author (author_id, book_id) values (5, 91);
+-- insert into book2author (author_id, book_id) values (5, 92);
+-- insert into book2author (author_id, book_id) values (5, 93);
+-- insert into book2author (author_id, book_id) values (5, 94);
+-- insert into book2author (author_id, book_id) values (5, 95);
+-- insert into book2author (author_id, book_id) values (5, 96);
+-- insert into book2author (author_id, book_id) values (5, 97);
+-- insert into book2author (author_id, book_id) values (5, 98);
+-- insert into book2author (author_id, book_id) values (5, 99);
+-- insert into book2author (author_id, book_id) values (5, 100);
+-- insert into book2author (author_id, book_id) values (6, 101);
+-- insert into book2author (author_id, book_id) values (6, 102);
+-- insert into book2author (author_id, book_id) values (6, 103);
+-- insert into book2author (author_id, book_id) values (6, 104);
+-- insert into book2author (author_id, book_id) values (6, 105);
+-- insert into book2author (author_id, book_id) values (6, 106);
+-- insert into book2author (author_id, book_id) values (6, 107);
+-- insert into book2author (author_id, book_id) values (6, 108);
+-- insert into book2author (author_id, book_id) values (6, 109);
+-- insert into book2author (author_id, book_id) values (6, 110);
+-- insert into book2author (author_id, book_id) values (6, 111);
+-- insert into book2author (author_id, book_id) values (6, 112);
+-- insert into book2author (author_id, book_id) values (6, 113);
+-- insert into book2author (author_id, book_id) values (6, 114);
+-- insert into book2author (author_id, book_id) values (6, 115);
+-- insert into book2author (author_id, book_id) values (6, 116);
+-- insert into book2author (author_id, book_id) values (6, 117);
+-- insert into book2author (author_id, book_id) values (6, 118);
+-- insert into book2author (author_id, book_id) values (6, 119);
+-- insert into book2author (author_id, book_id) values (6, 120);
+-- insert into book2author (author_id, book_id) values (7, 121);
+-- insert into book2author (author_id, book_id) values (7, 122);
+-- insert into book2author (author_id, book_id) values (7, 123);
+-- insert into book2author (author_id, book_id) values (7, 124);
+-- insert into book2author (author_id, book_id) values (7, 125);
+-- insert into book2author (author_id, book_id) values (7, 126);
+-- insert into book2author (author_id, book_id) values (7, 127);
+-- insert into book2author (author_id, book_id) values (7, 128);
+-- insert into book2author (author_id, book_id) values (7, 129);
+-- insert into book2author (author_id, book_id) values (7, 130);
+-- insert into book2author (author_id, book_id) values (7, 131);
+-- insert into book2author (author_id, book_id) values (7, 132);
+-- insert into book2author (author_id, book_id) values (7, 133);
+-- insert into book2author (author_id, book_id) values (7, 134);
+-- insert into book2author (author_id, book_id) values (7, 135);
+-- insert into book2author (author_id, book_id) values (7, 136);
+-- insert into book2author (author_id, book_id) values (7, 137);
+-- insert into book2author (author_id, book_id) values (7, 138);
+-- insert into book2author (author_id, book_id) values (7, 139);
+-- insert into book2author (author_id, book_id) values (7, 140);
+-- insert into book2author (author_id, book_id) values (8, 141);
+-- insert into book2author (author_id, book_id) values (8, 142);
+-- insert into book2author (author_id, book_id) values (8, 143);
+-- insert into book2author (author_id, book_id) values (8, 144);
+-- insert into book2author (author_id, book_id) values (8, 145);
+-- insert into book2author (author_id, book_id) values (8, 146);
+-- insert into book2author (author_id, book_id) values (8, 147);
+-- insert into book2author (author_id, book_id) values (8, 148);
+-- insert into book2author (author_id, book_id) values (8, 149);
+-- insert into book2author (author_id, book_id) values (8, 150);
+-- insert into book2author (author_id, book_id) values (8, 1);
+-- insert into book2author (author_id, book_id) values (8, 2);
+-- insert into book2author (author_id, book_id) values (8, 3);
+-- insert into book2author (author_id, book_id) values (8, 4);
+-- insert into book2author (author_id, book_id) values (8, 5);
+-- insert into book2author (author_id, book_id) values (8, 6);
+-- insert into book2author (author_id, book_id) values (8, 7);
+-- insert into book2author (author_id, book_id) values (8, 8);
+-- insert into book2author (author_id, book_id) values (8, 9);
+-- insert into book2author (author_id, book_id) values (8, 10);
+-- insert into book2author (author_id, book_id) values (9, 11);
+-- insert into book2author (author_id, book_id) values (9, 12);
+-- insert into book2author (author_id, book_id) values (9, 13);
+-- insert into book2author (author_id, book_id) values (9, 14);
+-- insert into book2author (author_id, book_id) values (9, 15);
+-- insert into book2author (author_id, book_id) values (9, 16);
+-- insert into book2author (author_id, book_id) values (9, 17);
+-- insert into book2author (author_id, book_id) values (9, 18);
+-- insert into book2author (author_id, book_id) values (9, 19);
+-- insert into book2author (author_id, book_id) values (9, 20);
+-- insert into book2author (author_id, book_id) values (9, 21);
+-- insert into book2author (author_id, book_id) values (9, 22);
+-- insert into book2author (author_id, book_id) values (9, 23);
+-- insert into book2author (author_id, book_id) values (9, 24);
+-- insert into book2author (author_id, book_id) values (9, 25);
+-- insert into book2author (author_id, book_id) values (9, 26);
+-- insert into book2author (author_id, book_id) values (9, 27);
+-- insert into book2author (author_id, book_id) values (9, 28);
+-- insert into book2author (author_id, book_id) values (9, 29);
+-- insert into book2author (author_id, book_id) values (9, 30);
+-- insert into book2author (author_id, book_id) values (10, 31);
+-- insert into book2author (author_id, book_id) values (10, 32);
+-- insert into book2author (author_id, book_id) values (10, 33);
+-- insert into book2author (author_id, book_id) values (10, 34);
+-- insert into book2author (author_id, book_id) values (10, 35);
+-- insert into book2author (author_id, book_id) values (10, 36);
+-- insert into book2author (author_id, book_id) values (10, 37);
+-- insert into book2author (author_id, book_id) values (10, 38);
+-- insert into book2author (author_id, book_id) values (10, 39);
+-- insert into book2author (author_id, book_id) values (10, 40);
+-- insert into book2author (author_id, book_id) values (10, 41);
+-- insert into book2author (author_id, book_id) values (10, 42);
+-- insert into book2author (author_id, book_id) values (10, 43);
+-- insert into book2author (author_id, book_id) values (10, 44);
+-- insert into book2author (author_id, book_id) values (10, 45);
+-- insert into book2author (author_id, book_id) values (10, 46);
+-- insert into book2author (author_id, book_id) values (10, 47);
+-- insert into book2author (author_id, book_id) values (10, 48);
+-- insert into book2author (author_id, book_id) values (10, 49);
+-- insert into book2author (author_id, book_id) values (10, 50);

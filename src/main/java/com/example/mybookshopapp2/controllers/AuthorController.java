@@ -4,11 +4,13 @@ import com.example.mybookshopapp2.data.SearchWordDto;
 import com.example.mybookshopapp2.model.Author;
 import com.example.mybookshopapp2.model.Book;
 import com.example.mybookshopapp2.service.AuthorService;
+import com.example.mybookshopapp2.service.BookService;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -20,10 +22,11 @@ import java.util.Map;
 public class AuthorController {
 
     private final AuthorService authorService;
+    private final BookService bookService;
 
-    @Autowired
-    public AuthorController(AuthorService authorService) {
+    public AuthorController(AuthorService authorService, BookService bookService) {
         this.authorService = authorService;
+        this.bookService = bookService;
     }
 
     @ModelAttribute("authorsMap")
@@ -54,4 +57,12 @@ public class AuthorController {
         return authorService.getAuthorsMap();
     }
 
+
+    @GetMapping("/author/{author}")
+    public String booksByAuthorPage(@PathVariable(value = "author", required = false) String author,
+                                    Model model) {
+        model.addAttribute("author", authorService.getAuthorBySlug(author));
+        model.addAttribute("booksByAuthor", bookService.getPageOfBooksByAuthor(author, 0, 20).getContent());
+        return "books/author";
+    }
 }

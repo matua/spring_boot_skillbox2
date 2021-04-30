@@ -22,17 +22,15 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     Set<User> users = new HashSet<>();
-    //    @ManyToOne
-////    @JoinColumn(name = "author_id", referencedColumnName = "id")
-//    @JoinTable(name = "book2author",
-//            joinColumns = @JoinColumn(name = "book_id"),
-//            inverseJoinColumns = @JoinColumn(name = "author_id"))
-    @ManyToMany(cascade = CascadeType.ALL/*, fetch = FetchType.EAGER*/)
+
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "book2author",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id")
     )
     Set<Author> authors = new HashSet<>();
+
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "book2genre",
@@ -40,6 +38,7 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
     Set<Genre> genres = new HashSet<>();
+
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "book2tag",
@@ -62,7 +61,6 @@ public class Book {
     @Column(columnDefinition = "TEXT")
     @ApiModelProperty("book description text")
     private String description;
-    //    private Author author;
     @ApiModelProperty("book title")
     private String title;
     @JsonProperty("price")

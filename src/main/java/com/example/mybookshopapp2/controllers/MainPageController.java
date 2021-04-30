@@ -52,11 +52,13 @@ public class MainPageController {
             "/books/recent",
             "/books/popular",
             "/books/genre/{genre}",
-            "/books/tags/{tag}"
+            "/books/tags/{tag}",
+            "/books/author/{author}"
     })
     @ResponseBody
     public BooksPageDto getBooksPage(@PathVariable(value = "genre", required = false) String genre,
                                      @PathVariable(value = "tag", required = false) String tag,
+                                     @PathVariable(value = "author", required = false) String author,
                                      @RequestParam("offset") Integer offset,
                                      @RequestParam("limit") Integer limit,
                                      @RequestParam(value = "from", required = false) String from,
@@ -71,8 +73,10 @@ public class MainPageController {
             return new BooksPageDto(bookService.getPageOfPopularBooks(offset, limit).getContent());
         } else if ((path.contains("genre"))) {
             return new BooksPageDto(bookService.getPageOfBooksByGenre(genre, offset, limit).getContent());
-        } else {
+        } else if ((path.contains("author"))) {
             return new BooksPageDto(bookService.getPageOfBooksByTag(tag, offset, limit).getContent());
+        } else {
+            return new BooksPageDto(bookService.getPageOfBooksByAuthor(author, offset, limit).getContent());
         }
     }
 
