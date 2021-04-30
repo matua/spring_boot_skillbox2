@@ -50,7 +50,7 @@ p.error-browser
                             <strong class="Card-title" th:text="${book.title}"><a href="#">Техника</a>
                             </strong>
                             <div class="Card-description" th:each="author : ${book.authors}"><span
-                                    th:text="${author}">Кондратенко Александр Петрович</span>
+                                    th:text="${author.firstName} + ' ' + ${author.lastName}">Кондратенко Александр Петрович</span>
                             </div>
                             <div class="Card-cost"><span class="Card-priceOld" th:text="${book.priceOld}">₽300.00</span><span
                                     class="Card-price" th:text="${book.price}">₽190.00</span>

@@ -72,7 +72,4 @@ public class Book {
     @ApiModelProperty("discount value for book")
     private Double price;
     private Byte rating;
-
-    public Book() {
-    }
 }

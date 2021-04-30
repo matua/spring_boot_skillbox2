@@ -22,13 +22,6 @@ public class PopularController {
         this.bookService = bookService;
     }
 
-
-//    @ModelAttribute("popularBooks")
-//    @ResponseBody
-//    public List<Book> popularBooks() {
-//        return bookService.getPageOfPopularBooks(0, 20).getContent();
-//    }
-
     @ModelAttribute("searchResults")
     public List<Book> searchResults() {
         return new ArrayList<>();
