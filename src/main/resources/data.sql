@@ -3297,27 +3297,27 @@ values (1, 109);
 insert into book2author (author_id, book_id)
 values (1, 110);
 insert into book2author (author_id, book_id)
-values (2, 111);
+values (1, 111);
 insert into book2author (author_id, book_id)
-values (2, 112);
+values (1, 112);
 insert into book2author (author_id, book_id)
-values (2, 113);
+values (1, 113);
 insert into book2author (author_id, book_id)
-values (2, 114);
+values (1, 114);
 insert into book2author (author_id, book_id)
-values (2, 115);
+values (1, 115);
 insert into book2author (author_id, book_id)
-values (3, 116);
+values (1, 116);
 insert into book2author (author_id, book_id)
-values (3, 117);
+values (1, 117);
 insert into book2author (author_id, book_id)
-values (3, 118);
+values (1, 118);
 insert into book2author (author_id, book_id)
-values (3, 119);
+values (1, 119);
 insert into book2author (author_id, book_id)
-values (3, 120);
+values (1, 120);
 insert into book2author (author_id, book_id)
-values (4, 121);
+values (1, 121);
 insert into book2author (author_id, book_id)
 values (4, 122);
 insert into book2author (author_id, book_id)
