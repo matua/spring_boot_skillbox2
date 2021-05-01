@@ -65,4 +65,12 @@ public class AuthorController {
         model.addAttribute("booksByAuthor", bookService.getPageOfBooksByAuthor(author, 0, 20).getContent());
         return "books/author";
     }
+
+    @GetMapping("/authors/{author}")
+    public String authorPage(@PathVariable(value = "author", required = false) String author,
+                             Model model) {
+        model.addAttribute("author", authorService.getAuthorBySlug(author));
+        model.addAttribute("booksByAuthor", bookService.getPageOfBooksByAuthor(author, 0, 20).getContent());
+        return "authors/slug";
+    }
 }

@@ -27,6 +27,8 @@ public class Author {
     @ApiModelProperty(value = "author last name", example = "Matua", position = 3)
     private String lastName;
     private String slug;
+    @Column(columnDefinition = "TEXT")
+    private String biography;
 
     @JsonIgnore
     @ManyToMany
