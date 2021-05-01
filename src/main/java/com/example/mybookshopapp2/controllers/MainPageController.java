@@ -74,9 +74,9 @@ public class MainPageController {
         } else if ((path.contains("genre"))) {
             return new BooksPageDto(bookService.getPageOfBooksByGenre(genre, offset, limit).getContent());
         } else if ((path.contains("author"))) {
-            return new BooksPageDto(bookService.getPageOfBooksByTag(tag, offset, limit).getContent());
-        } else {
             return new BooksPageDto(bookService.getPageOfBooksByAuthor(author, offset, limit).getContent());
+        } else {
+            return new BooksPageDto(bookService.getPageOfBooksByTag(tag, offset, limit).getContent());
         }
     }
 

@@ -23,8 +23,8 @@ public class Book {
     )
     Set<User> users = new HashSet<>();
 
-    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
+    @JsonProperty("authors")
     @JoinTable(name = "book2author",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id")
