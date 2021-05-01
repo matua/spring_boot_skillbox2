@@ -2,6 +2,8 @@ package com.example.mybookshopapp2.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -10,6 +12,8 @@ import java.util.Set;
 @Entity
 @Table
 @Data
+@EqualsAndHashCode(exclude = "books")
+@ToString(exclude = "books")
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

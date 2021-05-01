@@ -19,4 +19,8 @@ public class TagService {
     public List<Tag> getAllTags() {
         return tagRepository.findAll();
     }
+
+    public Tag getTagBySlug(String slug) {
+        return tagRepository.findTagBySlug(slug);
+    }
 }

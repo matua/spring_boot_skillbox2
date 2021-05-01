@@ -44,7 +44,7 @@ public class TagsController {
     public String getBooksByGenre(@PathVariable(value = "tag") String tag,
                                   Model model) {
         model.addAttribute("booksByTag", bookService.getPageOfBooksByTag(tag, 0, 20));
-        model.addAttribute("tag", tag);
+        model.addAttribute("tag", tagService.getTagBySlug(tag));
         return "/tags/index";
     }
 }
