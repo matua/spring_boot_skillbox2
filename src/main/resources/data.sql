@@ -1505,8 +1505,6 @@ values (29, 115);
 insert into book2tag (tag_id, book_id)
 values (29, 116);
 insert into book2tag (tag_id, book_id)
-values (1, 117);
-insert into book2tag (tag_id, book_id)
 values (1, 118);
 insert into book2tag (tag_id, book_id)
 values (2, 119);
@@ -1516,10 +1514,6 @@ insert into book2tag (tag_id, book_id)
 values (3, 121);
 insert into book2tag (tag_id, book_id)
 values (3, 122);
-insert into book2tag (tag_id, book_id)
-values (4, 123);
-insert into book2tag (tag_id, book_id)
-values (4, 124);
 insert into book2tag (tag_id, book_id)
 values (5, 125);
 insert into book2tag (tag_id, book_id)
@@ -1633,10 +1627,6 @@ values (3, 29);
 insert into book2tag (tag_id, book_id)
 values (3, 30);
 insert into book2tag (tag_id, book_id)
-values (4, 31);
-insert into book2tag (tag_id, book_id)
-values (4, 32);
-insert into book2tag (tag_id, book_id)
 values (5, 33);
 insert into book2tag (tag_id, book_id)
 values (5, 34);
@@ -1681,10 +1671,6 @@ values (15, 53);
 insert into book2tag (tag_id, book_id)
 values (15, 54);
 insert into book2tag (tag_id, book_id)
-values (16, 55);
-insert into book2tag (tag_id, book_id)
-values (16, 56);
-insert into book2tag (tag_id, book_id)
 values (17, 57);
 insert into book2tag (tag_id, book_id)
 values (17, 58);
@@ -1724,10 +1710,6 @@ insert into book2tag (tag_id, book_id)
 values (26, 75);
 insert into book2tag (tag_id, book_id)
 values (26, 76);
-insert into book2tag (tag_id, book_id)
-values (27, 77);
-insert into book2tag (tag_id, book_id)
-values (27, 78);
 insert into book2tag (tag_id, book_id)
 values (28, 79);
 insert into book2tag (tag_id, book_id)
@@ -1841,10 +1823,6 @@ values (26, 133);
 insert into book2tag (tag_id, book_id)
 values (26, 134);
 insert into book2tag (tag_id, book_id)
-values (27, 135);
-insert into book2tag (tag_id, book_id)
-values (27, 136);
-insert into book2tag (tag_id, book_id)
 values (28, 137);
 insert into book2tag (tag_id, book_id)
 values (28, 138);
@@ -1956,10 +1934,6 @@ insert into book2tag (tag_id, book_id)
 values (26, 41);
 insert into book2tag (tag_id, book_id)
 values (26, 42);
-insert into book2tag (tag_id, book_id)
-values (27, 43);
-insert into book2tag (tag_id, book_id)
-values (27, 44);
 insert into book2tag (tag_id, book_id)
 values (28, 45);
 insert into book2tag (tag_id, book_id)
@@ -2073,10 +2047,6 @@ values (26, 99);
 insert into book2tag (tag_id, book_id)
 values (26, 100);
 insert into book2tag (tag_id, book_id)
-values (27, 101);
-insert into book2tag (tag_id, book_id)
-values (27, 102);
-insert into book2tag (tag_id, book_id)
 values (28, 103);
 insert into book2tag (tag_id, book_id)
 values (28, 104);
@@ -2188,10 +2158,6 @@ insert into book2tag (tag_id, book_id)
 values (26, 7);
 insert into book2tag (tag_id, book_id)
 values (26, 8);
-insert into book2tag (tag_id, book_id)
-values (27, 9);
-insert into book2tag (tag_id, book_id)
-values (27, 10);
 insert into book2tag (tag_id, book_id)
 values (28, 11);
 insert into book2tag (tag_id, book_id)
@@ -2420,10 +2386,6 @@ insert into book2tag (tag_id, book_id)
 values (26, 123);
 insert into book2tag (tag_id, book_id)
 values (26, 124);
-insert into book2tag (tag_id, book_id)
-values (27, 125);
-insert into book2tag (tag_id, book_id)
-values (27, 126);
 insert into book2tag (tag_id, book_id)
 values (28, 127);
 insert into book2tag (tag_id, book_id)
