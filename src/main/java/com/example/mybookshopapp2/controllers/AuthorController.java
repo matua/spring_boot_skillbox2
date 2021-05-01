@@ -70,7 +70,7 @@ public class AuthorController {
     public String authorPage(@PathVariable(value = "author", required = false) String author,
                              Model model) {
         model.addAttribute("author", authorService.getAuthorBySlug(author));
-        model.addAttribute("booksByAuthor", bookService.getPageOfBooksByAuthor(author, 0, 6).getContent());
+        model.addAttribute("booksByAuthor", bookService.getPageOfBooksByAuthor(author, 0, 20).getContent());
         return "authors/slug";
     }
 }

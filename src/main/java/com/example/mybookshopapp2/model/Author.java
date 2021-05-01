@@ -29,6 +29,7 @@ public class Author {
     private String slug;
     @Column(columnDefinition = "TEXT")
     private String biography;
+    private String image;
 
     @JsonIgnore
     @ManyToMany
