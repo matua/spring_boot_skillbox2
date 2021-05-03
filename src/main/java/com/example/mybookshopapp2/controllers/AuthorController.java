@@ -7,7 +7,6 @@ import com.example.mybookshopapp2.service.AuthorService;
 import com.example.mybookshopapp2.service.BookService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +34,16 @@ public class AuthorController {
         return authorService.getAuthorsMap();
     }
 
+    @ModelAttribute("author")
+    public Author getAuthor(@PathVariable(value = "author", required = false) String author) {
+        return authorService.getAuthorBySlug(author);
+    }
+
+    @ModelAttribute("booksByAuthor")
+    public List<Book> getBooksByAuthor(@PathVariable(value = "author", required = false) String author) {
+        return bookService.getPageOfBooksByAuthor(author, 0, 20).getContent();
+    }
+
     @ModelAttribute("searchResults")
     public List<Book> searchResults() {
         return new ArrayList<>();
@@ -45,11 +54,6 @@ public class AuthorController {
         return new SearchWordDto();
     }
 
-    @GetMapping("/author")
-    public String authorPage() {
-        return "/authors/slug";
-    }
-
     @ApiOperation("method to get map of authors")
     @GetMapping("/api/authors")
     @ResponseBody
@@ -57,20 +61,13 @@ public class AuthorController {
         return authorService.getAuthorsMap();
     }
 
-
     @GetMapping("/author/{author}")
-    public String booksByAuthorPage(@PathVariable(value = "author", required = false) String author,
-                                    Model model) {
-        model.addAttribute("author", authorService.getAuthorBySlug(author));
-        model.addAttribute("booksByAuthor", bookService.getPageOfBooksByAuthor(author, 0, 20).getContent());
+    public String booksByAuthorPage() {
         return "books/author";
     }
 
     @GetMapping("/authors/{author}")
-    public String authorPage(@PathVariable(value = "author", required = false) String author,
-                             Model model) {
-        model.addAttribute("author", authorService.getAuthorBySlug(author));
-        model.addAttribute("booksByAuthor", bookService.getPageOfBooksByAuthor(author, 0, 20).getContent());
+    public String authorPage() {
         return "authors/slug";
     }
 }
