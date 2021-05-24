@@ -11,7 +11,7 @@
 <!--[if gt IE 9]><!-->
 <html lang="ru" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
 <head th:replace="fragments/head_fragment::headFragment(${slugBook.title})"></head>
-
+<link href="../assets/css/DownloadBookWindowStyle.css" rel="stylesheet">
 <body class="Site">
 <!--if lt IE 8
 p.error-browser
@@ -451,10 +451,10 @@ p.error-browser
 
                         <div id="myPopup">
                             <p>Ссылки для скачивания</p>
-                            <!--                            <div th:each="bookFile : ${slugBook.getBookFileList()}">-->
-                            <!--                                <a href="#" th:href="${'/books/download/' + bookFile.hash}"-->
-                            <!--                                   th:text="${bookFile.getBookFileExtensionString()}"></a>-->
-                            <!--                            </div>-->
+                            <div th:each="bookFile : ${slugBook.getBookFileList()}">
+                                <a href="#" th:href="${'/books/download/' + bookFile.hash}"
+                                   th:text="${bookFile.getBookFileExtensionString()}"></a>
+                            </div>
                             <span class="close" id="myPopup__close">❎</span>
                         </div>
                         <div id="myOverlay"></div>

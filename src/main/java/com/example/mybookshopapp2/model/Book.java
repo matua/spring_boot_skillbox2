@@ -9,7 +9,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -73,6 +75,8 @@ public class Book {
     @ApiModelProperty("discount value for book")
     private Double price;
     private Byte rating;
+    @OneToMany(mappedBy = "book")
+    private List<BookFile> bookFileList = new ArrayList<>();
 
     @JsonProperty
     public Integer discountPrice() {

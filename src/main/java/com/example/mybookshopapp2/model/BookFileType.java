@@ -1,25 +1,26 @@
 package com.example.mybookshopapp2.model;
 
-import lombok.Data;
+public enum BookFileType {
 
-import javax.persistence.*;
+    PDF(".pdf"), EPUB(".epub"), FB2("fb2");
 
-@Entity
-@Table
-@Data
-public class BookFileType {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private Name name;
-    private String description;
+    private final String fileExtensionString;
 
-    private enum Name {
-        PDF("PDF"),
-        EPUB("EPUB"),
-        FB2("FB2");
+    BookFileType(String fileExtensionString) {
+        this.fileExtensionString = fileExtensionString;
+    }
 
-        Name(String bookFileType) {
+    public static String getExtensionStringByTypeId(Integer typeId) {
+        switch (typeId) {
+            case 1:
+                return PDF.fileExtensionString;
+            case 2:
+                return EPUB.fileExtensionString;
+            case 3:
+                return FB2.fileExtensionString;
+            default:
+                return "";
         }
     }
 }
+

@@ -4127,3 +4127,16 @@ insert into book2author (author_id, book_id)
 values (19, 49);
 insert into book2author (author_id, book_id)
 values (19, 50);
+
+insert into book_file(id, hash, type_id, path, book_id)
+values (1, 'hk3j4fhjk34hkj3', 1, '/Piccadilly.pdf', 1);
+insert into book_file(id, hash, type_id, path, book_id)
+values (2, 'asd32hj32kj33j', 2, '/Piccadilly.epub', 1);
+insert into book_file(id, hash, type_id, path, book_id)
+values (3, 'sjdhf3jjfhdjfh', 3, '/Piccadilly.fb2', 1);
+insert into book_file(id, hash, type_id, path, book_id)
+values (4, 'kjwehfkj34htkj34h', 1, '/Turn_it_up.pdf', 4);
+insert into book_file(id, hash, type_id, path, book_id)
+values (5, 'kjdhfjk23hrjk4h', 2, '/Turn_it_up.epub', 4);
+insert into book_file(id, hash, type_id, path, book_id)
+values (6, 'ksdjfhkjh3jh', 3, '/Turn_it_up.fb2', 4);
