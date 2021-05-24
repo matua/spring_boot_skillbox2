@@ -70,7 +70,7 @@ public class BookService {
 
     public Page<Book> getPageOfSearchResultBooks(String searchWord, Integer offset, Integer limit) {
         Pageable nextPage = PageRequest.of(offset, limit);
-        return bookRepository.findPageBooksByTitleContaining(searchWord, nextPage);
+        return bookRepository.findPageBooksByTitleLikeIgnoreCase(String.format("%%%s%%", searchWord), nextPage);
     }
 
     public Page<Book> getPageOfRecentBooks(Integer offset, Integer limit) {

@@ -1956,7 +1956,7 @@ values (25, 'Escort', 'escort');
 insert into tag (id, name, slug)
 values (26, 'Ram 3500', 'ram_3500');
 insert into tag (id, name, slug)
-values (27, 'Escort', 'escort');
+values (27, 'Africa', 'africa');
 insert into tag (id, name, slug)
 values (28, 'Concorde', 'concorde');
 insert into tag (id, name, slug)
