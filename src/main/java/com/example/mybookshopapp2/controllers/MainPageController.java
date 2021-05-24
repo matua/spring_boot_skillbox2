@@ -2,6 +2,7 @@ package com.example.mybookshopapp2.controllers;
 
 import com.example.mybookshopapp2.data.BooksPageDto;
 import com.example.mybookshopapp2.data.SearchWordDto;
+import com.example.mybookshopapp2.errs.EmptySearchException;
 import com.example.mybookshopapp2.model.Book;
 import com.example.mybookshopapp2.service.BookService;
 import com.example.mybookshopapp2.service.TagService;
@@ -82,11 +83,15 @@ public class MainPageController {
 
     @GetMapping(value = {"/search", "/search/{searchWord}"})
     public String getSearchResults(@PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto,
-                                   Model model) {
-        model.addAttribute("searchWordDto", searchWordDto);
-        model.addAttribute("searchResults", bookService.getPageOfSearchResultBooks(
-                searchWordDto.getExample(), 0, 5).getContent());
-        return "/search/index";
+                                   Model model) throws EmptySearchException {
+        if (searchWordDto != null) {
+            model.addAttribute("searchWordDto", searchWordDto);
+            model.addAttribute("searchResults", bookService.getPageOfSearchResultBooks(
+                    searchWordDto.getExample(), 0, 5).getContent());
+            return "/search/index";
+        } else {
+            throw new EmptySearchException("Search by null is not possible");
+        }
     }
 
     @GetMapping("/search/page/{searchWord}")

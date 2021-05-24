@@ -30,7 +30,7 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query(value = "SELECT * FROM books WHERE discount = (SELECT MAX(discount) FROM books)", nativeQuery = true)
     List<Book> getBooksWithMaxDiscount();
 
-    Page<Book> findBooksByTitleContaining(String bookTitle, Pageable nextPage);
+    Page<Book> findPageBooksByTitleContaining(String bookTitle, Pageable nextPage);
 
     Page<Book> findByPubDateBetween(Date from, Date to, Pageable nextPage);
 
@@ -55,12 +55,14 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     Page<Book> getAllBooksByTagSlug(String slug, Pageable nextPage);
 
     @Query(value = "select * from books b " +
-            "join book2author ba " +
-            "   on b.id = ba.book_id " +
-            "join authors a " +
-            "   on a.id = ba.author_id " +
-            "where a.slug = :slug", nativeQuery = true)
+                   "join book2author ba " +
+                   "   on b.id = ba.book_id " +
+                   "join authors a " +
+                   "   on a.id = ba.author_id " +
+                   "where a.slug = :slug", nativeQuery = true)
     Page<Book> getAllBooksByAuthorSlug(String slug, Pageable nextPage);
 
     Book findBookBySlug(String slug);
+
+    List<Book> findBooksByTitleContaining(String title);
 }

@@ -1,5 +1,6 @@
 package com.example.mybookshopapp2.service;
 
+import com.example.mybookshopapp2.errs.BookstoreApiWrongParameterException;
 import com.example.mybookshopapp2.model.Book;
 import com.example.mybookshopapp2.respository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,17 @@ public class BookService {
         return bookRepository.findBookByAuthorsFirstNameContaining(authorName);
     }
 
-    public List<Book> getBooksByTitle(String title) {
-        return bookRepository.findBookByTitleContaining(title);
+    public List<Book> getBooksByTitle(String title) throws BookstoreApiWrongParameterException {
+        if (title.equals("") || title.length() <= 1) {
+            throw new BookstoreApiWrongParameterException("Wrong values passed to one or more parameters");
+        } else {
+            List<Book> data = bookRepository.findBooksByTitleContaining(title);
+            if (data.size() > 0) {
+                return data;
+            } else {
+                throw new BookstoreApiWrongParameterException("No data found with specified parameters...");
+            }
+        }
     }
 
     public List<Book> getBooksWithPriceBetween(Integer min, Integer max) {
@@ -60,7 +70,7 @@ public class BookService {
 
     public Page<Book> getPageOfSearchResultBooks(String searchWord, Integer offset, Integer limit) {
         Pageable nextPage = PageRequest.of(offset, limit);
-        return bookRepository.findBooksByTitleContaining(searchWord, nextPage);
+        return bookRepository.findPageBooksByTitleContaining(searchWord, nextPage);
     }
 
     public Page<Book> getPageOfRecentBooks(Integer offset, Integer limit) {

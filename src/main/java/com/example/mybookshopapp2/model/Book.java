@@ -26,6 +26,7 @@ public class Book {
     )
     Set<User> users = new HashSet<>();
 
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JsonProperty("authors")
     @JoinTable(name = "book2author",
@@ -75,6 +76,7 @@ public class Book {
     @ApiModelProperty("discount value for book")
     private Double price;
     private Byte rating;
+    @JsonIgnore
     @OneToMany(mappedBy = "book")
     private List<BookFile> bookFileList = new ArrayList<>();
 
