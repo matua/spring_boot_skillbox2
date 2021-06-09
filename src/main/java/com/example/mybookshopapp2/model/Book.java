@@ -1,8 +1,10 @@
 package com.example.mybookshopapp2.model;
 
+import com.example.mybookshopapp2.utils.serialization.BookSerializer;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -17,7 +19,8 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "books")
-@ApiModel(description = "entitiy representing a book")
+@ApiModel(description = "entity representing a book")
+@JsonSerialize(using = BookSerializer.class)
 public class Book {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "book2user",
@@ -26,7 +29,7 @@ public class Book {
     )
     Set<User> users = new HashSet<>();
 
-    @JsonIgnore
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JsonProperty("authors")
     @JoinTable(name = "book2author",
@@ -35,7 +38,6 @@ public class Book {
     )
     Set<Author> authors = new HashSet<>();
 
-    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "book2genre",
             joinColumns = @JoinColumn(name = "book_id"),
@@ -43,7 +45,6 @@ public class Book {
     )
     Set<Genre> genres = new HashSet<>();
 
-    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "book2tag",
             joinColumns = @JoinColumn(name = "book_id"),
@@ -76,7 +77,6 @@ public class Book {
     @ApiModelProperty("discount value for book")
     private Double price;
     private Byte rating;
-    @JsonIgnore
     @OneToMany(mappedBy = "book")
     private List<BookFile> bookFileList = new ArrayList<>();
 
