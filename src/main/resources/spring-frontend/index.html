@@ -39,7 +39,9 @@ p.error-browser
                                                      th:href="@{'/books/' + ${book.slug}}"><img
                                         alt="card.jpg" href="/books/slug.html" th:src="${book.image}"/></a>
                                     <div class="Card-content">
-                                        <strong class="Card-title"><a href="/books/slug.html" th:text="${book.title}">Техника</a>
+                                        <strong class="Card-title"><a href="/books/slug.html"
+                                                                      th:href="@{'/books/' + ${book.slug}}"
+                                                                      th:text="${book.title}">Техника</a>
                                         </strong>
                                         <div class="Card-description" th:each="author : ${book.authors}"><span
                                                 th:text="${author.firstName} + ' ' + ${author.lastName}">Кондратенко Валерий
@@ -76,7 +78,9 @@ p.error-browser
                                                      th:href="@{'/books/' + ${book.slug}}"><img
                                         alt="card.jpg" src="/books/slug.html" th:src="${book.image}"/></a>
                                     <div class="Card-content">
-                                        <strong class="Card-title"><a href="/books/slug.html" th:text="${book.title}">Техника</a>
+                                        <strong class="Card-title"><a href="/books/slug.html"
+                                                                      th:href="@{'/books/' + ${book.slug}}"
+                                                                      th:text="${book.title}">Техника</a>
                                         </strong>
                                         <div class="Card-description" th:each="author : ${book.authors}"><span
                                                 th:text="${author.firstName} + ' ' + ${author.lastName}">Кондратенко Валерий
@@ -114,7 +118,9 @@ p.error-browser
                                                      th:href="@{'/books/' + ${book.slug}}"><img
                                         alt="card.jpg" src="/books/slug.html" th:src="${book.image}"/></a>
                                     <div class="Card-content">
-                                        <strong class="Card-title"><a href="/books/slug.html" th:text="${book.title}">Техника</a>
+                                        <strong class="Card-title"><a href="/books/slug.html"
+                                                                      th:href="@{'/books/' + ${book.slug}}"
+                                                                      th:text="${book.title}">Техника</a>
                                         </strong>
                                         <div class="Card-description" th:each="author : ${book.authors}"><span
                                                 th:text="${author.firstName} + ' ' + ${author.lastName}">Кондратенко Валерий
