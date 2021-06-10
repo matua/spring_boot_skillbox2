@@ -1,4 +1,3 @@
-
 <!--END-->
 <!--END--><!DOCTYPE html><!--[if IE 7]>
 <html class="ie7" lang="ru">
@@ -33,17 +32,22 @@ p.error-browser
 
                 <div class="Cart-product" th:each="book : ${bookCart}">
                     <div class="Cart-block Cart-block_row">
-                        <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img"
+                        <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#" th:href="@{'/books/' + ${book.slug}}"><img class="Cart-img"
                                                                                                    alt="card.jpg"
                                                                                                    src="/assets/img/content/main/card.jpg"
                                                                                                    th:src="${book.image}"/></a>
                         </div>
                         <div class="Cart-block Cart-block_row">
                             <div class="Cart-block Cart-block_info">
-                                <div class="Cart-author"><a href="#" th:text="${book.authorsFullName()}">Борис
-                                    Васильевич Маяковский</a>
+                                <div class="Cart-author" th:each="author : ${book.authors}">
+                                    <a href="#"
+                                       th:href="@{'/authors/'+${author.slug}}"
+                                       th:text="${author}">Борис
+                                        Васильевич Маяковский</a>
                                 </div>
-                                <div class="Cart-title"><a href="#" th:text="${book.title}">Трубы</a>
+                                <div class="Cart-title"><a href="#"
+                                                           th:href="@{'/books/' + ${book.slug}}"
+                                                           th:text="${book.title}">Трубы</a>
                                 </div>
                                 <div class="Cart-rating"><span class="Rating"><span class="Rating-stars"><span
                                         class="Rating-star Rating-star_view">
@@ -124,7 +128,8 @@ p.error-browser
                 <div class="Cart-total">
                     <div class="Cart-block Cart-block_total">
                         <strong class="Cart-title">Итого:
-                        </strong><span class="Cart-price">534 р.</span><span class="Cart-price_old">658 р.</span>
+                        </strong><span class="Cart-price">534 р.</span>
+                        <span class="Cart-price_old">658 р.</span>
                     </div>
                     <div class="Cart-block"><a class="btn btn_success btn_md" href="/order.html">Купить</a>
                     </div>
