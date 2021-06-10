@@ -412,9 +412,12 @@ p.error-browser
                             <!--+div.-cartElement.-cartElement_amount-->
                             <!--    +Amount._product-->
                             <div class="ProductCard-cartElement">
-                                <button class="btn btn_primary btn_outline" data-alttext="Отложена" data-bookid="[1111]"
-                                        data-btnradio="buyblock" data-btntype="check" data-check="false"
-                                        data-sendstatus="KEPT"><span class="btn-icon"><img
+                                <button class="btn btn_primary btn_outline" data-alttext="Отложена"
+                                        data-bookid="[1111]"
+                                        data-btnradio="buyblock" data-btntype="check"
+                                        data-check="false"
+                                        data-sendstatus="KEPT"
+                                        th:attr="data-bookid = ${slugBook.slug}"><span class="btn-icon"><img
                                         alt="heart.svg" src="/assets/img/icons/heart.svg"/></span><span
                                         class="btn-content">Отложить</span>
                                 </button>

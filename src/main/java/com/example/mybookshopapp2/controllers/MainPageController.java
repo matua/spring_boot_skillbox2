@@ -29,16 +29,6 @@ public class MainPageController {
         this.tagService = tagService;
     }
 
-    @ModelAttribute("searchResults")
-    public List<Book> searchResults() {
-        return new ArrayList<>();
-    }
-
-    @ModelAttribute("searchWordDto")
-    public SearchWordDto searchWordDto() {
-        return new SearchWordDto();
-    }
-
     @GetMapping("/")
     public String mainPage(Model model) {
         model.addAttribute("recommendedBooks", bookService.getPageOfRecommendedBooks(0, 6).getContent());

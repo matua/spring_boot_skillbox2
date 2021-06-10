@@ -33,16 +33,6 @@ public class BooksController {
         this.storage = storage;
     }
 
-    @ModelAttribute("searchResults")
-    public List<Book> searchResults() {
-        return new ArrayList<>();
-    }
-
-    @ModelAttribute("searchWordDto")
-    public SearchWordDto searchWordDto() {
-        return new SearchWordDto();
-    }
-
     @GetMapping("/{slug}")
     public String bookPage(@PathVariable("slug") String slug, Model model) {
         Book book = bookRepository.findBookBySlug(slug);

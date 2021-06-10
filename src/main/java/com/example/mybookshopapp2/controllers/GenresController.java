@@ -23,16 +23,6 @@ public class GenresController {
         this.genreService = genreService;
     }
 
-    @ModelAttribute("searchResults")
-    public List<Book> searchResults() {
-        return new ArrayList<>();
-    }
-
-    @ModelAttribute("searchWordDto")
-    public SearchWordDto searchWordDto() {
-        return new SearchWordDto();
-    }
-
     @ModelAttribute("mainGenres")
     public List<Genre> mainGenres() {
         return genreService.getAllMainGenres();
