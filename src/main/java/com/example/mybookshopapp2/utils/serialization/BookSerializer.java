@@ -1,9 +1,6 @@
 package com.example.mybookshopapp2.utils.serialization;
 
-import com.example.mybookshopapp2.model.Author;
-import com.example.mybookshopapp2.model.Book;
-import com.example.mybookshopapp2.model.Genre;
-import com.example.mybookshopapp2.model.Tag;
+import com.example.mybookshopapp2.model.*;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
@@ -26,6 +23,11 @@ public class BookSerializer extends StdSerializer<Book> {
         jgen.writeStartObject();
         jgen.writeNumberField("id", book.getId());
         jgen.writeStringField("title", book.getTitle());
+        jgen.writeStringField("pubDate", String.valueOf(book.getPubDate()));
+        jgen.writeStringField("isBestseller", String.valueOf(book.getIsBestseller()));
+        jgen.writeStringField("slug", book.getSlug());
+        jgen.writeStringField("image", book.getImage());
+        jgen.writeStringField("rating", String.valueOf(book.getRating()));
         jgen.writeArrayFieldStart("authors");
         for (Author author : book.getAuthors()) {
             jgen.writeString(author.getFirstName() + " " + author.getLastName());
@@ -42,7 +44,19 @@ public class BookSerializer extends StdSerializer<Book> {
             jgen.writeString(tag.getName());
         }
         jgen.writeEndArray();
-        jgen.writeStringField("price", String.valueOf(book.getPrice()));
+        jgen.writeArrayFieldStart("users");
+        for (User user : book.getUsers()) {
+            jgen.writeString(user.getName());
+        }
+        jgen.writeEndArray();
+        jgen.writeArrayFieldStart("bookFileList");
+        for (BookFile bookFile : book.getBookFileList()) {
+            jgen.writeString(bookFile.getBookFileExtensionString());
+        }
+        jgen.writeEndArray();
+        jgen.writeStringField("discount", String.valueOf(book.getPrice()));
+        jgen.writeStringField("price", String.valueOf(book.getPriceOld()));
+        jgen.writeStringField("discountPrice", String.valueOf(book.discountPrice()));
         jgen.writeEndObject();
     }
 }
