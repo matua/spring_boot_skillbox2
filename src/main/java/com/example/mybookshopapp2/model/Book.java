@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -20,7 +21,7 @@ import java.util.Set;
 @Table(name = "books")
 @ApiModel(description = "entity representing a book")
 @JsonSerialize(using = BookSerializer.class)
-public class Book {
+public class Book extends RepresentationModel<Book> {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "book2user",
             joinColumns = @JoinColumn(name = "book_id"),
