@@ -55,7 +55,7 @@ public class PostponedController {
             ArrayList<String> cookieBooks = new ArrayList<>(Arrays.asList(postponedContents.split("/")));
             cookieBooks.remove(slug);
             Cookie cookie = new Cookie("postponedContents", String.join("/", cookieBooks));
-            cookie.setPath("/books");
+            cookie.setPath("/");
             response.addCookie(cookie);
             model.addAttribute("isPostponedEmpty", false);
         } else {
@@ -71,14 +71,14 @@ public class PostponedController {
 
         if (postponedContents == null || postponedContents.equals("")) {
             Cookie cookie = new Cookie("postponedContents", slug);
-            cookie.setPath("/books");
+            cookie.setPath("/");
             response.addCookie(cookie);
             model.addAttribute("isPostponedEmpty", false);
         } else if (!postponedContents.contains(slug)) {
             StringJoiner stringJoiner = new StringJoiner("/");
             stringJoiner.add(postponedContents).add(slug);
             Cookie cookie = new Cookie("postponedContents", stringJoiner.toString());
-            cookie.setPath("/books");
+            cookie.setPath("/");
             response.addCookie(cookie);
             model.addAttribute("isPostponedEmpty", false);
         }
