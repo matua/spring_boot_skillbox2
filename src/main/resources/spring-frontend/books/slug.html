@@ -417,7 +417,8 @@ p.error-browser
                                         data-btnradio="buyblock" data-btntype="check"
                                         data-check="false"
                                         data-sendstatus="KEPT"
-                                        th:attr="data-bookid = ${slugBook.slug}"><span class="btn-icon"><img
+                                        th:data-bookid = "${'postpone/'+ slugBook.slug}">
+                                <span class="btn-icon"><img
                                         alt="heart.svg" src="/assets/img/icons/heart.svg"/></span><span
                                         class="btn-content">Отложить</span>
                                 </button>

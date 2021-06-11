@@ -32,10 +32,12 @@ p.error-browser
 
                 <div class="Cart-product" th:each="book : ${bookCart}">
                     <div class="Cart-block Cart-block_row">
-                        <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#" th:href="@{'/books/' + ${book.slug}}"><img class="Cart-img"
-                                                                                                   alt="card.jpg"
-                                                                                                   src="/assets/img/content/main/card.jpg"
-                                                                                                   th:src="${book.image}"/></a>
+                        <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"
+                                                                   th:href="@{'/books/' + ${book.slug}}"><img
+                                class="Cart-img"
+                                alt="card.jpg"
+                                src="/assets/img/content/main/card.jpg"
+                                th:src="${book.image}"/></a>
                         </div>
                         <div class="Cart-block Cart-block_row">
                             <div class="Cart-block Cart-block_info">
@@ -95,8 +97,8 @@ p.error-browser
                                 <div class="Cart-buttons">
                                     <div class="Cart-btn">
                                         <button class="btn btn_primary btn_outline" data-bookid="[1133]"
-                                                data-sendstatus="KEPT"><span class="btn-icon"><img alt="heart.svg"
-                                                                                                   src="/assets/img/icons/heart.svg"/></span><span
+                                                data-sendstatus="KEPT"><span class="btn-icon">
+                                            <img alt="heart.svg" src="/assets/img/icons/heart.svg"/></span><span
                                                 class="btn-content">Купить</span>
                                         </button>
                                     </div>
