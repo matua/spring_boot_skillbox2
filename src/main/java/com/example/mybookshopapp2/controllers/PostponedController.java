@@ -47,7 +47,7 @@ public class PostponedController {
         return "postponed";
     }
 
-    @PostMapping("/changeBookStatus/postponed/remove/{slug}")
+    @PostMapping("/changeBookStatus/postpone/remove/{slug}")
     public String handleRemoveBookFromPostponedRequest(@PathVariable("slug") String slug, @CookieValue(name =
             "postponedContents", required = false) String postponedContents, HttpServletResponse response, Model model) {
 
@@ -65,7 +65,7 @@ public class PostponedController {
         return "redirect:/books/postponed";
     }
 
-    @PostMapping("/changePostponedBookStatus/{slug}")
+    @PostMapping("/changeBookStatus/postpone/{slug}")
     public String handleChangePostponedBookStatus(@PathVariable("slug") String slug, @CookieValue(name = "postponedContents",
             required = false) String postponedContents, HttpServletResponse response, Model model) {
 
