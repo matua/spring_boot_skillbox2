@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/api/books")
@@ -42,10 +43,10 @@ public class BooksRestApiController {
         List<Book> booksByAuthor = bookService.getBooksByAuthorFirstName(authorName);
         booksByAuthor.forEach(book -> {
             book.add(
-                    linkTo(BooksRestApiController.class)
-                            .slash(book.getId())
-                            .withSelfRel()
-            );
+                    linkTo(
+                            methodOn(BooksRestApiController.class)
+                            .getBookById(book.getId()))
+                            .withSelfRel());
         });
         return CollectionModel.of(booksByAuthor);
     }
