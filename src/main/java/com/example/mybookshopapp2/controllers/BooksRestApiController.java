@@ -63,15 +63,22 @@ public class BooksRestApiController {
             @io.swagger.annotations.ApiResponse(code = 200, message = "Successful request"),
 
     })
-    public ResponseEntity<ApiResponse<Book>> booksByTitle(@RequestParam("title") String title) throws BookstoreApiWrongParameterException {
+    public RepresentationModel<?> booksByTitle(@RequestParam("title") String title) throws BookstoreApiWrongParameterException {
         ApiResponse<Book> response = new ApiResponse<>();
         List<Book> data = bookService.getBooksByTitle(title);
+        data.forEach(book -> {
+            book.add(
+                    linkTo(
+                            methodOn(BooksRestApiController.class)
+                                    .getBookById(book.getId()))
+                            .withSelfRel());
+        });
         response.setDebugMessage("successful request");
         response.setMessage("data size: " + data.size() + " elements");
         response.setStatus(HttpStatus.OK);
         response.setTimeStamp(LocalDateTime.now());
         response.setData(data);
-        return ResponseEntity.ok(response);
+        return CollectionModel.of(ResponseEntity.ok(response));
     }
 
     @GetMapping("/by-price-range")
