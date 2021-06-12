@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -32,20 +33,25 @@ public class BooksRestApiController {
     }
 
     @GetMapping(value = "/{bookId}")
-    public Book getBookById(@PathVariable Integer bookId) {
-        return bookService.getBookById(bookId);
+    public RepresentationModel<Book> getBookById(@PathVariable Integer bookId) {
+        return bookService.getBookById(bookId)
+                .add(
+                        linkTo(
+                                methodOn(BooksRestApiController.class)
+                                        .getBestSellerBooks())
+                                        .withSelfRel());
     }
 
     @GetMapping(value = "/by-author-first-name", produces = "application/hal+json")
     @ApiOperation("operation to get book list of bookshop by author")
-    public CollectionModel<Book> booksByAuthorFirstName(@RequestParam("author") String authorName) {
+    public CollectionModel<Book> getBooksByAuthorFirstName(@RequestParam("author") String authorName) {
 
         List<Book> booksByAuthor = bookService.getBooksByAuthorFirstName(authorName);
         booksByAuthor.forEach(book -> {
             book.add(
                     linkTo(
                             methodOn(BooksRestApiController.class)
-                            .getBookById(book.getId()))
+                                    .getBookById(book.getId()))
                             .withSelfRel());
         });
         return CollectionModel.of(booksByAuthor);
@@ -82,8 +88,16 @@ public class BooksRestApiController {
 
     @GetMapping("/bestsellers")
     @ApiOperation("get bestsellers (which is_bestseller = 1")
-    public ResponseEntity<List<Book>> bestSellerBooks() {
-        return ResponseEntity.ok(bookService.getBestsellers());
+    public CollectionModel<Book> getBestSellerBooks() {
+        List<Book> bestSellers = bookService.getBestsellers();
+        bestSellers.forEach(book -> {
+            book.add(
+                    linkTo(
+                            methodOn(BooksRestApiController.class)
+                                    .getBookById(book.getId()))
+                            .withSelfRel());
+        });
+        return CollectionModel.of(bestSellers);
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
