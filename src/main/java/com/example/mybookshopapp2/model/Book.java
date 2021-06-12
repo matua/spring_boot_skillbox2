@@ -1,12 +1,13 @@
 package com.example.mybookshopapp2.model;
 
-import com.example.mybookshopapp2.utils.serialization.BookSerializer;
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -19,8 +20,10 @@ import java.util.Set;
 @Entity
 @Table(name = "books")
 @ApiModel(description = "entity representing a book")
-@JsonSerialize(using = BookSerializer.class)
-public class Book {
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
+public class Book extends RepresentationModel<Book> {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "book2user",
             joinColumns = @JoinColumn(name = "book_id"),

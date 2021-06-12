@@ -7,6 +7,7 @@ import com.example.mybookshopapp2.service.BookService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/books")
 //@Api(description = "book data api")
 public class BooksRestApiController {
 
@@ -27,13 +30,27 @@ public class BooksRestApiController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/books/by-author")
-    @ApiOperation("operation to get book list of bookshop by author")
-    public ResponseEntity<List<Book>> booksByAuthor(@RequestParam("author") String authorName) {
-        return ResponseEntity.ok(bookService.getBooksByAuthor(authorName));
+    @GetMapping(value = "/{bookId}")
+    public Book getBookById(@PathVariable Integer bookId) {
+        return bookService.getBookById(bookId);
     }
 
-    @GetMapping("/books/by-title")
+    @GetMapping(value = "/by-author-first-name", produces = "application/hal+json")
+    @ApiOperation("operation to get book list of bookshop by author")
+    public CollectionModel<Book> booksByAuthorFirstName(@RequestParam("author") String authorName) {
+
+        List<Book> booksByAuthor = bookService.getBooksByAuthorFirstName(authorName);
+        booksByAuthor.forEach(book -> {
+            book.add(
+                    linkTo(BooksRestApiController.class)
+                            .slash(book.getId())
+                            .withSelfRel()
+            );
+        });
+        return CollectionModel.of(booksByAuthor);
+    }
+
+    @GetMapping("/by-title")
     @ApiOperation("get books by book title")
     @ApiResponses(value = {
             @io.swagger.annotations.ApiResponse(code = 200, message = "Successful request"),
@@ -50,19 +67,19 @@ public class BooksRestApiController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/books/by-price-range")
+    @GetMapping("/by-price-range")
     @ApiOperation("get books by price range from min price to max price")
     public ResponseEntity<List<Book>> priceRangeBooks(@RequestParam("min") Integer min, @RequestParam("max") Integer max) {
         return ResponseEntity.ok(bookService.getBooksWithPriceBetween(min, max));
     }
 
-    @GetMapping("/books/with-max-discount")
+    @GetMapping("/with-max-discount")
     @ApiOperation("get list of books with max price")
     public ResponseEntity<List<Book>> maxPriceBooks() {
         return ResponseEntity.ok(bookService.getBooksWithMaxPrice());
     }
 
-    @GetMapping("/books/bestsellers")
+    @GetMapping("/bestsellers")
     @ApiOperation("get bestsellers (which is_bestseller = 1")
     public ResponseEntity<List<Book>> bestSellerBooks() {
         return ResponseEntity.ok(bookService.getBestsellers());

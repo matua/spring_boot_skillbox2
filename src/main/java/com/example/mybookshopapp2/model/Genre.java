@@ -1,9 +1,12 @@
 package com.example.mybookshopapp2.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -14,7 +17,10 @@ import java.util.Set;
 @Data
 @EqualsAndHashCode(exclude = "books")
 @ToString(exclude = "books")
-public class Genre {
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
+public class Genre extends RepresentationModel<Genre> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

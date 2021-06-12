@@ -30,8 +30,8 @@ public class BookService {
 //        return bookRepository.getBooksByGenre(tag);
 //    }
 
-    public List<Book> getBooksByAuthor(String authorName) {
-        return bookRepository.findBookByAuthorsFirstNameContaining(authorName);
+    public List<Book> getBooksByAuthorFirstName(String authorName) {
+        return bookRepository.findBookByAuthorsFirstNameContainingIgnoreCase(authorName);
     }
 
     public List<Book> getBooksByTitle(String title) throws BookstoreApiWrongParameterException {
@@ -108,5 +108,14 @@ public class BookService {
     public Page<Book> getPageOfBooksByAuthor(String author, Integer offset, Integer limit) {
         Pageable nextPage = PageRequest.of(offset, limit);
         return bookRepository.getAllBooksByAuthorSlug(author, nextPage);
+    }
+
+    public List<Book> getAllBooks() {
+        return bookRepository.findAll();
+    }
+
+    public Book getBookById(Integer bookId) {
+        return bookRepository.findById(bookId).orElseThrow(() -> new RuntimeException(
+                "No Book found with such id"));
     }
 }
