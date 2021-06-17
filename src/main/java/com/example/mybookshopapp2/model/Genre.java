@@ -32,6 +32,5 @@ public class Genre extends RepresentationModel<Genre> {
             joinColumns = @JoinColumn(name = "genre_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
-    @JsonIgnore
     private Set<Book> books = new HashSet<>();
 }

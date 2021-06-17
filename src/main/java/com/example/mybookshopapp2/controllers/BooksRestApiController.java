@@ -78,7 +78,7 @@ public class BooksRestApiController {
         response.setStatus(HttpStatus.OK);
         response.setTimeStamp(LocalDateTime.now());
         response.setData(data);
-        return CollectionModel.of(ResponseEntity.ok(response));
+        return RepresentationModel.of(ResponseEntity.ok(response));
     }
 
     @GetMapping("/by-price-range")

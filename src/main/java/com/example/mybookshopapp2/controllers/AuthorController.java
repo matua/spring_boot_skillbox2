@@ -33,7 +33,7 @@ public class AuthorController {
     }
 
     @ModelAttribute("author")
-    public Author getAuthor(@PathVariable(value = "author", required = false) String author) {
+    public Author getAuthor(@PathVariable("author") String author) {
         return authorService.getAuthorBySlug(author);
     }
 
