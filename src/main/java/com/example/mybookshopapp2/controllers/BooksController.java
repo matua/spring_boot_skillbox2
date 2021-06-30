@@ -1,7 +1,6 @@
 package com.example.mybookshopapp2.controllers;
 
 import com.example.mybookshopapp2.data.ResourceStorage;
-import com.example.mybookshopapp2.data.SearchWordDto;
 import com.example.mybookshopapp2.model.Book;
 import com.example.mybookshopapp2.respository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 @Controller
@@ -38,6 +35,15 @@ public class BooksController {
         Book book = bookRepository.findBookBySlug(slug);
         model.addAttribute("slugBook", book);
         return "/books/slug";
+    }
+
+    @GetMapping("/rate/{slug}")
+    public String rateBook(@PathVariable("slug") String slug, Model model) {
+        Integer bookId = bookRepository.findBookBySlug(slug).getId();
+        System.out.println("TESTING!!!");
+//        Book book = bookRepository.rateBook(bookId);
+//        model.addAttribute("slugBook", book);
+        return ("redirect:/books/" + slug);
     }
 
     @PostMapping("/{slug}/img/save")

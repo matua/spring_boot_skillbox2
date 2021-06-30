@@ -55,11 +55,11 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     Page<Book> getAllBooksByTagSlug(String slug, Pageable nextPage);
 
     @Query(value = "select * from books b " +
-                   "join book2author ba " +
-                   "   on b.id = ba.book_id " +
-                   "join authors a " +
-                   "   on a.id = ba.author_id " +
-                   "where a.slug = :slug", nativeQuery = true)
+            "join book2author ba " +
+            "   on b.id = ba.book_id " +
+            "join authors a " +
+            "   on a.id = ba.author_id " +
+            "where a.slug = :slug", nativeQuery = true)
     Page<Book> getAllBooksByAuthorSlug(String slug, Pageable nextPage);
 
     Book findBookBySlug(String slug);
@@ -67,4 +67,8 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     List<Book> findBooksByTitleContaining(String title);
 
     List<Book> findBooksBySlugIn(String[] slugs);
+
+//    @Modifying
+//    @Query("")
+//    Book rateBook(Integer bookId);
 }
