@@ -39,7 +39,7 @@ public class PostponedController {
             model.addAttribute("isPostponedEmpty", false);
             postponedContents = postponedContents.startsWith("/") ? postponedContents.substring(1) : postponedContents;
             postponedContents = postponedContents.endsWith("/") ? postponedContents.substring(0, postponedContents.length() - 1) : postponedContents;
-            String[] cookieSlugs = postponedContents.split("/");
+            List<String> cookieSlugs = Arrays.asList(postponedContents.split("/"));
             List<Book> booksFromCookieSlugs = bookRepository.findBooksBySlugIn(cookieSlugs);
             model.addAttribute("postponedBooks", booksFromCookieSlugs);
         }

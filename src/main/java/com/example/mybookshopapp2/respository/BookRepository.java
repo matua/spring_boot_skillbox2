@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
+import java.util.Collection;
 import java.util.List;
 
 @Repository
@@ -66,7 +67,7 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     List<Book> findBooksByTitleContaining(String title);
 
-    List<Book> findBooksBySlugIn(String[] slugs);
+    List<Book> findBooksBySlugIn(Collection<String> slug);
 
 //    @Modifying
 //    @Query("")

@@ -1,6 +1,7 @@
 package com.example.mybookshopapp2.model;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table
 @Data
+@Accessors(chain = true)
 public class BookRating {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

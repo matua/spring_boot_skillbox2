@@ -37,17 +37,20 @@ public class BooksController {
         return "/books/slug";
     }
 
-    @GetMapping("/rate/{slug}")
-    public String rateBook(@PathVariable("slug") String slug, Model model) {
-        Integer bookId = bookRepository.findBookBySlug(slug).getId();
-        System.out.println("TESTING!!!");
-//        Book book = bookRepository.rateBook(bookId);
-//        model.addAttribute("slugBook", book);
+    @PostMapping("/rate/{slug}")
+    public String rateBook(@PathVariable("slug") String slug,
+                           @RequestParam("value") String value,
+                           Model model) {
+        Book book = bookRepository.findBookBySlug(slug);
+        book.setRating(Byte.valueOf(value));
+        bookRepository.save(book);
+        model.addAttribute("slugBook", book);
         return ("redirect:/books/" + slug);
     }
 
     @PostMapping("/{slug}/img/save")
-    public String saveNewBoookImage(@RequestParam("file") MultipartFile file, @PathVariable("slug") String slug) throws IOException {
+    public String saveNewBoookImage(@RequestParam("file") MultipartFile file,
+                                    @PathVariable("slug") String slug) throws IOException {
 
         String savePath = storage.saveNewBookImage(file, slug);
         Book bookToUpdate = bookRepository.findBookBySlug(slug);
