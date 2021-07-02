@@ -39,7 +39,7 @@ public class BooksController {
         this.bookRatingRepository = bookRatingRepository;
     }
 
-    @ModelAttribute("bookRating")
+    @ModelAttribute("bookRatingMap")
     public Map<Byte, Long> bookRatingMap(@PathVariable("slug") String slug) {
         Integer bookId = bookRepository.findBookBySlug(slug).getId();
         return bookRatingService.getBookRatingMap(bookId);
@@ -49,6 +49,12 @@ public class BooksController {
     public Integer bookTotalNumberOfRatings(@PathVariable("slug") String slug) {
         Integer bookId = bookRepository.findBookBySlug(slug).getId();
         return bookRatingService.getTotalNumberOfRatings(bookId);
+    }
+
+    @ModelAttribute("bookAverageRating")
+    public Long bookAverageRating(@PathVariable("slug") String slug){
+        Integer bookId = bookRepository.findBookBySlug(slug).getId();
+        return bookRatingService.getAverageRating(bookId);
     }
 
     @GetMapping("/{slug}")

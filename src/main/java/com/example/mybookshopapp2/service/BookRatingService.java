@@ -29,4 +29,12 @@ public class BookRatingService {
         List<BookRating> bookRatingMap = bookRatingRepository.findAllByBookId(bookId);
         return  bookRatingMap.size();
     }
+
+    public long getAverageRating(Integer bookId) {
+        return Math.round(bookRatingRepository.findAllByBookId(bookId)
+                .stream()
+                .mapToInt(BookRating::getRating)
+                .average()
+                .orElse(0));
+    }
 }
