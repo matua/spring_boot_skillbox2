@@ -55,6 +55,7 @@ public class BooksController {
 
         bookRatingRepository.save(bookRating);
         model.addAttribute("slugBook", book);
+
         return ("redirect:/books/" + slug);
     }
 
