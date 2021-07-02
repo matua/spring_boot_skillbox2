@@ -24,4 +24,9 @@ public class BookRatingService {
                 .stream()
                 .collect(Collectors.groupingBy(BookRating::getRating, Collectors.counting()));
     }
+
+    public Integer getTotalNumberOfRatings(Integer bookId) {
+        List<BookRating> bookRatingMap = bookRatingRepository.findAllByBookId(bookId);
+        return  bookRatingMap.size();
+    }
 }

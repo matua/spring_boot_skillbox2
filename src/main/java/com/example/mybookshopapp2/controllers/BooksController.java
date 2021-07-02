@@ -45,6 +45,12 @@ public class BooksController {
         return bookRatingService.getBookRatingMap(bookId);
     }
 
+    @ModelAttribute("bookTotalNumberOfRatings")
+    public Integer bookTotalNumberOfRatings(@PathVariable("slug") String slug) {
+        Integer bookId = bookRepository.findBookBySlug(slug).getId();
+        return bookRatingService.getTotalNumberOfRatings(bookId);
+    }
+
     @GetMapping("/{slug}")
     public String bookPage(@PathVariable("slug") String slug, Model model) {
         Book book = bookRepository.findBookBySlug(slug);
