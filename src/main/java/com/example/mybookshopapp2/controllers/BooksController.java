@@ -5,6 +5,7 @@ import com.example.mybookshopapp2.model.Book;
 import com.example.mybookshopapp2.model.BookRating;
 import com.example.mybookshopapp2.respository.BookRatingRepository;
 import com.example.mybookshopapp2.respository.BookRepository;
+import com.example.mybookshopapp2.service.BookRatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.logging.Logger;
 
 @Controller
@@ -25,14 +27,22 @@ import java.util.logging.Logger;
 public class BooksController {
 
     private final BookRepository bookRepository;
+    private final BookRatingService bookRatingService;
     private final ResourceStorage storage;
     private final BookRatingRepository bookRatingRepository;
 
     @Autowired
-    public BooksController(BookRepository bookRepository, ResourceStorage storage, BookRatingRepository bookRatingRepository) {
+    public BooksController(BookRepository bookRepository, BookRatingService bookRatingService, ResourceStorage storage, BookRatingRepository bookRatingRepository) {
         this.bookRepository = bookRepository;
+        this.bookRatingService = bookRatingService;
         this.storage = storage;
         this.bookRatingRepository = bookRatingRepository;
+    }
+
+    @ModelAttribute("bookRating")
+    public Map<Byte, Long> bookRatingMap(@PathVariable("slug") String slug) {
+        Integer bookId = bookRepository.findBookBySlug(slug).getId();
+        return bookRatingService.getBookRatingMap(bookId);
     }
 
     @GetMapping("/{slug}")
