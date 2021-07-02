@@ -2,6 +2,8 @@ package com.example.mybookshopapp2.controllers;
 
 import com.example.mybookshopapp2.data.ResourceStorage;
 import com.example.mybookshopapp2.model.Book;
+import com.example.mybookshopapp2.model.BookRating;
+import com.example.mybookshopapp2.respository.BookRatingRepository;
 import com.example.mybookshopapp2.respository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 @Controller
@@ -23,11 +26,13 @@ public class BooksController {
 
     private final BookRepository bookRepository;
     private final ResourceStorage storage;
+    private final BookRatingRepository bookRatingRepository;
 
     @Autowired
-    public BooksController(BookRepository bookRepository, ResourceStorage storage) {
+    public BooksController(BookRepository bookRepository, ResourceStorage storage, BookRatingRepository bookRatingRepository) {
         this.bookRepository = bookRepository;
         this.storage = storage;
+        this.bookRatingRepository = bookRatingRepository;
     }
 
     @GetMapping("/{slug}")
@@ -39,11 +44,16 @@ public class BooksController {
 
     @PostMapping("/rate/{slug}")
     public String rateBook(@PathVariable("slug") String slug,
-                           @RequestParam("value") String value,
+                           @RequestParam("value") String rating,
                            Model model) {
         Book book = bookRepository.findBookBySlug(slug);
-        book.setRating(Byte.valueOf(value));
-        bookRepository.save(book);
+
+        BookRating bookRating = new BookRating();
+        bookRating.setRating(Byte.parseByte(rating))
+                .setBook(book)
+                .setTime(LocalDateTime.now());
+
+        bookRatingRepository.save(bookRating);
         model.addAttribute("slugBook", book);
         return ("redirect:/books/" + slug);
     }

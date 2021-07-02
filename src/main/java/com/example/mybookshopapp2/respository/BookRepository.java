@@ -68,8 +68,4 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     List<Book> findBooksByTitleContaining(String title);
 
     List<Book> findBooksBySlugIn(Collection<String> slug);
-
-//    @Modifying
-//    @Query("")
-//    Book rateBook(Integer bookId);
 }

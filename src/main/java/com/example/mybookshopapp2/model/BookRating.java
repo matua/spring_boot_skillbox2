@@ -1,14 +1,16 @@
 package com.example.mybookshopapp2.model;
 
 import lombok.Data;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "book_id", "user_id" }) })
 @Data
+@ToString(exclude = "book")
 @Accessors(chain = true)
 public class BookRating {
     @Id
