@@ -37,4 +37,8 @@ public class BookRatingService {
                 .average()
                 .orElse(0));
     }
+
+    public Integer getTotalNumberOfRatingsByBook(Integer bookId) {
+        return bookRatingRepository.findAllByBookId(bookId).size();
+    }
 }

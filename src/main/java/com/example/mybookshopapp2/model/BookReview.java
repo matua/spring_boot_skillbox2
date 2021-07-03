@@ -15,7 +15,9 @@ public class BookReview {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer bookId;
-    private Integer userId;
+    @OneToOne
+    private User user;
     private LocalDateTime time;
+    @Column(columnDefinition="text")
     private String text;
 }

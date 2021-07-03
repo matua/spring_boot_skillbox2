@@ -24,7 +24,11 @@ public class BookReviewService {
         bookReviewRepository.save(bookReview);
     }
 
-//    public void getAllBookReviewsByBookId(Integer bookId) {
-//        bookReviewRepository.findAllByBookId(bookId);
-//    }
+    public List<BookReview> getBookReviewsByBookId(Integer bookId) {
+        return bookReviewRepository.findAllByBookId(bookId);
+    }
+
+    public Integer getTotalNumberOfReviewsByBook(Integer bookId) {
+        return bookReviewRepository.findAllByBookId(bookId).size();
+    }
 }
