@@ -511,14 +511,14 @@ p.error-browser
                         <label th:name="feedback">
                             <input th:type="text" name="text">
                         </label>
-                        <label th:name="postFeedbackButton">
-                            <button th:type="submit" th:text="#{common.postReview}"></button>
-                        </label>
                         <label th:name="bookId">
                             <input th:type="hidden" name="bookId" th:value="${slugBook.id}">
                         </label>
                         <label th:name="bookSlug">
                             <input th:type="hidden" name="bookSlug" th:value="${slugBook.slug}">
+                        </label>
+                        <label th:name="postFeedbackButton">
+                            <button th:type="submit" th:text="#{common.postReview}"></button>
                         </label>
                     </form>
                 </div>

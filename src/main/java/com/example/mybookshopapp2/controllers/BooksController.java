@@ -43,40 +43,25 @@ public class BooksController {
         this.bookReviewService = bookReviewService;
     }
 
-    @ModelAttribute("bookRatingMap")
-    public Map<Byte, Long> bookRatingMap(@PathVariable("slug") String slug) {
-        Integer bookId = bookRepository.findBookBySlug(slug).getId();
-        return bookRatingService.getBookRatingMap(bookId);
-    }
-
-    @ModelAttribute("bookTotalNumberOfRatings")
-    public Integer bookTotalNumberOfRatings(@PathVariable("slug") String slug) {
-        Integer bookId = bookRepository.findBookBySlug(slug).getId();
-        return bookRatingService.getTotalNumberOfRatings(bookId);
-    }
-
-    @ModelAttribute("bookAverageRating")
-    public Long bookAverageRating(@PathVariable("slug") String slug) {
-        Integer bookId = bookRepository.findBookBySlug(slug).getId();
-        return bookRatingService.getAverageRating(bookId);
-    }
-
     @PostMapping("/bookReview")
-    public String postReview(@RequestParam("bookId") String bookId,
-                             @RequestParam("bookSlug") String slug,
-                             @RequestParam("text") String text) {
+    public String postReview(@RequestParam String bookId,
+                             @RequestParam String bookSlug,
+                             @RequestParam String text) {
         BookReview bookReview = new BookReview();
         bookReview.setBookId(Integer.valueOf(bookId))
                 .setTime(LocalDateTime.now())
                 .setText(text);
         bookReviewService.postReview(bookReview);
-        return ("redirect:/books/" + slug);
+        return ("redirect:/books/" + bookSlug);
     }
 
     @GetMapping("/{slug}")
     public String bookPage(@PathVariable("slug") String slug, Model model) {
         Book book = bookRepository.findBookBySlug(slug);
         model.addAttribute("slugBook", book);
+        model.addAttribute("bookRatingMap", bookRatingMap(slug));
+        model.addAttribute("bookAverageRating", bookAverageRating(slug));
+        model.addAttribute("bookTotalNumberOfRatings", bookTotalNumberOfRatings(slug));
         return "/books/slug";
     }
 
@@ -127,5 +112,20 @@ public class BooksController {
                 .contentType(mediaType)
                 .contentLength(data.length)
                 .body(new ByteArrayResource(data));
+    }
+
+    private Map<Byte, Long> bookRatingMap(@PathVariable String slug) {
+        Integer bookId = bookRepository.findBookBySlug(slug).getId();
+        return bookRatingService.getBookRatingMap(bookId);
+    }
+
+    private Long bookAverageRating(@PathVariable("slug") String slug) {
+        Integer bookId = bookRepository.findBookBySlug(slug).getId();
+        return bookRatingService.getAverageRating(bookId);
+    }
+
+    private Integer bookTotalNumberOfRatings(@PathVariable("slug") String slug) {
+        Integer bookId = bookRepository.findBookBySlug(slug).getId();
+        return bookRatingService.getTotalNumberOfRatings(bookId);
     }
 }
