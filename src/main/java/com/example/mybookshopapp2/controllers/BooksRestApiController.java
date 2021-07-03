@@ -39,7 +39,7 @@ public class BooksRestApiController {
                         linkTo(
                                 methodOn(BooksRestApiController.class)
                                         .getBestSellerBooks())
-                                        .withSelfRel());
+                                .withSelfRel());
     }
 
     @GetMapping(value = "/by-author-first-name", produces = "application/hal+json")
@@ -106,6 +106,7 @@ public class BooksRestApiController {
         });
         return CollectionModel.of(bestSellers);
     }
+
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<ApiResponse<Book>> handleMissingServletRequestParameterException(Exception exception) {

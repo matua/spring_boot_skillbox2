@@ -317,7 +317,7 @@ p.error-browser
                 </div>
                 <div class="Product-comments">
                     <div class="Product-comments-header">
-                        <h3 class="Product-comments-title">Отзывы
+                        <h3 class="Product-comments-title" th:text="#{common.reviews}">Отзывы
                         </h3><span class="Product-comments-amount">567 отзывов</span>
                     </div>
                 </div>
@@ -504,6 +504,23 @@ p.error-browser
                             </div>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <h3 th:text="#{common.postReview}"></h3>
+                    <form action="/books/bookReview" method="post" th:name="feedbackForm" >
+                        <label th:name="feedback">
+                            <input th:type="text" name="text">
+                        </label>
+                        <label th:name="postFeedbackButton">
+                            <button th:type="submit" th:text="#{common.postReview}"></button>
+                        </label>
+                        <label th:name="bookId">
+                            <input th:type="hidden" name="bookId" th:value="${slugBook.id}">
+                        </label>
+                        <label th:name="bookSlug">
+                            <input th:type="hidden" name="bookSlug" th:value="${slugBook.slug}">
+                        </label>
+                    </form>
                 </div>
             </div>
         </main>

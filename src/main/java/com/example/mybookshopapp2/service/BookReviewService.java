@@ -19,4 +19,12 @@ public class BookReviewService {
     public List<BookReview> getAllBookReviews() {
         return bookReviewRepository.findAll();
     }
+
+    public void postReview(BookReview bookReview) {
+        bookReviewRepository.save(bookReview);
+    }
+
+//    public void getAllBookReviewsByBookId(Integer bookId) {
+//        bookReviewRepository.findAllByBookId(bookId);
+//    }
 }

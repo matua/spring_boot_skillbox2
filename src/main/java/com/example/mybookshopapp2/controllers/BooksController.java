@@ -3,9 +3,11 @@ package com.example.mybookshopapp2.controllers;
 import com.example.mybookshopapp2.data.ResourceStorage;
 import com.example.mybookshopapp2.model.Book;
 import com.example.mybookshopapp2.model.BookRating;
+import com.example.mybookshopapp2.model.BookReview;
 import com.example.mybookshopapp2.respository.BookRatingRepository;
 import com.example.mybookshopapp2.respository.BookRepository;
 import com.example.mybookshopapp2.service.BookRatingService;
+import com.example.mybookshopapp2.service.BookReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -30,13 +32,15 @@ public class BooksController {
     private final BookRatingService bookRatingService;
     private final ResourceStorage storage;
     private final BookRatingRepository bookRatingRepository;
+    private final BookReviewService bookReviewService;
 
     @Autowired
-    public BooksController(BookRepository bookRepository, BookRatingService bookRatingService, ResourceStorage storage, BookRatingRepository bookRatingRepository) {
+    public BooksController(BookRepository bookRepository, BookRatingService bookRatingService, ResourceStorage storage, BookRatingRepository bookRatingRepository, BookReviewService bookReviewService) {
         this.bookRepository = bookRepository;
         this.bookRatingService = bookRatingService;
         this.storage = storage;
         this.bookRatingRepository = bookRatingRepository;
+        this.bookReviewService = bookReviewService;
     }
 
     @ModelAttribute("bookRatingMap")
@@ -52,9 +56,21 @@ public class BooksController {
     }
 
     @ModelAttribute("bookAverageRating")
-    public Long bookAverageRating(@PathVariable("slug") String slug){
+    public Long bookAverageRating(@PathVariable("slug") String slug) {
         Integer bookId = bookRepository.findBookBySlug(slug).getId();
         return bookRatingService.getAverageRating(bookId);
+    }
+
+    @PostMapping("/bookReview")
+    public String postReview(@RequestParam("bookId") String bookId,
+                             @RequestParam("bookSlug") String slug,
+                             @RequestParam("text") String text) {
+        BookReview bookReview = new BookReview();
+        bookReview.setBookId(Integer.valueOf(bookId))
+                .setTime(LocalDateTime.now())
+                .setText(text);
+        bookReviewService.postReview(bookReview);
+        return ("redirect:/books/" + slug);
     }
 
     @GetMapping("/{slug}")
