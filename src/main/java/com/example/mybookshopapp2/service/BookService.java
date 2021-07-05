@@ -118,4 +118,12 @@ public class BookService {
         return bookRepository.findById(bookId).orElseThrow(() -> new RuntimeException(
                 "No Book found with such id"));
     }
+
+    public Book findBookBySlug(String slug) {
+        return bookRepository.findBookBySlug(slug);
+    }
+
+    public void save(Book bookToUpdate) {
+        bookRepository.save(bookToUpdate);
+    }
 }

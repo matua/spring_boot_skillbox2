@@ -41,4 +41,8 @@ public class BookRatingService {
     public Integer getTotalNumberOfRatingsByBook(Integer bookId) {
         return bookRatingRepository.findAllByBookId(bookId).size();
     }
+
+    public void save(BookRating bookRating) {
+        bookRatingRepository.save(bookRating);
+    }
 }

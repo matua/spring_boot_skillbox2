@@ -2,11 +2,10 @@ package com.example.mybookshopapp2.controllers;
 
 import com.example.mybookshopapp2.data.ResourceStorage;
 import com.example.mybookshopapp2.model.*;
-import com.example.mybookshopapp2.respository.BookRatingRepository;
-import com.example.mybookshopapp2.respository.BookRepository;
 import com.example.mybookshopapp2.service.BookRatingService;
 import com.example.mybookshopapp2.service.BookReviewLikeService;
 import com.example.mybookshopapp2.service.BookReviewService;
+import com.example.mybookshopapp2.service.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,21 +30,19 @@ public class BooksController {
 
     Logger logger = LoggerFactory.getLogger(BooksController.class);
 
-    private final BookRepository bookRepository;
     private final BookRatingService bookRatingService;
     private final ResourceStorage storage;
-    private final BookRatingRepository bookRatingRepository;
     private final BookReviewService bookReviewService;
     private final BookReviewLikeService bookReviewLikeService;
+    private final BookService bookService;
 
     @Autowired
-    public BooksController(BookRepository bookRepository, BookRatingService bookRatingService, ResourceStorage storage, BookRatingRepository bookRatingRepository, BookReviewService bookReviewService, BookReviewLikeService bookReviewLikeService) {
-        this.bookRepository = bookRepository;
+    public BooksController(BookRatingService bookRatingService, ResourceStorage storage, BookReviewService bookReviewService, BookReviewLikeService bookReviewLikeService, BookService bookService) {
         this.bookRatingService = bookRatingService;
         this.storage = storage;
-        this.bookRatingRepository = bookRatingRepository;
         this.bookReviewService = bookReviewService;
         this.bookReviewLikeService = bookReviewLikeService;
+        this.bookService = bookService;
     }
 
     @PostMapping("/bookReview")
@@ -67,7 +64,7 @@ public class BooksController {
 
     @GetMapping("/{slug}")
     public String bookPage(@PathVariable("slug") String slug, Model model) {
-        Book book = bookRepository.findBookBySlug(slug);
+        Book book = bookService.findBookBySlug(slug);
         model.addAttribute("slugBook", book);
         model.addAttribute("bookRatingMap", bookRatingMap(slug));
         model.addAttribute("bookAverageRating", bookAverageRating(slug));
@@ -82,14 +79,14 @@ public class BooksController {
     public String rateBook(@PathVariable("slug") String slug,
                            @RequestParam("value") String rating,
                            Model model) {
-        Book book = bookRepository.findBookBySlug(slug);
+        Book book = bookService.findBookBySlug(slug);
 
         BookRating bookRating = new BookRating();
         bookRating.setRating(Byte.parseByte(rating))
                 .setBook(book)
                 .setTime(LocalDateTime.now());
 
-        bookRatingRepository.save(bookRating);
+        bookRatingService.save(bookRating);
         model.addAttribute("slugBook", book);
         logger.debug("Redirecting to and rendering /books/slug.html");
         return ("redirect:/books/" + slug);
@@ -119,9 +116,9 @@ public class BooksController {
                                    @PathVariable("slug") String slug) throws IOException {
 
         String savePath = storage.saveNewBookImage(file, slug);
-        Book bookToUpdate = bookRepository.findBookBySlug(slug);
+        Book bookToUpdate = bookService.findBookBySlug(slug);
         bookToUpdate.setImage(savePath);
-        bookRepository.save(bookToUpdate);
+        bookService.save(bookToUpdate);
         logger.debug("Redirecting to and rendering /books/slug.html");
         return ("redirect:/books/" + slug);
     }
@@ -147,27 +144,27 @@ public class BooksController {
     }
 
     private Map<Byte, Long> bookRatingMap(@PathVariable String slug) {
-        Integer bookId = bookRepository.findBookBySlug(slug).getId();
+        Integer bookId = bookService.findBookBySlug(slug).getId();
         return bookRatingService.getBookRatingMap(bookId);
     }
 
     private Long bookAverageRating(@PathVariable("slug") String slug) {
-        Integer bookId = bookRepository.findBookBySlug(slug).getId();
+        Integer bookId = bookService.findBookBySlug(slug).getId();
         return bookRatingService.getAverageRating(bookId);
     }
 
     private Integer getTotalNumberOfRatingsByBook(@PathVariable("slug") String slug) {
-        Integer bookId = bookRepository.findBookBySlug(slug).getId();
+        Integer bookId = bookService.findBookBySlug(slug).getId();
         return bookRatingService.getTotalNumberOfRatingsByBook(bookId);
     }
 
     private Integer getTotalNumberOfReviewsByBook(@PathVariable("slug") String slug) {
-        Integer bookId = bookRepository.findBookBySlug(slug).getId();
+        Integer bookId = bookService.findBookBySlug(slug).getId();
         return bookReviewService.getTotalNumberOfReviewsByBook(bookId);
     }
 
     private List<BookReview> getBookReviewsByBookId(@PathVariable("slug") String slug) {
-        Integer bookId = bookRepository.findBookBySlug(slug).getId();
+        Integer bookId = bookService.findBookBySlug(slug).getId();
         return bookReviewService.getBookReviewsByBookId(bookId);
     }
 }
