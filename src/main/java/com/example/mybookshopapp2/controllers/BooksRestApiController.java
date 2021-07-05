@@ -11,7 +11,6 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -87,7 +86,7 @@ public class BooksRestApiController {
         return ResponseEntity.ok(bookService.getBooksWithPriceBetween(min, max));
     }
 
-    @GetMapping("/with-max-discount")
+    @GetMapping("/by-max-discount")
     @ApiOperation("get list of books with max price")
     public ResponseEntity<List<Book>> maxPriceBooks() {
         return ResponseEntity.ok(bookService.getBooksWithMaxPrice());
@@ -105,18 +104,5 @@ public class BooksRestApiController {
                             .withSelfRel());
         });
         return CollectionModel.of(bestSellers);
-    }
-
-
-    @ExceptionHandler(MissingServletRequestParameterException.class)
-    public ResponseEntity<ApiResponse<Book>> handleMissingServletRequestParameterException(Exception exception) {
-        return new ResponseEntity<>(new ApiResponse<>(HttpStatus.BAD_REQUEST, "Missing required parameters",
-                exception), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(BookstoreApiWrongParameterException.class)
-    public ResponseEntity<ApiResponse<Book>> handleBookstoreApiWrongParameterException(Exception exception) {
-        return new ResponseEntity<>(new ApiResponse<>(HttpStatus.BAD_REQUEST, "Bad parameter value...", exception)
-                , HttpStatus.BAD_REQUEST);
     }
 }

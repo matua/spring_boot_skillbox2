@@ -1,7 +1,10 @@
 package com.example.mybookshopapp2.controllers;
 
 import com.example.mybookshopapp2.data.ResourceStorage;
-import com.example.mybookshopapp2.model.*;
+import com.example.mybookshopapp2.model.Book;
+import com.example.mybookshopapp2.model.BookRating;
+import com.example.mybookshopapp2.model.BookReview;
+import com.example.mybookshopapp2.model.BookReviewLike;
 import com.example.mybookshopapp2.service.BookRatingService;
 import com.example.mybookshopapp2.service.BookReviewLikeService;
 import com.example.mybookshopapp2.service.BookReviewService;
@@ -23,6 +26,8 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+
+import static com.example.mybookshopapp2.temp.TestData.getTestUser;
 
 @Controller
 @RequestMapping("/books")
@@ -50,13 +55,10 @@ public class BooksController {
                              @RequestParam String bookSlug,
                              @RequestParam String text) {
         BookReview bookReview = new BookReview();
-        User user = new User(); //temp for testing
-        user.setId(5); //temp for testing
-        user.setName("Jonathan Matua"); //temp for testing
         bookReview.setBookId(Integer.valueOf(bookId))
                 .setTime(LocalDateTime.now())
                 .setText(text)
-                .setUser(user); //temp for testing
+                .setUser(getTestUser());
         bookReviewService.postReview(bookReview);
         logger.debug("Redirecting to and rendering /books/slug.html");
         return ("redirect:/books/" + bookSlug);
