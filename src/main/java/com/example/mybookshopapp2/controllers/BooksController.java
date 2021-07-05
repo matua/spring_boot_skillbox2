@@ -24,8 +24,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
 
 import static com.example.mybookshopapp2.temp.TestData.getTestUser;
 
@@ -68,11 +66,11 @@ public class BooksController {
     public String bookPage(@PathVariable("slug") String slug, Model model) {
         Book book = bookService.findBookBySlug(slug);
         model.addAttribute("slugBook", book);
-        model.addAttribute("bookRatingMap", bookRatingMap(slug));
-        model.addAttribute("bookAverageRating", bookAverageRating(slug));
-        model.addAttribute("bookTotalNumberOfRatings", getTotalNumberOfRatingsByBook(slug));
-        model.addAttribute("bookTotalNumberOfReviewsByBook", getTotalNumberOfReviewsByBook(slug));
-        model.addAttribute("bookReviews", getBookReviewsByBookId(slug));
+        model.addAttribute("bookRatingMap", bookRatingService.getBookRatingMap(slug));
+        model.addAttribute("bookAverageRating", bookRatingService.getAverageRating(slug));
+        model.addAttribute("bookTotalNumberOfRatings", bookRatingService.getTotalNumberOfRatingsByBook(slug));
+        model.addAttribute("bookTotalNumberOfReviewsByBook", bookReviewService.getTotalNumberOfReviewsByBook(slug));
+        model.addAttribute("bookReviews", bookReviewService.getBookReviewsByBookId(slug));
         logger.debug("Rendering books/slug.html");
         return "/books/slug";
     }
@@ -143,30 +141,5 @@ public class BooksController {
                 .contentType(mediaType)
                 .contentLength(data.length)
                 .body(new ByteArrayResource(data));
-    }
-
-    private Map<Byte, Long> bookRatingMap(@PathVariable String slug) {
-        Integer bookId = bookService.findBookBySlug(slug).getId();
-        return bookRatingService.getBookRatingMap(bookId);
-    }
-
-    private Long bookAverageRating(@PathVariable("slug") String slug) {
-        Integer bookId = bookService.findBookBySlug(slug).getId();
-        return bookRatingService.getAverageRating(bookId);
-    }
-
-    private Integer getTotalNumberOfRatingsByBook(@PathVariable("slug") String slug) {
-        Integer bookId = bookService.findBookBySlug(slug).getId();
-        return bookRatingService.getTotalNumberOfRatingsByBook(bookId);
-    }
-
-    private Integer getTotalNumberOfReviewsByBook(@PathVariable("slug") String slug) {
-        Integer bookId = bookService.findBookBySlug(slug).getId();
-        return bookReviewService.getTotalNumberOfReviewsByBook(bookId);
-    }
-
-    private List<BookReview> getBookReviewsByBookId(@PathVariable("slug") String slug) {
-        Integer bookId = bookService.findBookBySlug(slug).getId();
-        return bookReviewService.getBookReviewsByBookId(bookId);
     }
 }
