@@ -31,4 +31,8 @@ public class BookReviewService {
     public Integer getTotalNumberOfReviewsByBook(Integer bookId) {
         return bookReviewRepository.findAllByBookId(bookId).size();
     }
+
+    public BookReview getBookReviewById(String bookReviewId) {
+        return bookReviewRepository.getOne(Integer.valueOf(bookReviewId));
+    }
 }

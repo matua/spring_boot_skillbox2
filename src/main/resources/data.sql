@@ -4145,6 +4145,15 @@ values (6, 'ksdjfhkjh3jh', 3, '/Turn_it_up.fb2', 4);
 insert into book_review (book_id, text, time, user_id)
 values (1, 'Super nice book', '2021-07-03 22:23:32.754779', 1);
 insert into book_review (book_id, text, time, user_id)
-values (1, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2021-07-03 22:23:32.754779', 2);
+values (1,
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+        '2021-07-03 22:23:32.754779', 2);
 insert into book_review (book_id, text, time, user_id)
 values (1, 'Agree with the above', '2021-07-03 22:23:32.754779', 3);
+
+insert into book_review_like (date_time, user_id, value, book_review_id)
+values ('2021-07-04 10:12:32.723439', 33, 1, 3);
+insert into book_review_like (date_time, user_id, value, book_review_id)
+values ('2021-07-04 12:12:32.723439', 34, -1, 3);
+insert into book_review_like (date_time, user_id, value, book_review_id)
+values ('2021-07-04 13:12:32.723439', 35, 1, 3);

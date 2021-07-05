@@ -373,11 +373,13 @@ p.error-browser
                                   </g>
                                 </g>
                               </svg></span></span></span></span>
-                                    </strong><span class="Comment-date" th:text="${#temporals.format(bookReview.time, 'dd-MM-yyyy HH:mm')}">17.04.2020 16:40</span>
+                                    </strong><span class="Comment-date"
+                                                   th:text="${#temporals.format(bookReview.time, 'dd-MM-yyyy HH:mm')}">17.04.2020 16:40</span>
                                 </div>
                             </header>
-                            <div class="Comment-content" th:text="${bookReview.text}">
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit doli. Aenean commodo ligula
+                            <div class="Comment-content">
+                                <p th:text="${bookReview.text}">Lorem ipsum dolor sit amet, consectetuer adipiscing elit
+                                    doli. Aenean commodo ligula
                                     eget dolor. Aenean massa. Cumtipsu sociis natoque penatibus et magnis dis parturient
                                     montesti, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque
                                     eutu, pretiumem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
@@ -389,15 +391,21 @@ p.error-browser
                                 <div class="Comment-footer">
                                     <div class="Comment-appeal">
                                         <button class="btn btn_white btn_like" data-btnradio="two2" data-btntype="check"
+                                                th:attr="data-likeid = ${bookReview.id}"
+                                                th:id="review_to_like"
                                                 data-check="false" data-likeid="1111"><span class="btn-icon"><img
                                                 alt="like.svg" src="/assets/img/icons/comment/like.svg"/></span><span
-                                                class="btn-content">200</span>
+                                                class="btn-content"
+                                                th:text="${bookReview.getAllReviewLikeByBookReviewId().size()}">200</span>
                                         </button>
                                         <button class="btn btn_white btn_dislike" data-btnradio="two2"
+                                                th:attr="data-likeid = ${bookReview.id}"
+                                                th:id="review_to_like"
                                                 data-btntype="check" data-check="false" data-likeid="1111"><span
                                                 class="btn-icon"><img alt="dislike.svg"
                                                                       src="/assets/img/icons/comment/dislike.svg"/></span><span
-                                                class="btn-content">100</span>
+                                                class="btn-content"
+                                                th:text="${bookReview.getAllReviewDislikeByBookReviewId().size()}">100</span>
                                         </button>
                                     </div>
                                 </div>

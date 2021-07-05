@@ -1,12 +1,11 @@
 package com.example.mybookshopapp2.controllers;
 
 import com.example.mybookshopapp2.data.ResourceStorage;
-import com.example.mybookshopapp2.model.Book;
-import com.example.mybookshopapp2.model.BookRating;
-import com.example.mybookshopapp2.model.BookReview;
+import com.example.mybookshopapp2.model.*;
 import com.example.mybookshopapp2.respository.BookRatingRepository;
 import com.example.mybookshopapp2.respository.BookRepository;
 import com.example.mybookshopapp2.service.BookRatingService;
+import com.example.mybookshopapp2.service.BookReviewLikeService;
 import com.example.mybookshopapp2.service.BookReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -34,14 +33,16 @@ public class BooksController {
     private final ResourceStorage storage;
     private final BookRatingRepository bookRatingRepository;
     private final BookReviewService bookReviewService;
+    private final BookReviewLikeService bookReviewLikeService;
 
     @Autowired
-    public BooksController(BookRepository bookRepository, BookRatingService bookRatingService, ResourceStorage storage, BookRatingRepository bookRatingRepository, BookReviewService bookReviewService) {
+    public BooksController(BookRepository bookRepository, BookRatingService bookRatingService, ResourceStorage storage, BookRatingRepository bookRatingRepository, BookReviewService bookReviewService, BookReviewLikeService bookReviewLikeService) {
         this.bookRepository = bookRepository;
         this.bookRatingService = bookRatingService;
         this.storage = storage;
         this.bookRatingRepository = bookRatingRepository;
         this.bookReviewService = bookReviewService;
+        this.bookReviewLikeService = bookReviewLikeService;
     }
 
     @PostMapping("/bookReview")
@@ -49,9 +50,13 @@ public class BooksController {
                              @RequestParam String bookSlug,
                              @RequestParam String text) {
         BookReview bookReview = new BookReview();
+        User user = new User(); //temp for testing
+        user.setId(5); //temp for testing
+        user.setName("Jonathan Matua"); //temp for testing
         bookReview.setBookId(Integer.valueOf(bookId))
                 .setTime(LocalDateTime.now())
-                .setText(text);
+                .setText(text)
+                .setUser(user); //temp for testing
         bookReviewService.postReview(bookReview);
         return ("redirect:/books/" + bookSlug);
     }
@@ -85,9 +90,27 @@ public class BooksController {
         return ("redirect:/books/" + slug);
     }
 
+    @PostMapping("/rate/{slug}/rateBookReview")
+    public String rateBookReview(
+            @PathVariable("slug") String slug,
+            @RequestParam("reviewid") String bookReviewId,
+            @RequestParam("value") String likeDislike,
+            Model model) {
+
+        BookReviewLike bookReviewLike = new BookReviewLike();
+
+        BookReview bookReview = bookReviewService.getBookReviewById(bookReviewId);
+        bookReviewLike.setValue(Byte.valueOf(likeDislike))
+                .setDateTime(LocalDateTime.now())
+                .setReviewId(bookReview);
+
+        bookReviewLikeService.save(bookReviewLike);
+        return ("redirect:/books/" + slug);
+    }
+
     @PostMapping("/{slug}/img/save")
-    public String saveNewBoookImage(@RequestParam("file") MultipartFile file,
-                                    @PathVariable("slug") String slug) throws IOException {
+    public String saveNewBookImage(@RequestParam("file") MultipartFile file,
+                                   @PathVariable("slug") String slug) throws IOException {
 
         String savePath = storage.saveNewBookImage(file, slug);
         Book bookToUpdate = bookRepository.findBookBySlug(slug);
@@ -137,7 +160,7 @@ public class BooksController {
         return bookReviewService.getTotalNumberOfReviewsByBook(bookId);
     }
 
-    private List<BookReview> getBookReviewsByBookId(@PathVariable("slug") String slug){
+    private List<BookReview> getBookReviewsByBookId(@PathVariable("slug") String slug) {
         Integer bookId = bookRepository.findBookBySlug(slug).getId();
         return bookReviewService.getBookReviewsByBookId(bookId);
     }

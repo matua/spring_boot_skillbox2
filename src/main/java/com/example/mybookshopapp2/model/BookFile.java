@@ -22,6 +22,13 @@ public class BookFile {
 
     @ManyToOne
     @JoinColumn(name = "book_id", referencedColumnName = "id")
+    //@JoinColumn - соединительная колонка в ЭТОМ классе
+
+    //name = "book_id" - название колонки, которую мы хотим назначить
+    //этому полю в данном классе для таблицы этого класса
+
+    //referencedColumnName = "id" - название колонки в связанном классе,
+    //которое относится к колонке в данном классе
     private Book book;
 
     public String getBookFileExtensionString() {
