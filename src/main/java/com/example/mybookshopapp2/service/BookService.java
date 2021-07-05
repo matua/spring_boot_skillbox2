@@ -126,4 +126,8 @@ public class BookService {
     public void save(Book bookToUpdate) {
         bookRepository.save(bookToUpdate);
     }
+
+    public List<Book> findBooksBySlugIn(List<String> cookieSlugs) {
+        return bookRepository.findBooksBySlugIn(cookieSlugs);
+    }
 }

@@ -1,7 +1,7 @@
 package com.example.mybookshopapp2.controllers;
 
 import com.example.mybookshopapp2.model.Book;
-import com.example.mybookshopapp2.respository.BookRepository;
+import com.example.mybookshopapp2.service.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +22,11 @@ public class CartController {
 
     Logger logger = LoggerFactory.getLogger(CartController.class);
 
-    private final BookRepository bookRepository;
+    BookService bookService;
 
     @Autowired
-    public CartController(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
+    public CartController(BookService bookService) {
+        this.bookService = bookService;
     }
 
     @ModelAttribute(name = "bookCart")
@@ -44,7 +44,7 @@ public class CartController {
             cartContents = cartContents.startsWith("/") ? cartContents.substring(1) : cartContents;
             cartContents = cartContents.endsWith("/") ? cartContents.substring(0, cartContents.length() - 1) : cartContents;
             List<String> cookieSlugs = Arrays.asList(cartContents.split("/"));
-            List<Book> booksFromCookieSlugs = bookRepository.findBooksBySlugIn(cookieSlugs);
+            List<Book> booksFromCookieSlugs = bookService.findBooksBySlugIn(cookieSlugs);
             model.addAttribute("bookCart", booksFromCookieSlugs);
         }
         logger.debug("Redirecting to and rendering cart.html");
