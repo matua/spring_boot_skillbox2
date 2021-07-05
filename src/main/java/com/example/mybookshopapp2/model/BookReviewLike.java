@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-//@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "review_id", "user_id" }) })
 @Table
 @Data
 @Accessors(chain = true)

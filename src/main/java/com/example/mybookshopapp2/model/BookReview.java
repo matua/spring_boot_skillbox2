@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table
-//@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "book_id", "user_id" }) })
 @Data
 @Accessors(chain = true)
 public class BookReview {

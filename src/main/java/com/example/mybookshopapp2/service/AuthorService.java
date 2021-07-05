@@ -12,12 +12,6 @@ import java.util.stream.Collectors;
 @Service
 public class AuthorService {
 
-    //    private JdbcTemplate jdbcTemplate;
-//
-//    @Autowired
-//    public AuthorService(JdbcTemplate jdbcTemplate) {
-//        this.jdbcTemplate = jdbcTemplate;
-//    }
     private final AuthorRepository authorRepository;
 
     @Autowired

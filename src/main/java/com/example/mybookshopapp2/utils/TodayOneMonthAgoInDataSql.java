@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class TodayOneMonthAgoInDataSql {
+
     public static Date[] getDates() {
         LocalDate today = LocalDate.now();
         LocalDate oneMonthAgo = today.minusMonths(1);
