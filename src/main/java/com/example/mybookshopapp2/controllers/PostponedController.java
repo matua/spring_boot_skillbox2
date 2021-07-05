@@ -2,6 +2,8 @@ package com.example.mybookshopapp2.controllers;
 
 import com.example.mybookshopapp2.model.Book;
 import com.example.mybookshopapp2.respository.BookRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,8 @@ import java.util.StringJoiner;
 @Controller
 @RequestMapping("/books")
 public class PostponedController {
+
+    Logger logger = LoggerFactory.getLogger(PostponedController.class);
 
     private final BookRepository bookRepository;
 
@@ -43,7 +47,7 @@ public class PostponedController {
             List<Book> booksFromCookieSlugs = bookRepository.findBooksBySlugIn(cookieSlugs);
             model.addAttribute("postponedBooks", booksFromCookieSlugs);
         }
-
+        logger.debug("postponed.html");
         return "postponed";
     }
 
@@ -61,7 +65,7 @@ public class PostponedController {
         } else {
             model.addAttribute("isPostponedEmpty", true);
         }
-
+        logger.debug("Redirecting to and rendering to /books/postponed.html");
         return "redirect:/books/postponed";
     }
 
@@ -82,7 +86,7 @@ public class PostponedController {
             response.addCookie(cookie);
             model.addAttribute("isPostponedEmpty", false);
         }
-
+        logger.debug("Redirecting to and rendering to /books/postponed.html");
         return "redirect:/books/" + slug;
     }
 }

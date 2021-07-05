@@ -2,6 +2,8 @@ package com.example.mybookshopapp2.controllers;
 
 import com.example.mybookshopapp2.model.Book;
 import com.example.mybookshopapp2.service.BookService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,8 @@ import static com.example.mybookshopapp2.utils.TodayOneMonthAgoInDataSql.getDate
 
 @Controller
 public class RecentController {
+
+    Logger logger = LoggerFactory.getLogger(RecentController.class);
 
     private final BookService bookService;
 
@@ -33,6 +37,7 @@ public class RecentController {
     @GetMapping("/recent")
     public String recentPage(Model model) {
         model.addAttribute("recentBooks", bookService.getPageOfRecentBooks(0, 20).getContent());
+        logger.debug("Rendering /books/recent.html");
         return "books/recent";
     }
 }

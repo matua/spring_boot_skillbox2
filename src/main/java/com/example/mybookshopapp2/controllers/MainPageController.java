@@ -3,22 +3,26 @@ package com.example.mybookshopapp2.controllers;
 import com.example.mybookshopapp2.data.BooksPageDto;
 import com.example.mybookshopapp2.data.SearchWordDto;
 import com.example.mybookshopapp2.errs.EmptySearchException;
-import com.example.mybookshopapp2.model.Book;
 import com.example.mybookshopapp2.service.BookService;
 import com.example.mybookshopapp2.service.TagService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.example.mybookshopapp2.utils.JsToDataSqlConverter.convert;
 
 @Controller
 public class MainPageController {
+
+    Logger logger = LoggerFactory.getLogger(MainPageController.class);
 
     private final BookService bookService;
     private final TagService tagService;
@@ -35,6 +39,7 @@ public class MainPageController {
         model.addAttribute("recentBooks", bookService.getPageOfRecentBooks(0, 6).getContent());
         model.addAttribute("popularBooks", bookService.getPageOfPopularBooks(0, 6).getContent());
         model.addAttribute("tags", tagService.getAllTags());
+        logger.debug("Rendering genres/slug.html");
         return "index";
     }
 
@@ -78,6 +83,7 @@ public class MainPageController {
             model.addAttribute("searchWordDto", searchWordDto);
             model.addAttribute("searchResults", bookService.getPageOfSearchResultBooks(
                     searchWordDto.getExample(), 0, 5).getContent());
+            logger.debug("Rendering search/index.html");
             return "/search/index";
         } else {
             throw new EmptySearchException("Search by null is not possible");

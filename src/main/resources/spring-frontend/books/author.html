@@ -34,7 +34,7 @@ p.error-browser
                 </li>
                 <li class="breadcrumbs-item breadcrumbs-item_current"
                     th:text="${author.firstName} + ' ' + ${author.lastName}">
-                    <span>Популярное</span>
+                    <span th:text="#{section.popular}">Популярное</span>
                 </li>
             </ul>
             <h1 class="Middle-title" th:text="${author.firstName} + ' ' + ${author.lastName}">Борис Васильевич Бедный

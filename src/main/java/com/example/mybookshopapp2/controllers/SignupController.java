@@ -2,6 +2,8 @@ package com.example.mybookshopapp2.controllers;
 
 import com.example.mybookshopapp2.model.Author;
 import com.example.mybookshopapp2.service.AuthorService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,8 @@ import java.util.Map;
 
 @Controller
 public class SignupController {
+
+    Logger logger = LoggerFactory.getLogger(SignupController.class);
 
     private final AuthorService authorService;
 
@@ -28,6 +32,7 @@ public class SignupController {
 
     @GetMapping("/signup")
     public String signupPage() {
+        logger.debug("Rendering signup.html");
         return "/signup";
     }
 

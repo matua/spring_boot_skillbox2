@@ -2,6 +2,8 @@ package com.example.mybookshopapp2.controllers;
 
 import com.example.mybookshopapp2.model.Book;
 import com.example.mybookshopapp2.respository.BookRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,8 @@ import java.util.StringJoiner;
 @Controller
 @RequestMapping("/books")
 public class CartController {
+
+    Logger logger = LoggerFactory.getLogger(CartController.class);
 
     private final BookRepository bookRepository;
 
@@ -43,7 +47,7 @@ public class CartController {
             List<Book> booksFromCookieSlugs = bookRepository.findBooksBySlugIn(cookieSlugs);
             model.addAttribute("bookCart", booksFromCookieSlugs);
         }
-
+        logger.debug("Redirecting to and rendering cart.html");
         return "cart";
     }
 
@@ -61,6 +65,7 @@ public class CartController {
         } else {
             model.addAttribute("isCartEmpty", true);
         }
+        logger.debug("Rendering to and rendering cart.html");
         return "redirect:/books/cart";
     }
 
@@ -82,6 +87,7 @@ public class CartController {
             model.addAttribute("isCartEmpty", false);
         }
 
+        logger.debug("Rendering to and rendering /books/slug.html");
         return "redirect:/books/" + slug;
     }
 }

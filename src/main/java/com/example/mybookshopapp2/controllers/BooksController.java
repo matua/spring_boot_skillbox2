@@ -7,6 +7,8 @@ import com.example.mybookshopapp2.respository.BookRepository;
 import com.example.mybookshopapp2.service.BookRatingService;
 import com.example.mybookshopapp2.service.BookReviewLikeService;
 import com.example.mybookshopapp2.service.BookReviewService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -22,11 +24,12 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/books")
 public class BooksController {
+
+    Logger logger = LoggerFactory.getLogger(BooksController.class);
 
     private final BookRepository bookRepository;
     private final BookRatingService bookRatingService;
@@ -58,6 +61,7 @@ public class BooksController {
                 .setText(text)
                 .setUser(user); //temp for testing
         bookReviewService.postReview(bookReview);
+        logger.debug("Redirecting to and rendering /books/slug.html");
         return ("redirect:/books/" + bookSlug);
     }
 
@@ -70,6 +74,7 @@ public class BooksController {
         model.addAttribute("bookTotalNumberOfRatings", getTotalNumberOfRatingsByBook(slug));
         model.addAttribute("bookTotalNumberOfReviewsByBook", getTotalNumberOfReviewsByBook(slug));
         model.addAttribute("bookReviews", getBookReviewsByBookId(slug));
+        logger.debug("Rendering books/slug.html");
         return "/books/slug";
     }
 
@@ -86,7 +91,7 @@ public class BooksController {
 
         bookRatingRepository.save(bookRating);
         model.addAttribute("slugBook", book);
-
+        logger.debug("Redirecting to and rendering /books/slug.html");
         return ("redirect:/books/" + slug);
     }
 
@@ -105,6 +110,7 @@ public class BooksController {
                 .setReviewId(bookReview);
 
         bookReviewLikeService.save(bookReviewLike);
+        logger.debug("Redirecting to and rendering /books/slug.html");
         return ("redirect:/books/" + slug);
     }
 
@@ -116,7 +122,7 @@ public class BooksController {
         Book bookToUpdate = bookRepository.findBookBySlug(slug);
         bookToUpdate.setImage(savePath);
         bookRepository.save(bookToUpdate);
-
+        logger.debug("Redirecting to and rendering /books/slug.html");
         return ("redirect:/books/" + slug);
     }
 
@@ -125,13 +131,13 @@ public class BooksController {
     public ResponseEntity<ByteArrayResource> bookFile(@PathVariable("hash") String hash) throws IOException {
 
         Path path = storage.getBookFilePath(hash);
-        Logger.getLogger(this.getClass().getSimpleName()).info("book file path: " + path);
+        logger.info("book file path: " + path);
 
         MediaType mediaType = storage.getBookFileMime(hash);
-        Logger.getLogger(this.getClass().getSimpleName()).info("book file mime type: " + mediaType);
+        logger.info("book file mime type: " + mediaType);
 
         byte[] data = storage.getBookFileByteArray(hash);
-        Logger.getLogger(this.getClass().getSimpleName()).info("book file data len: " + data.length);
+        logger.info("book file data len: " + data.length);
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + path.getFileName().toString())

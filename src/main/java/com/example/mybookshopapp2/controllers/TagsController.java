@@ -3,6 +3,8 @@ package com.example.mybookshopapp2.controllers;
 import com.example.mybookshopapp2.model.Tag;
 import com.example.mybookshopapp2.service.BookService;
 import com.example.mybookshopapp2.service.TagService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,8 @@ import java.util.List;
 
 @Controller
 public class TagsController {
+
+    Logger logger = LoggerFactory.getLogger(TagsController.class);
 
     private final TagService tagService;
     private final BookService bookService;
@@ -32,6 +36,7 @@ public class TagsController {
                                   Model model) {
         model.addAttribute("booksByTag", bookService.getPageOfBooksByTag(tag, 0, 20));
         model.addAttribute("tag", tagService.getTagBySlug(tag));
+        logger.debug("Rendering /tags/index.html");
         return "/tags/index";
     }
 }

@@ -5,6 +5,8 @@ import com.example.mybookshopapp2.model.Book;
 import com.example.mybookshopapp2.service.AuthorService;
 import com.example.mybookshopapp2.service.BookService;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,6 +19,7 @@ import java.util.Map;
 @Controller
 //@Api(description = "authors data")
 public class AuthorController {
+    Logger logger = LoggerFactory.getLogger(AuthorController.class);
 
     private final AuthorService authorService;
     private final BookService bookService;
@@ -51,11 +54,13 @@ public class AuthorController {
 
     @GetMapping("/author/{author}")
     public String booksByAuthorPage() {
+        logger.debug("Rendering books/author.html");
         return "books/author";
     }
 
     @GetMapping("/authors/{author}")
     public String authorPage() {
+        logger.debug("Rendering authors/slug.html");
         return "authors/slug";
     }
 }
