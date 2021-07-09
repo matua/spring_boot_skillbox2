@@ -35,8 +35,8 @@ public class PostponedController {
     }
 
     @GetMapping("/postponed")
-    public String handlePostponedRequest(@CookieValue(value = "postponedContents", required = false) String postponedContents,
-                                         Model model) {
+    public String showBooksFromPostponedCookies(@CookieValue(value = "postponedContents", required = false) String postponedContents,
+                                                Model model) {
         if (postponedContents == null || postponedContents.equals("")) {
             model.addAttribute("isPostponedEmpty", true);
         } else {
@@ -51,8 +51,29 @@ public class PostponedController {
         return "postponed";
     }
 
+    @PostMapping("/changeBookStatus/postpone/{slug}")
+    public String addBookToPostponedCookies(@PathVariable("slug") String slug, @CookieValue(name = "postponedContents",
+            required = false) String postponedContents, HttpServletResponse response, Model model) {
+
+        if (postponedContents == null || postponedContents.equals("")) {
+            Cookie cookie = new Cookie("postponedContents", slug);
+            cookie.setPath("/");
+            response.addCookie(cookie);
+            model.addAttribute("isPostponedEmpty", true);
+        } else if (!postponedContents.contains(slug)) {
+            StringJoiner stringJoiner = new StringJoiner("/");
+            stringJoiner.add(postponedContents).add(slug);
+            Cookie cookie = new Cookie("postponedContents", stringJoiner.toString());
+            cookie.setPath("/");
+            response.addCookie(cookie);
+            model.addAttribute("isPostponedEmpty", false);
+        }
+        logger.debug("Redirecting to and rendering to /books/postponed.html");
+        return "redirect:/books/" + slug;
+    }
+
     @PostMapping("/changeBookStatus/postpone/remove/{slug}")
-    public String handleRemoveBookFromPostponedRequest(@PathVariable("slug") String slug, @CookieValue(name =
+    public String removeBookFromPostponedCookies(@PathVariable("slug") String slug, @CookieValue(name =
             "postponedContents", required = false) String postponedContents, HttpServletResponse response, Model model) {
 
         if (postponedContents != null && !postponedContents.equals("")) {
@@ -67,26 +88,5 @@ public class PostponedController {
         }
         logger.debug("Redirecting to and rendering to /books/postponed.html");
         return "redirect:/books/postponed";
-    }
-
-    @PostMapping("/changeBookStatus/postpone/{slug}")
-    public String handleChangePostponedBookStatus(@PathVariable("slug") String slug, @CookieValue(name = "postponedContents",
-            required = false) String postponedContents, HttpServletResponse response, Model model) {
-
-        if (postponedContents == null || postponedContents.equals("")) {
-            Cookie cookie = new Cookie("postponedContents", slug);
-            cookie.setPath("/");
-            response.addCookie(cookie);
-            model.addAttribute("isPostponedEmpty", false);
-        } else if (!postponedContents.contains(slug)) {
-            StringJoiner stringJoiner = new StringJoiner("/");
-            stringJoiner.add(postponedContents).add(slug);
-            Cookie cookie = new Cookie("postponedContents", stringJoiner.toString());
-            cookie.setPath("/");
-            response.addCookie(cookie);
-            model.addAttribute("isPostponedEmpty", false);
-        }
-        logger.debug("Redirecting to and rendering to /books/postponed.html");
-        return "redirect:/books/" + slug;
     }
 }

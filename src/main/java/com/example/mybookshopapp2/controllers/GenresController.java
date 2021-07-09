@@ -35,7 +35,7 @@ public class GenresController {
     }
 
     @GetMapping("/genres")
-    public String genresPage() {
+    public String getGenresPage() {
         logger.debug("Rendering genres/index.html");
         return "/genres/index";
     }

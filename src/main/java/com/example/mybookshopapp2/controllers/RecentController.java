@@ -35,7 +35,7 @@ public class RecentController {
     }
 
     @GetMapping("/recent")
-    public String recentPage(Model model) {
+    public String getPageOfRecentBooks(Model model) {
         model.addAttribute("recentBooks", bookService.getPageOfRecentBooks(0, 20).getContent());
         logger.debug("Rendering /books/recent.html");
         return "books/recent";

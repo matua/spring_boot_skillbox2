@@ -24,15 +24,15 @@ public class GlobalController {
 
     @ModelAttribute("itemsInCart")
     public Integer getItemsInCart(@CookieValue(name = "cartContents", required = false) String cartContents) {
-        return getQuantity(cartContents);
+        return getCookiesNumber(cartContents);
     }
 
     @ModelAttribute("itemsInPostponed")
     public Integer getItemsInPostponed(@CookieValue(name = "postponedContents", required = false) String postponedContents) {
-        return getQuantity(postponedContents);
+        return getCookiesNumber(postponedContents);
     }
 
-    private Integer getQuantity(String cookies) {
+    private Integer getCookiesNumber(String cookies) {
         if (cookies == null || cookies.equals("")) {
             return 0;
         }

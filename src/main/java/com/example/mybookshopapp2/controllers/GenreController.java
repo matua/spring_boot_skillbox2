@@ -29,5 +29,4 @@ public class GenreController {
         logger.debug("Rendering genres/slug.html");
         return "/genres/slug";
     }
-
 }

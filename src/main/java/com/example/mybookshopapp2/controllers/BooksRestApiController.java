@@ -62,7 +62,7 @@ public class BooksRestApiController {
             @io.swagger.annotations.ApiResponse(code = 200, message = "Successful request"),
 
     })
-    public RepresentationModel<?> booksByTitle(@RequestParam("title") String title) throws BookstoreApiWrongParameterException {
+    public RepresentationModel<?> getBooksByTitle(@RequestParam("title") String title) throws BookstoreApiWrongParameterException {
         ApiResponse<Book> response = new ApiResponse<>();
         List<Book> data = bookService.getBooksByTitle(title);
         data.forEach(book -> {
@@ -82,13 +82,13 @@ public class BooksRestApiController {
 
     @GetMapping("/by-price-range")
     @ApiOperation("get books by price range from min price to max price")
-    public ResponseEntity<List<Book>> priceRangeBooks(@RequestParam("min") Integer min, @RequestParam("max") Integer max) {
+    public ResponseEntity<List<Book>> getBooksByPriceRange(@RequestParam("min") Integer min, @RequestParam("max") Integer max) {
         return ResponseEntity.ok(bookService.getBooksWithPriceBetween(min, max));
     }
 
     @GetMapping("/by-max-discount")
     @ApiOperation("get list of books with max price")
-    public ResponseEntity<List<Book>> maxPriceBooks() {
+    public ResponseEntity<List<Book>> getBooksByMaxPrice() {
         return ResponseEntity.ok(bookService.getBooksWithMaxPrice());
     }
 

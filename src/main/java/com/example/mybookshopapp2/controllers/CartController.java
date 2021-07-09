@@ -35,8 +35,8 @@ public class CartController {
     }
 
     @GetMapping("/cart")
-    public String handleCartRequest(@CookieValue(value = "cartContents", required = false) String cartContents,
-                                    Model model) {
+    public String showBooksFromCartCookies(@CookieValue(value = "cartContents", required = false) String cartContents,
+                                           Model model) {
         if (cartContents == null || cartContents.equals("")) {
             model.addAttribute("isCartEmpty", true);
         } else {
@@ -51,8 +51,30 @@ public class CartController {
         return "cart";
     }
 
+    @PostMapping("/changeBookStatus/{slug}")
+    public String addBookToCartCookies(@PathVariable("slug") String slug, @CookieValue(name = "cartContents",
+            required = false) String cartContents, HttpServletResponse response, Model model) {
+
+        if (cartContents == null || cartContents.equals("")) {
+            Cookie cookie = new Cookie("cartContents", slug);
+            cookie.setPath("/");
+            response.addCookie(cookie);
+            model.addAttribute("isCartEmpty", true);
+        } else if (!cartContents.contains(slug)) {
+            StringJoiner stringJoiner = new StringJoiner("/");
+            stringJoiner.add(cartContents).add(slug);
+            Cookie cookie = new Cookie("cartContents", stringJoiner.toString());
+            cookie.setPath("/");
+            response.addCookie(cookie);
+            model.addAttribute("isCartEmpty", false);
+        }
+
+        logger.debug("Rendering to and rendering /books/slug.html");
+        return "redirect:/books/" + slug;
+    }
+
     @PostMapping("/changeBookStatus/cart/remove/{slug}")
-    public String handleRemoveBookFromCartRequest(@PathVariable("slug") String slug, @CookieValue(name =
+    public String removeBooksFromCartCookies(@PathVariable("slug") String slug, @CookieValue(name =
             "cartContents", required = false) String cartContents, HttpServletResponse response, Model model) {
 
         if (cartContents != null && !cartContents.equals("")) {
@@ -67,27 +89,5 @@ public class CartController {
         }
         logger.debug("Rendering to and rendering cart.html");
         return "redirect:/books/cart";
-    }
-
-    @PostMapping("/changeBookStatus/{slug}")
-    public String handleChangeBookStatus(@PathVariable("slug") String slug, @CookieValue(name = "cartContents",
-            required = false) String cartContents, HttpServletResponse response, Model model) {
-
-        if (cartContents == null || cartContents.equals("")) {
-            Cookie cookie = new Cookie("cartContents", slug);
-            cookie.setPath("/");
-            response.addCookie(cookie);
-            model.addAttribute("isCartEmpty", false);
-        } else if (!cartContents.contains(slug)) {
-            StringJoiner stringJoiner = new StringJoiner("/");
-            stringJoiner.add(cartContents).add(slug);
-            Cookie cookie = new Cookie("cartContents", stringJoiner.toString());
-            cookie.setPath("/");
-            response.addCookie(cookie);
-            model.addAttribute("isCartEmpty", false);
-        }
-
-        logger.debug("Rendering to and rendering /books/slug.html");
-        return "redirect:/books/" + slug;
     }
 }

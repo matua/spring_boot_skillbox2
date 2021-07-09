@@ -63,7 +63,7 @@ public class BooksController {
     }
 
     @GetMapping("/{slug}")
-    public String bookPage(@PathVariable("slug") String slug, Model model) {
+    public String getBookPage(@PathVariable("slug") String slug, Model model) {
         Book book = bookService.findBookBySlug(slug);
         model.addAttribute("slugBook", book);
         model.addAttribute("bookRatingMap", bookRatingService.getBookRatingMap(slug));
@@ -96,8 +96,7 @@ public class BooksController {
     public String rateBookReview(
             @PathVariable("slug") String slug,
             @RequestParam("reviewid") String bookReviewId,
-            @RequestParam("value") String likeDislike,
-            Model model) {
+            @RequestParam("value") String likeDislike) {
 
         BookReviewLike bookReviewLike = new BookReviewLike();
 
@@ -125,7 +124,7 @@ public class BooksController {
 
 
     @GetMapping("/download/{hash}")
-    public ResponseEntity<ByteArrayResource> bookFile(@PathVariable("hash") String hash) throws IOException {
+    public ResponseEntity<ByteArrayResource> getBookFile(@PathVariable("hash") String hash) throws IOException {
 
         Path path = storage.getBookFilePath(hash);
         logger.info("book file path: " + path);

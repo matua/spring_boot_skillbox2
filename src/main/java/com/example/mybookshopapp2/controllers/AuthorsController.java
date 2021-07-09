@@ -31,9 +31,8 @@ public class AuthorsController {
     }
 
     @GetMapping("/authors")
-    public String authorsPage() {
+    public String getAuthorsPage() {
         logger.debug("Rendering authors/index.html");
         return "/authors/index";
     }
-
 }

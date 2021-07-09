@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-//@Api(description = "authors data")
 public class AuthorController {
     Logger logger = LoggerFactory.getLogger(AuthorController.class);
 
@@ -53,13 +52,13 @@ public class AuthorController {
     }
 
     @GetMapping("/author/{author}")
-    public String booksByAuthorPage() {
+    public String getBooksByAuthorPage() {
         logger.debug("Rendering books/author.html");
         return "books/author";
     }
 
     @GetMapping("/authors/{author}")
-    public String authorPage() {
+    public String getAuthorPage() {
         logger.debug("Rendering authors/slug.html");
         return "authors/slug";
     }
