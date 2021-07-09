@@ -103,7 +103,7 @@ public class BookService {
                 "No Book found with such id"));
     }
 
-    public Book findBookBySlug(String slug) {
+    public Book getBookBySlug(String slug) {
         return bookRepository.findBookBySlug(slug);
     }
 
@@ -111,7 +111,7 @@ public class BookService {
         bookRepository.save(bookToUpdate);
     }
 
-    public List<Book> findBooksBySlugIn(List<String> cookieSlugs) {
+    public List<Book> getBooksBySlugIn(List<String> cookieSlugs) {
         return bookRepository.findBooksBySlugIn(cookieSlugs);
     }
 }

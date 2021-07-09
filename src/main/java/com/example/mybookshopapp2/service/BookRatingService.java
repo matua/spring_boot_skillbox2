@@ -29,11 +29,6 @@ public class BookRatingService {
                 .collect(Collectors.groupingBy(BookRating::getRating, Collectors.counting()));
     }
 
-    public Integer getTotalNumberOfRatings(Integer bookId) {
-        List<BookRating> bookRatingMap = bookRatingRepository.findAllByBookId(bookId);
-        return bookRatingMap.size();
-    }
-
     public long getAverageRating(String bookSlug) {
         return Math.round(bookRatingRepository.findAllByBookId(getBookIdByBookSlug(bookSlug))
                 .stream()

@@ -19,10 +19,6 @@ public class BookReviewService {
         this.bookRepository = bookRepository;
     }
 
-    public List<BookReview> getAllBookReviews() {
-        return bookReviewRepository.findAll();
-    }
-
     public void postReview(BookReview bookReview) {
         bookReviewRepository.save(bookReview);
     }

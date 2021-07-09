@@ -64,7 +64,7 @@ public class BooksController {
 
     @GetMapping("/{slug}")
     public String getBookPage(@PathVariable("slug") String slug, Model model) {
-        Book book = bookService.findBookBySlug(slug);
+        Book book = bookService.getBookBySlug(slug);
         model.addAttribute("slugBook", book);
         model.addAttribute("bookRatingMap", bookRatingService.getBookRatingMap(slug));
         model.addAttribute("bookAverageRating", bookRatingService.getAverageRating(slug));
@@ -79,7 +79,7 @@ public class BooksController {
     public String rateBook(@PathVariable("slug") String slug,
                            @RequestParam("value") String rating,
                            Model model) {
-        Book book = bookService.findBookBySlug(slug);
+        Book book = bookService.getBookBySlug(slug);
 
         BookRating bookRating = new BookRating();
         bookRating.setRating(Byte.parseByte(rating))
@@ -115,7 +115,7 @@ public class BooksController {
                                    @PathVariable("slug") String slug) throws IOException {
 
         String savePath = storage.saveNewBookImage(file, slug);
-        Book bookToUpdate = bookService.findBookBySlug(slug);
+        Book bookToUpdate = bookService.getBookBySlug(slug);
         bookToUpdate.setImage(savePath);
         bookService.save(bookToUpdate);
         logger.debug("Redirecting to and rendering /books/slug.html");
