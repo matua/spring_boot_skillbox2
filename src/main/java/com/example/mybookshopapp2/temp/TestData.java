@@ -5,7 +5,6 @@ import com.example.mybookshopapp2.model.User;
 public class TestData {
     public static User getTestUser() {
         return new User()
-                .setId(100)
-                .setName("Jonathan Matua");
+                .setId(50);
     }
 }

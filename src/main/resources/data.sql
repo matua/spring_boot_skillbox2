@@ -85,105 +85,105 @@ values (21, 'Kalina', 'Refford', 'kalina_refford',
         'http://dummyimage.com/500x700.png/cc0000/ffffff');
 
 insert into users (id, balance, hash, name, reg_time)
-values (1, 1.01, '43386-530', 'Benedikt Stilgoe', '15/03/2021');
+values (11, 1.01, '43386-530', 'Benedikt Stilgoe', '15/03/2021');
 insert into users (id, balance, hash, name, reg_time)
-values (2, 98.81, '36987-3189', 'Jarvis Targe', '24/09/2019');
+values (21, 98.81, '36987-3189', 'Jarvis Targe', '24/09/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (3, 61.51, '68788-0839', 'Stefa Saenz', '16/06/2019');
+values (31, 61.51, '68788-0839', 'Stefa Saenz', '16/06/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (4, 65.71, '68001-130', 'Garwood Wilkin', '15/03/2020');
+values (41, 65.71, '68001-130', 'Garwood Wilkin', '15/03/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (5, 50.14, '67457-478', 'Kenn Guyton', '25/02/2019');
+values (51, 50.14, '67457-478', 'Kenn Guyton', '25/02/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (6, 31.31, '50436-9974', 'Alanson Gilcriest', '27/08/2020');
+values (61, 31.31, '50436-9974', 'Alanson Gilcriest', '27/08/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (7, 20.46, '51060-058', 'Husain Onions', '27/11/2019');
+values (71, 20.46, '51060-058', 'Husain Onions', '27/11/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (8, 48.09, '51852-101', 'Nikoletta Gillford', '15/04/2019');
+values (81, 48.09, '51852-101', 'Nikoletta Gillford', '15/04/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (9, 65.84, '53113-104', 'Cchaddie Vuitte', '27/10/2019');
+values (91, 65.84, '53113-104', 'Cchaddie Vuitte', '27/10/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (10, 31.36, '62847-002', 'Pammy Patise', '19/07/2020');
+values (101, 31.36, '62847-002', 'Pammy Patise', '19/07/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (11, 22.53, '55154-5481', 'Henka Mander', '30/10/2019');
+values (111, 22.53, '55154-5481', 'Henka Mander', '30/10/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (12, 33.01, '68084-505', 'Kristian Dwelling', '21/06/2020');
+values (121, 33.01, '68084-505', 'Kristian Dwelling', '21/06/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (13, 67.85, '53603-1004', 'Jorry Stansbie', '08/06/2019');
+values (131, 67.85, '53603-1004', 'Jorry Stansbie', '08/06/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (14, 94.49, '16714-362', 'Stevana Yakunchikov', '14/07/2020');
+values (141, 94.49, '16714-362', 'Stevana Yakunchikov', '14/07/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (15, 63.96, '58177-312', 'Vivi Frankland', '20/12/2019');
+values (151, 63.96, '58177-312', 'Vivi Frankland', '20/12/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (16, 96.58, '66993-185', 'Josephina Brothwood', '01/02/2021');
+values (161, 96.58, '66993-185', 'Josephina Brothwood', '01/02/2021');
 insert into users (id, balance, hash, name, reg_time)
-values (17, 57.68, '52959-540', 'Zita Cockitt', '03/02/2020');
+values (171, 57.68, '52959-540', 'Zita Cockitt', '03/02/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (18, 23.59, '57955-2311', 'Bailie Matovic', '27/07/2020');
+values (181, 23.59, '57955-2311', 'Bailie Matovic', '27/07/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (19, 68.36, '16590-478', 'Othelia Mingus', '30/01/2021');
+values (191, 68.36, '16590-478', 'Othelia Mingus', '30/01/2021');
 insert into users (id, balance, hash, name, reg_time)
-values (20, 99.94, '55154-1951', 'Ashla Hulland', '20/03/2020');
+values (201, 99.94, '55154-1951', 'Ashla Hulland', '20/03/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (21, 60.58, '51389-250', 'Beatriz Cumpton', '11/10/2020');
+values (211, 60.58, '51389-250', 'Beatriz Cumpton', '11/10/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (22, 56.6, '49795-227', 'Malinda Carbry', '22/07/2019');
+values (221, 56.6, '49795-227', 'Malinda Carbry', '22/07/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (23, 74.45, '37205-476', 'Ethel Francioli', '14/03/2019');
+values (231, 74.45, '37205-476', 'Ethel Francioli', '14/03/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (24, 24.0, '0093-0248', 'Lorrie Forbear', '11/02/2019');
+values (241, 24.0, '0093-0248', 'Lorrie Forbear', '11/02/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (25, 31.65, '16714-522', 'Katerine Casebourne', '19/06/2020');
+values (251, 31.65, '16714-522', 'Katerine Casebourne', '19/06/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (26, 50.59, '63323-280', 'Candice Milbourn', '07/12/2020');
+values (261, 50.59, '63323-280', 'Candice Milbourn', '07/12/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (27, 43.29, '17271-501', 'Orelee Astlatt', '10/07/2020');
+values (271, 43.29, '17271-501', 'Orelee Astlatt', '10/07/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (28, 58.03, '0603-2949', 'Laughton Bynold', '23/03/2019');
+values (281, 58.03, '0603-2949', 'Laughton Bynold', '23/03/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (29, 73.88, '59779-044', 'Thorny Loidl', '17/05/2020');
+values (291, 73.88, '59779-044', 'Thorny Loidl', '17/05/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (30, 92.24, '0268-1322', 'Mitzi O''Cannovane', '17/04/2020');
+values (301, 92.24, '0268-1322', 'Mitzi O''Cannovane', '17/04/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (31, 81.84, '51997-035', 'Raynard Jolliss', '25/01/2021');
+values (311, 81.84, '51997-035', 'Raynard Jolliss', '25/01/2021');
 insert into users (id, balance, hash, name, reg_time)
-values (32, 74.98, '65692-0263', 'Sonja Skep', '27/12/2020');
+values (321, 74.98, '65692-0263', 'Sonja Skep', '27/12/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (33, 80.34, '65364-110', 'Misti Rayworth', '05/06/2019');
+values (331, 80.34, '65364-110', 'Misti Rayworth', '05/06/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (34, 41.66, '36800-630', 'Ranice Nicklinson', '08/01/2019');
+values (341, 41.66, '36800-630', 'Ranice Nicklinson', '08/01/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (35, 25.75, '51079-630', 'Friederike Caldron', '28/02/2021');
+values (351, 25.75, '51079-630', 'Friederike Caldron', '28/02/2021');
 insert into users (id, balance, hash, name, reg_time)
-values (36, 8.0, '50114-0150', 'Neilla Eakeley', '22/12/2020');
+values (361, 8.0, '50114-0150', 'Neilla Eakeley', '22/12/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (37, 35.09, '11410-609', 'Cooper Beckworth', '04/11/2020');
+values (371, 35.09, '11410-609', 'Cooper Beckworth', '04/11/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (38, 81.15, '52343-039', 'Leicester Lindell', '04/02/2019');
+values (381, 81.15, '52343-039', 'Leicester Lindell', '04/02/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (39, 2.67, '52815-122', 'Patten Stillwell', '28/01/2019');
+values (391, 2.67, '52815-122', 'Patten Stillwell', '28/01/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (40, 9.97, '51389-106', 'Irving Darinton', '10/12/2020');
+values (401, 9.97, '51389-106', 'Irving Darinton', '10/12/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (41, 51.31, '67777-308', 'Sophia Briers', '23/09/2020');
+values (411, 51.31, '67777-308', 'Sophia Briers', '23/09/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (42, 54.0, '55154-5980', 'Joshua Possell', '29/09/2020');
+values (421, 54.0, '55154-5980', 'Joshua Possell', '29/09/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (43, 62.64, '42023-107', 'Dayle Olczak', '16/06/2019');
+values (431, 62.64, '42023-107', 'Dayle Olczak', '16/06/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (44, 12.19, '59779-296', 'Duane MacEntee', '09/03/2020');
+values (441, 12.19, '59779-296', 'Duane MacEntee', '09/03/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (45, 27.72, '0031-8692', 'Elijah Rowney', '19/12/2020');
+values (451, 27.72, '0031-8692', 'Elijah Rowney', '19/12/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (46, 68.8, '36800-467', 'Hillary Vann', '20/05/2019');
+values (461, 68.8, '36800-467', 'Hillary Vann', '20/05/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (47, 91.45, '36987-1878', 'Luke De Micoli', '08/02/2019');
+values (471, 91.45, '36987-1878', 'Luke De Micoli', '08/02/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (48, 30.69, '58503-046', 'Umberto Blumsom', '29/02/2020');
+values (481, 30.69, '58503-046', 'Umberto Blumsom', '29/02/2020');
 insert into users (id, balance, hash, name, reg_time)
-values (49, 55.45, '65643-419', 'Rozanne Faucherand', '21/07/2019');
+values (491, 55.45, '65643-419', 'Rozanne Faucherand', '21/07/2019');
 insert into users (id, balance, hash, name, reg_time)
-values (50, 20.08, '43063-059', 'Erskine Hawkridge', '17/06/2019');
+values (501, 20.08, '43063-059', 'Erskine Hawkridge', '17/06/2019');
 
 insert into genre (id, name, parent_id, slug)
 values (1, 'Drama', null, 'drama');
@@ -4143,17 +4143,17 @@ insert into book_file(id, hash, type_id, path, book_id)
 values (6, 'ksdjfhkjh3jh', 3, '/Turn_it_up.fb2', 4);
 
 insert into book_review (book_id, text, time, user_id)
-values (1, 'Super nice book', '2021-07-03 22:23:32.754779', 1);
+values (1, 'Super nice book', '2021-07-03 22:23:32.754779', 11);
 insert into book_review (book_id, text, time, user_id)
 values (1,
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-        '2021-07-03 22:23:32.754779', 2);
+        '2021-07-03 22:23:32.754779', 21);
 insert into book_review (book_id, text, time, user_id)
-values (1, 'Agree with the above', '2021-07-03 22:23:32.754779', 3);
+values (1, 'Agree with the above', '2021-07-03 22:23:32.754779', 31);
 
 insert into book_review_like (date_time, user_id, value, book_review_id)
-values ('2021-07-04 10:12:32.723439', 33, 1, 3);
+values ('2021-07-04 10:12:32.723439', 331, 1, 3);
 insert into book_review_like (date_time, user_id, value, book_review_id)
-values ('2021-07-04 12:12:32.723439', 34, -1, 3);
+values ('2021-07-04 12:12:32.723439', 341, -1, 3);
 insert into book_review_like (date_time, user_id, value, book_review_id)
 values ('2021-07-04 13:12:32.723439', 35, 1, 3);

@@ -26,6 +26,9 @@ public class User {
     private LocalDateTime regTime;
     private BigDecimal balance;
     private String name;
+    private String email;
+    private String phone;
+    private String pass;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "book2user",
